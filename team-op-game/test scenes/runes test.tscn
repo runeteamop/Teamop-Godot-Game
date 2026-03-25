@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://birdxxwbed20b"]
+
+[ext_resource type="PackedScene" uid="uid://dcft6scw2phba" path="res://scenes/player.tscn" id="1_5nvco"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a74kq"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_710v2"]
+
+[node name="RunesTest" type="Node3D" unique_id=470381603]
+
+[node name="Player" parent="." unique_id=982876763 instance=ExtResource("1_5nvco")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=104529718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65131605, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1416907009]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("PlaneMesh_a74kq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=724911085]
+shape = SubResource("WorldBoundaryShape3D_710v2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1218523619]
+transform = Transform3D(0.30556682, -0.85606945, -0.41686183, 0.72929144, -0.07105577, 0.6805036, -0.6121788, -0.5119531, 0.6026118, 0, 0, 0)
+light_angular_distance = 15.0
+light_specular = 1.5
+shadow_enabled = true
+shadow_bias = 1.0
+shadow_normal_bias = 0.0
+shadow_opacity = 0.4
+shadow_blur = 0.2
