@@ -8,7 +8,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	# Handle jump.
+	# Handle jump.sa
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
@@ -35,7 +35,5 @@ func look_at_cursor():
 	var from = $Camera.project_ray_origin(mouse_pos)
 	var to = from + $Camera.project_ray_normal(mouse_pos) * ray_lenght
 	var mouse_pos_on_plane = target_plane_mouse.intersects_ray(from, to)
-	
-	print(mouse_pos_on_plane)
 	
 	$Turret.look_at(mouse_pos_on_plane, Vector3.UP, 0)

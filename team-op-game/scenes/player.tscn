@@ -14,16 +14,12 @@ script = ExtResource("1_g2els")
 shape = SubResource("BoxShape3D_dqkch")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1611064985]
-cast_shadow = 3
-mesh = SubResource("SphereMesh_g2els")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2079166352]
-transform = Transform3D(0.9999934, 0.0030528493, -0.001976954, -0.0030513266, 0.9999951, 0.0007723639, 0.0019793033, -0.0007663229, 0.99999774, 0, 0, 0)
 mesh = SubResource("SphereMesh_g2els")
 
 [node name="Camera" parent="." unique_id=1261762055 instance=ExtResource("2_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 0.6619924, 0.7495106, 0, -0.7495106, 0.6619924, 0, 10.911071, 8.5401125)
 projection = 1
+fov = 30.0
 size = 14.0
 far = 100.0
 
@@ -31,9 +27,11 @@ far = 100.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Turret" unique_id=965425171]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.35952246, 0)
+gi_lightmap_texel_scale = 0.01
 radius = 0.3
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Turret/CSGSphere3D" unique_id=1255229936]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -0.38961375, 0.19408542, 0)
+gi_lightmap_texel_scale = 0.01
 radius = 0.1
 height = 0.8
