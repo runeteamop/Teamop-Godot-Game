@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://birdxxwbed20b"]
+[gd_scene format=3 uid="uid://cyu1pg7vt4igj"]
 
-[ext_resource type="PackedScene" uid="uid://dcft6scw2phba" path="res://scenes/player.tscn" id="1_5nvco"]
+[ext_resource type="PackedScene" uid="uid://dp5rn7hwvyalo" path="res://scenes/player.tscn" id="1_5nvco"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5nvco"]
 
@@ -28,6 +28,6 @@ light_bake_mode = 1
 shadow_enabled = true
 shadow_bias = 0.0
 shadow_reverse_cull_face = true
-shadow_opacity = 0.8
+shadow_opacity = 0.6
 shadow_blur = 0.1
 directional_shadow_pancake_size = 0.0

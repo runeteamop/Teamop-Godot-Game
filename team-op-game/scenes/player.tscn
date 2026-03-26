@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bwvrixfno6k2s"]
+[gd_scene format=3 uid="uid://dp5rn7hwvyalo"]
 
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://do2r14ve4hl7y" path="res://scenes/camera.tscn" id="2_qhqgy"]
@@ -18,6 +18,7 @@ script = ExtResource("1_g2els")
 shape = SubResource("BoxShape3D_dqkch")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1611064985]
+cast_shadow = 2
 mesh = SubResource("SphereMesh_g2els")
 
 [node name="Camera" parent="." unique_id=1261762055 instance=ExtResource("2_qhqgy")]
@@ -31,8 +32,10 @@ far = 100.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Turret" unique_id=1851996098]
 transform = Transform3D(-0.59999996, 0, 5.245366e-08, 0, 0.59999996, 0, -5.245366e-08, 0, -0.59999996, 0, 0.37374765, 0)
+cast_shadow = 2
 mesh = SubResource("SphereMesh_qhqgy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Turret/MeshInstance3D" unique_id=882158034]
 transform = Transform3D(0.3, 0, 0, 0, -2.6226832e-08, -0.3, 0, 0.6, -1.3113416e-08, 1.6460213e-08, 0.30623883, 0.5738544)
+cast_shadow = 2
 mesh = SubResource("CylinderMesh_dqkch")
