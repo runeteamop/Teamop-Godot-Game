@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqtiesahm64pj"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://cd4uvc046lbo0" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://do2r14ve4hl7y" path="res://scenes/camera.tscn" id="2_qhqgy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dqkch"]
@@ -29,9 +29,10 @@ size = 14.0
 far = 100.0
 
 [node name="Turret" type="Marker3D" parent="." unique_id=1614362004]
+transform = Transform3D(1, 0, -1.7682974e-07, 0, 1, 0, 1.7682974e-07, 0, 1, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Turret" unique_id=1851996098]
-transform = Transform3D(-0.59999996, 0, 5.245366e-08, 0, 0.59999996, 0, -5.245366e-08, 0, -0.59999996, 0, 0.37374765, 0)
+transform = Transform3D(-0.59999996, 0, -5.2453665e-08, 0, 0.59999996, 0, 5.2453665e-08, 0, -0.59999996, 0, 0.37374765, 0)
 cast_shadow = 2
 mesh = SubResource("SphereMesh_qhqgy")
 
