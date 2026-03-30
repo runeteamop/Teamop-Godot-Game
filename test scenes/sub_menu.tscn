@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dmg2j14j7w1eb"]
+
+[ext_resource type="Script" uid="uid://xat0fsqifwqy" path="res://test scenes/sub_menu.gd" id="1_683rq"]
+
+[node name="SubMenu" type="VBoxContainer" unique_id=1873067515]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -15.5
+offset_right = 22.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_683rq")
+
+[node name="Back" type="Button" parent="." unique_id=1607143759]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 128
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
