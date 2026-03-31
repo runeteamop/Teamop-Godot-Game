@@ -8,6 +8,9 @@ const rotation_speed = 10
 @onready var camera = $Camera
 @onready var body = $Body
 
+@onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
+var ray_lenght = 100
+
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 func _physics_process(delta: float) -> void:
@@ -23,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.length() > 0:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
-		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.1)
+		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
 	
 	move_and_slide()
 	
@@ -31,19 +34,23 @@ func _physics_process(delta: float) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Shoot"):
-		print("BAAM!!!")
-		var bullet = bullet_scene.instantiate()
-		add_sibling(bullet)
+		_spawn_bullet()
 
-func _turn_turret(turret_transform: Transform3D, delta):
-	var target_plane = Plane(Vector3(0, 1, 0), position.y)
-	var ray_lenght = 100
+func _mouse_pos_on_plane():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_lenght
-	var mouse_pos_on_plane = target_plane.intersects_ray(from, to)
-	
+	return(target_plane.intersects_ray(from, to))
+
+func _turn_turret(turret_transform: Transform3D, delta):
+	var mouse_pos = _mouse_pos_on_plane()
 	var current_trans = turret_transform
-	var target_trans = current_trans.looking_at(mouse_pos_on_plane, Vector3.UP)
+	var target_trans = current_trans.looking_at(mouse_pos, Vector3.UP)
 	
 	return(current_trans.basis.slerp(target_trans.basis, rotation_speed * delta))
+
+func _spawn_bullet() -> void:
+	var bullet: Bullet = bullet_scene.instantiate()
+	bullet.target = _mouse_pos_on_plane()
+	bullet.position = position
+	add_sibling(bullet)
