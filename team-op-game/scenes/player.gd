@@ -9,7 +9,7 @@ const rotation_speed = 10
 @onready var body = $Body
 
 func _physics_process(delta: float) -> void:
-	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
+	var input_dir:= Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	
 	if velocity.length() > 0:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
-		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
+		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.1)
 	
 	move_and_slide()
 	
