@@ -5,7 +5,6 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_3oylf"]
 
 [node name="Turret" type="Marker3D" unique_id=376836790]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1428219473]
 transform = Transform3D(-0.59999996, 0, 5.364418e-08, 0, 0.59999996, 0, -5.364418e-08, 0, -0.59999996, 0, 0.37374765, 0)

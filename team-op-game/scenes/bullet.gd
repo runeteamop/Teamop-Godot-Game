@@ -2,7 +2,7 @@ class_name Bullet extends Area3D
 
 @export var target: Vector3
 
-const SPEED = 2
+const SPEED = 20
 
 var velocity: Vector3
 

@@ -14,7 +14,7 @@ var ray_lenght = 100
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 func _physics_process(delta: float) -> void:
-	var input_dir:= Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
+	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
@@ -33,8 +33,11 @@ func _physics_process(delta: float) -> void:
 	turret.global_transform.basis = _turn_turret(turret.global_transform, delta)
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Shoot"):
-		_spawn_bullet()
+	if Input.is_action_just_pressed("Left Click"):
+		var bullet: Bullet = bullet_scene.instantiate()
+		bullet.target = _mouse_pos_on_plane()
+		bullet.position = position
+		add_sibling(bullet)
 
 func _mouse_pos_on_plane():
 	var mouse_pos = get_viewport().get_mouse_position()
