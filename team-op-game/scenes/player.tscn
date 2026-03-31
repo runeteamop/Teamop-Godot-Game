@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://cqtiesahm64pj"]
 
 [ext_resource type="Script" uid="uid://cd4uvc046lbo0" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://bd0jskcl643ek" path="res://textures/spidertank_0.0.2.glb" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://do2r14ve4hl7y" path="res://scenes/camera.tscn" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://cnh2cpb2r350u" path="res://turret.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://cnh2cpb2r350u" path="res://scenes/turret.tscn" id="3_qhqgy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dqkch"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_g2els"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_g2els"]
 
 [node name="Player" type="CharacterBody3D" unique_id=982876763]
 script = ExtResource("1_g2els")
@@ -16,14 +13,8 @@ script = ExtResource("1_g2els")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=956873532]
 shape = SubResource("BoxShape3D_dqkch")
 
-[node name="Body" type="MeshInstance3D" parent="." unique_id=1611064985]
-cast_shadow = 2
-mesh = SubResource("SphereMesh_g2els")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Body" unique_id=430152046]
-transform = Transform3D(0.8, 0, 0, 0, 0.2, 0, 0, 0, 0.5, 0, 0.29957858, -0.22246614)
-cast_shadow = 2
-mesh = SubResource("BoxMesh_g2els")
+[node name="Body" parent="." unique_id=420794276 instance=ExtResource("2_dqkch")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 
 [node name="Camera" parent="." unique_id=1261762055 instance=ExtResource("2_qhqgy")]
 transform = Transform3D(1, 0, 0, 0, 0.6619924, 0.7495106, 0, -0.7495106, 0.6619924, 0, 10.911071, 8.5401125)
