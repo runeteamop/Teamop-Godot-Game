@@ -6,16 +6,21 @@ const rotation_speed = 10
 
 @onready var turret = $Turret
 @onready var camera = $Camera
+@onready var body = $Body
 
 func _physics_process(delta: float) -> void:
-	var input_dir := Input.get_vector("Left", "Right", "Up", "Down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
+	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, 0.5)
+		velocity.z = move_toward(velocity.z, 0, 0.5)
+	
+	if velocity.length() > 0:
+		var facing_dir = atan2(-velocity.x, -velocity.z)
+		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
 	
 	move_and_slide()
 	
@@ -31,5 +36,5 @@ func _turn_turret(turret_transform: Transform3D, delta):
 	
 	var current_trans = turret_transform
 	var target_trans = current_trans.looking_at(mouse_pos_on_plane, Vector3.UP)
-	var new_basis = current_trans.basis.slerp(target_trans.basis, rotation_speed * delta)
-	return(new_basis)
+	
+	return(current_trans.basis.slerp(target_trans.basis, rotation_speed * delta))
