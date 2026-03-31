@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1wptkrscsvyt"]
 
-[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1_5nvco"]
+[ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://scenes/player.tscn" id="1_5nvco"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5nvco"]
 

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://t8f0re2vibsy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1aey"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_mkf8s"]
+
+[node name="Bullet" type="Area3D" unique_id=1344906873]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=438964888]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("BoxShape3D_h1aey")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1928587758]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_mkf8s")

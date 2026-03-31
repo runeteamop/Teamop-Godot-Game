@@ -8,9 +8,12 @@ const rotation_speed = 10
 @onready var camera = $Camera
 @onready var body = $Body
 
+var bullet_scene = preload("res://scenes/bullet.tscn")
+
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -25,6 +28,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	turret.global_transform.basis = _turn_turret(turret.global_transform, delta)
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("Shoot"):
+		print("BAAM!!!")
+		var bullet = bullet_scene.instantiate()
+		add_sibling(bullet)
 
 func _turn_turret(turret_transform: Transform3D, delta):
 	var target_plane = Plane(Vector3(0, 1, 0), position.y)
