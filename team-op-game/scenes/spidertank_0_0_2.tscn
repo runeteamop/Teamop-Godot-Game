@@ -2,6 +2,30 @@
 
 [ext_resource type="PackedScene" uid="uid://bd0jskcl643ek" path="res://textures/spidertank_0.0.2.glb" id="1_gcc7x"]
 
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_gcc7x"]
+angle = 0.5235988
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_ioawd"]
+angle = 0.5235988
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_4uewc"]
+angle = 2.443461
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_6h40r"]
+angle = 0.0
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_utkcw"]
+angle = 0.0
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_k2c28"]
+angle = 0.0
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_2vvsd"]
+angle = 0.0
+
+[sub_resource type="JointLimitationCone3D" id="JointLimitationCone3D_ytwnt"]
+angle = 0.0
+
 [node name="spidertank_0_0_2" unique_id=420794276 instance=ExtResource("1_gcc7x")]
 
 [node name="Skeleton3D" parent="spidertank-rig" parent_id_path=PackedInt32Array(1869516671) index="0" unique_id=1063747681]
@@ -13,7 +37,6 @@ bones/4/rest = Transform3D(1, 1.1500207e-07, 2.972484e-07, 2.4949856e-07, 0.2978
 bones/5/rest = Transform3D(1, 4.963161e-07, 9.19844e-07, -1.0387394e-06, 0.37421912, 0.92734045, 1.16030776e-07, -0.9273403, 0.37421915, 5.2029714e-07, 0.42768738, 1.899898e-07)
 bones/6/rest = Transform3D(1, -1.3030641e-06, 9.877613e-08, 9.651012e-08, -0.0017389057, -0.99999845, 1.3032341e-06, 0.99999833, -0.0017389059, -7.9976246e-08, 0.51579344, -4.7683716e-07)
 bones/7/rest = Transform3D(1, 7.1169904e-07, 9.4783115e-07, -1.0432118e-06, 0.9080923, 0.41877, -5.6268e-07, -0.41877002, 0.90809226, 7.6560056e-08, 0.46537504, 6.7055225e-08)
-bones/8/rest = Transform3D(-1, -9.089706e-07, 5.0529064e-07, -5.052904e-07, -3.5762784e-07, -0.9999999, 9.0897083e-07, -0.9999999, 3.5762784e-07, 2.385757e-07, 0.22867468, 1.1922737e-07)
 bones/9/rest = Transform3D(-0.8191521, 0.5735762, 0, 0, 0, 1, 0.57357615, 0.81915224, 0, -6.86848, 1.1449416, 5.3438807)
 bones/10/rest = Transform3D(-0.0078703165, -3.7252903e-07, 0.99996895, 0.4205171, 0.9072786, 0.0033100392, -0.9072506, 0.42053008, -0.007140397, -5.9604645e-08, 1.043587, 0)
 bones/11/rest = Transform3D(0.009671747, 0.41989538, 0.9075211, -0.0008338093, 0.9075665, -0.41990763, -0.99995285, 0.003304556, 0.009127856, -8.940697e-08, 1.6295888, 1.3317913e-07)
@@ -61,19 +84,47 @@ bones/52/rest = Transform3D(0.9080076, -0.41860312, 0.017130028, 0.4187387, 0.90
 bones/53/rest = Transform3D(0.012217103, -0.9999252, 1.4901161e-07, -8.940695e-08, -2.3841854e-07, -1, 0.9999252, 0.012217132, -1.1920929e-07, 1.1920622e-07, 0.22867471, -3.4720038e-10)
 
 [node name="Marker3D" type="Marker3D" parent="spidertank-rig/Skeleton3D" index="3" unique_id=807409112]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1148715, -0.3516186, -0.19450092)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0464125, 0.78767556, -0.25982141)
 
-[node name="TwoBoneIK3D" type="TwoBoneIK3D" parent="spidertank-rig/Skeleton3D" index="4" unique_id=1473591073]
-transform = Transform3D(0.9997532, 0.022216214, 0, -0.022216214, 0.9997532, 0, 0, 0, 1, 0, 0, 0)
+[node name="CCDIK3D" type="CCDIK3D" parent="spidertank-rig/Skeleton3D" index="4" unique_id=712856822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5787644, 0.9097957, -0.2363503)
 setting_count = 1
 settings/0/target_node = NodePath("../Marker3D")
-settings/0/pole_node = NodePath("../spidertank-legs")
 settings/0/root_bone_name = "spidertank-Bleg.L"
 settings/0/root_bone = 0
-settings/0/middle_bone_name = "spidertank-Bleg.L.003"
-settings/0/middle_bone = 3
-settings/0/pole_direction = 0
-settings/0/end_bone_name = "spidertank-Bleg.L.008"
-settings/0/end_bone = 8
-settings/0/use_virtual_end = false
+settings/0/end_bone_name = "spidertank-Bleg.L.007"
+settings/0/end_bone = 7
 settings/0/extend_end_bone = false
+settings/0/joint_count = 8
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = SubResource("JointLimitationCone3D_gcc7x")
+settings/0/joints/0/limitation/right_axis = 0
+settings/0/joints/0/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = SubResource("JointLimitationCone3D_ioawd")
+settings/0/joints/1/limitation/right_axis = 0
+settings/0/joints/1/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
+settings/0/joints/2/rotation_axis = 0
+settings/0/joints/2/limitation = SubResource("JointLimitationCone3D_4uewc")
+settings/0/joints/2/limitation/right_axis = 0
+settings/0/joints/2/limitation/rotation_offset = Quaternion(0.5, 0, 0, 1)
+settings/0/joints/3/rotation_axis = 3
+settings/0/joints/3/limitation = SubResource("JointLimitationCone3D_6h40r")
+settings/0/joints/3/limitation/right_axis = 0
+settings/0/joints/3/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
+settings/0/joints/4/rotation_axis = 3
+settings/0/joints/4/limitation = SubResource("JointLimitationCone3D_utkcw")
+settings/0/joints/4/limitation/right_axis = 0
+settings/0/joints/4/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
+settings/0/joints/5/rotation_axis = 3
+settings/0/joints/5/limitation = SubResource("JointLimitationCone3D_k2c28")
+settings/0/joints/5/limitation/right_axis = 0
+settings/0/joints/5/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
+settings/0/joints/6/rotation_axis = 3
+settings/0/joints/6/limitation = SubResource("JointLimitationCone3D_2vvsd")
+settings/0/joints/6/limitation/right_axis = 0
+settings/0/joints/6/limitation/rotation_offset = Quaternion(0, 0, 0, 1)
+settings/0/joints/7/rotation_axis = 3
+settings/0/joints/7/limitation = SubResource("JointLimitationCone3D_ytwnt")
+settings/0/joints/7/limitation/right_axis = 0
+settings/0/joints/7/limitation/rotation_offset = Quaternion(0, 0, 0, 1)

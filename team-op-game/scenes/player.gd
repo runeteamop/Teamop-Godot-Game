@@ -8,6 +8,8 @@ const rotation_speed = 10
 @onready var camera = $Camera
 @onready var body = $Body
 
+var brah: bool
+
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
 var ray_lenght = 100
 
@@ -16,6 +18,11 @@ var bullet_scene = preload("res://scenes/bullet.tscn")
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if brah:
+		print("hergeg")
+	if brah == false:
+		print("hergeg")
 	
 	if direction:
 		velocity.x = direction.x * SPEED
