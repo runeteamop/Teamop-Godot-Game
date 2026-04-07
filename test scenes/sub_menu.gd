@@ -1,15 +1,4 @@
-extends VBoxContainer
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+class_name SubMenu extends VBoxContainer
 
 func _on_back_pressed() -> void:
-	SCENE_MANAGER.change_scene("res://test scenes/main_menu.tscn")
+	SCENE_MANAGER.change_scene(SCENE_MANAGER.main_menu)

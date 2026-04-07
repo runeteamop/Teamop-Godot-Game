@@ -1,9 +1,4 @@
-class_name main extends Node
+class_name Main extends Node
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	SCENE_MANAGER.change_scene("res://test scenes/main_menu.tscn")
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	SCENE_MANAGER.change_scene(SCENE_MANAGER.main_menu)

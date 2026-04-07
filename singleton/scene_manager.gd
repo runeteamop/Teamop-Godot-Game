@@ -1,15 +1,9 @@
-class_name SceneManager extends Node
+extends Node
 
 var current_scene: Node
-# Called when the node enters the scene tree for the first time.
 
-func _ready() -> void:
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+var main_menu: String = "uid://cdwkb8h2hb2wy"
+var	sub_menu: String = "uid://dmg2j14j7w1eb"
 
 func change_scene(scene: String) -> void:
 	if current_scene != null:
