@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 SCENE_MANAGER="*uid://ch6ue07qcgf62"
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
+
 [input]
 
 Left={
