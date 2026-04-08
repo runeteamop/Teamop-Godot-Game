@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dmg2j14j7w1eb"]
 
 [ext_resource type="Script" uid="uid://xat0fsqifwqy" path="res://test scenes/sub_menu.gd" id="1_683rq"]
-[ext_resource type="Texture2D" uid="uid://dkc0l7cm5adew" path="res://textures/Dirt.png" id="2_xjk86"]
+[ext_resource type="Texture2D" uid="uid://dkc0l7cm5adew" path="res://textures/Dirt_test.png" id="2_xjk86"]
+
 
 [node name="SubMenu" type="Control" unique_id=1803129516]
 layout_mode = 3
