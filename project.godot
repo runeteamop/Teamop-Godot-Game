@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="Team Op Game"
+run/main_scene="uid://y5pulnkmgra1"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SCENE_MANAGER="*uid://ch6ue07qcgf62"
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900
 
 [input]
 
