@@ -11,7 +11,7 @@ const rotation_speed = 10
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
 var ray_lenght = 100
 
-var bullet_scene = preload("res://scenes/bullet.tscn")
+var bullet_scene = preload(LOAD_SCENE.bullet)
 
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")

@@ -2,9 +2,6 @@ extends Node
 
 var current_scene: Node
 
-var main_menu: String = "uid://cdwkb8h2hb2wy"
-var	sub_menu: String = "uid://dmg2j14j7w1eb"
-
 func change_scene(scene: String) -> void:
 	if current_scene != null:
 		remove_child(current_scene)
