@@ -1,4 +1,4 @@
-class_name Menu extends CanvasLayer
+class_name Menu extends Control
 
 func _on_start_pressed() -> void:
 <<<<<<< HEAD
