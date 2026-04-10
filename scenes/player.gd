@@ -1,12 +1,16 @@
 extends CharacterBody3D
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 const rotation_speed = 10
 
-@onready var turret = $Turret
+var reload_time: float = 1
+var r_stick_dir
+var current_control_type
+
+@onready var turret:= $Turret
 @onready var camera = $Camera
 @onready var body = $Body
+@onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
 
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
 var ray_lenght = 100
@@ -28,15 +32,33 @@ func _physics_process(delta: float) -> void:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
 		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
 	
+	reload_time += delta
+	
 	move_and_slide()
 	
-	turret.global_transform.basis = _turn_turret(turret.global_transform, delta)
+	if current_control_type == "Mouse":
+		turret.global_transform.basis = _mouse_turn_turret(turret.global_transform, delta)
+		print(turret.rotation.y)
+	elif current_control_type == "Controller":
+		turret.rotation.y = lerp_angle(turret.rotation.y, r_stick_dir, rotation_speed * delta)
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Left Click"):
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouse:
+		current_control_type = "Mouse"
+	if Input.is_action_pressed("Left Click"):
+		_shoot()
+	if event is InputEventJoypadMotion:
+		current_control_type = "Controller"
+		r_stick_dir = -Vector2(-(Input.get_joy_axis(0, 3)), Input.get_joy_axis(0, 2)).angle()
+		_shoot()
+
+func _shoot() -> void:
+	if reload_time > 0.5:
+		reload_time = 0
 		var bullet: Bullet = bullet_scene.instantiate()
-		bullet.target = _mouse_pos_on_plane()
-		bullet.position = position
+		bullet.rotation = turret.rotation
+		bullet.position = turret_cannon.global_position
+		
 		add_sibling(bullet)
 
 func _mouse_pos_on_plane():
@@ -45,15 +67,9 @@ func _mouse_pos_on_plane():
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_lenght
 	return(target_plane.intersects_ray(from, to))
 
-func _turn_turret(turret_transform: Transform3D, delta):
+func _mouse_turn_turret(turret_transform: Transform3D, delta):
 	var mouse_pos = _mouse_pos_on_plane()
 	var current_trans = turret_transform
 	var target_trans = current_trans.looking_at(mouse_pos, Vector3.UP)
 	
 	return(current_trans.basis.slerp(target_trans.basis, rotation_speed * delta))
-
-func _spawn_bullet() -> void:
-	var bullet: Bullet = bullet_scene.instantiate()
-	bullet.target = _mouse_pos_on_plane()
-	bullet.position = position
-	add_sibling(bullet)
