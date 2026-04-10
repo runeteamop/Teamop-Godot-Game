@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cxhkccfmv5ex3"]
+
+[ext_resource type="Script" path="res://scenes/tank_shell.gd" id="1_etqdd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lopvi"]
+albedo_color = Color(0.78431374, 0.078431375, 0.078431375, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mkf8s"]
+material = SubResource("StandardMaterial3D_lopvi")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1aey"]
+
+[node name="Shell" type="Area3D" unique_id=1344906873]
+script = ExtResource("1_etqdd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1928587758]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("SphereMesh_mkf8s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=438964888]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("BoxShape3D_h1aey")
