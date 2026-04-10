@@ -6,12 +6,15 @@
 
 [node name="Turret" type="Marker3D" unique_id=376836790]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1428219473]
+[node name="Head" type="MeshInstance3D" parent="." unique_id=1428219473]
 transform = Transform3D(-0.59999996, 0, 5.364418e-08, 0, 0.59999996, 0, -5.364418e-08, 0, -0.59999996, 0, 0.37374765, 0)
 cast_shadow = 2
 mesh = SubResource("SphereMesh_8xk5y")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1384469863]
-transform = Transform3D(0.3, 0, 0, 0, -2.6226832e-08, -0.3, 0, 0.6, -1.3113416e-08, 1.6460213e-08, 0.30623883, 0.5738544)
+[node name="Cannon" type="MeshInstance3D" parent="." unique_id=1384469863]
+transform = Transform3D(-0.17999999, 3.218651e-08, -7.0345843e-16, 0, -1.5736099e-08, -0.17999999, -1.6093255e-08, -0.35999998, 7.868049e-09, 2.090782e-08, 0.55749094, -0.3443126)
 cast_shadow = 2
 mesh = SubResource("CylinderMesh_3oylf")
+
+[node name="Cannon End" type="Node3D" parent="Cannon" unique_id=27813028]
+transform = Transform3D(1, -2.842171e-14, 0, 7.1054274e-15, 1, 0, 0, 0, 1, 1.8043431e-07, 1.0090616, -2.3841858e-07)

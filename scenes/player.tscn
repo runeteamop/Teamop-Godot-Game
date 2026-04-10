@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqtiesahm64pj"]
 
-[ext_resource type="Script" uid="uid://bxe0lmmtjmbv5" path="res://scenes/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://cd4uvc046lbo0" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://do2r14ve4hl7y" path="res://scenes/camera.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cnh2cpb2r350u" path="res://scenes/turret.tscn" id="3_qhqgy"]
 
@@ -29,3 +29,6 @@ mesh = SubResource("SphereMesh_qhqgy")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1481500639]
 transform = Transform3D(0.9, 0, 0, 0, 0.2, 0, 0, 0, 0.5, 0, 0.24928802, -0.22423303)
 mesh = SubResource("BoxMesh_dqkch")
+
+[node name="Timer" type="Timer" parent="." unique_id=1977409208]
+autostart = true
