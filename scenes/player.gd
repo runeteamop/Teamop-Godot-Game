@@ -21,6 +21,10 @@ func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
+	if Input.is_action_pressed("Left Click"):
+		current_control_type = "Mouse"
+		_shoot()
+	
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -34,20 +38,17 @@ func _physics_process(delta: float) -> void:
 	
 	reload_time += delta
 	
-	move_and_slide()
-	
 	if current_control_type == "Mouse":
 		turret.global_transform.basis = _mouse_turn_turret(turret.global_transform, delta)
-		print(turret.rotation.y)
 	elif current_control_type == "Controller":
 		turret.rotation.y = lerp_angle(turret.rotation.y, r_stick_dir, rotation_speed * delta)
+	
+	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouse:
-		current_control_type = "Mouse"
-	if Input.is_action_pressed("Left Click"):
-		_shoot()
-	if event is InputEventJoypadMotion:
+	var sin = abs(Input.get_joy_axis(0, 3))
+	var cos = abs(Input.get_joy_axis(0, 2))
+	if event is InputEventJoypadMotion and (sin > 0.1 or cos > 0.1):
 		current_control_type = "Controller"
 		r_stick_dir = -Vector2(-(Input.get_joy_axis(0, 3)), Input.get_joy_axis(0, 2)).angle()
 		_shoot()
