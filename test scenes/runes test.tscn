@@ -3,6 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://scenes/player.tscn" id="1_5nvco"]
 [ext_resource type="Script" uid="uid://ds8eok3cha7un" path="res://test scenes/runes_test.gd" id="1_a74kq"]
 
+[sub_resource type="Environment" id="Environment_7ukyh"]
+background_mode = 1
+background_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_5nvco"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_710v2"]
@@ -10,10 +17,18 @@
 [node name="RunesTest" type="Node3D" unique_id=470381603]
 script = ExtResource("1_a74kq")
 
-[node name="Player" parent="." unique_id=982876763 instance=ExtResource("1_5nvco")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2130850347]
+environment = SubResource("Environment_7ukyh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=286070476]
+transform = Transform3D(0.70710665, 0.35355344, -0.6123725, 0, 0.8660254, 0.5, 0.7071069, -0.35355332, 0.61237234, 0, 0, 0)
+light_specular = 5.0
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 10.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=104529718]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65131605, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1416907009]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
@@ -22,16 +37,8 @@ mesh = SubResource("PlaneMesh_5nvco")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=724911085]
 shape = SubResource("WorldBoundaryShape3D_710v2")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1218523619]
-transform = Transform3D(0.30556682, -0.85606945, -0.41686183, 0.72929144, -0.07105577, 0.6805036, -0.6121788, -0.5119531, 0.6026118, 0, 0, 0)
-light_angular_distance = 15.0
-light_specular = 0.0
-light_bake_mode = 1
-shadow_enabled = true
-shadow_reverse_cull_face = true
-shadow_opacity = 0.6
-shadow_blur = 0.1
-directional_shadow_pancake_size = 0.0
+[node name="Player" parent="." unique_id=982876763 instance=ExtResource("1_5nvco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=466695285]
 autostart = true

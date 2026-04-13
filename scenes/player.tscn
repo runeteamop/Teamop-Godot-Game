@@ -19,9 +19,10 @@ shape = SubResource("BoxShape3D_dqkch")
 [node name="Turret" parent="." unique_id=376836790 instance=ExtResource("3_qhqgy")]
 
 [node name="Camera" parent="." unique_id=1261762055 instance=ExtResource("2_qhqgy")]
-transform = Transform3D(1, 0, 0, 0, 0.693867, 0.72010314, 0, -0.72010314, 0.693867, 0, 6.294541, 5.481188)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
 projection = 1
 size = 15.0
+far = 50.0
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1752458292]
 mesh = SubResource("SphereMesh_qhqgy")

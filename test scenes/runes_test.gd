@@ -9,6 +9,6 @@ func _on_timer_timeout() -> void:
 	var enemy: Area3D = load(LOAD_SCENE.enemy).instantiate()
 	 
 	enemy.position = spawn_circle + player.position
-	enemy.player = player
+	enemy.target = player
 	
 	add_sibling(enemy)

@@ -7,7 +7,8 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_mkf8s"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h1aey"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mkf8s"]
+margin = 0.0
 
 [node name="Bullet" type="Area3D" unique_id=1344906873]
 script = ExtResource("1_mkf8s")
@@ -19,7 +20,7 @@ mesh = SubResource("SphereMesh_mkf8s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=438964888]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-shape = SubResource("BoxShape3D_h1aey")
+shape = SubResource("CylinderShape3D_mkf8s")
 
 [node name="Timer" type="Timer" parent="." unique_id=315603198]
 wait_time = 10.0
