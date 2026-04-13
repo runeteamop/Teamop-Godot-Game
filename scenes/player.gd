@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 const SPEED = 5.0
 const rotation_speed = 10
@@ -15,7 +15,7 @@ var current_control_type
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
 var ray_lenght = 100
 
-var bullet_scene = preload(LOAD_SCENE.bullet)
+var bullet_scene: PackedScene = load(LOAD_SCENE.bullet)
 
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")

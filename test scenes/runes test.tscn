@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://c46py3q0yqh4y"]
 
 [ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://scenes/player.tscn" id="1_5nvco"]
+[ext_resource type="Script" uid="uid://ds8eok3cha7un" path="res://test scenes/runes_test.gd" id="1_a74kq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5nvco"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_710v2"]
 
 [node name="RunesTest" type="Node3D" unique_id=470381603]
+script = ExtResource("1_a74kq")
 
 [node name="Player" parent="." unique_id=982876763 instance=ExtResource("1_5nvco")]
 
@@ -30,3 +32,9 @@ shadow_reverse_cull_face = true
 shadow_opacity = 0.6
 shadow_blur = 0.1
 directional_shadow_pancake_size = 0.0
+
+[node name="Timer" type="Timer" parent="." unique_id=466695285]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
