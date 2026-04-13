@@ -7,5 +7,4 @@ func _process(delta: float) -> void:
 	global_transform.origin -= transform.basis.z.normalized() * SPEED * delta
 
 func _on_timer_timeout() -> void:
-	print("brah")
 	queue_free()

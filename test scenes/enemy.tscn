@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://ckhkeep7k1fln"]
+[gd_scene format=3 uid="uid://bm3vdrvcbmk47"]
 
-[ext_resource type="Script" uid="uid://yt761e2hiur1" path="res://test scenes/enemy.gd" id="1_fp4fq"]
+[ext_resource type="Script" path="res://test scenes/enemy.gd" id="1_fp4fq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wo4wm"]
 
