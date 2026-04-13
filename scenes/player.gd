@@ -13,24 +13,24 @@ var current_control_type
 @onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
 
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
-var ray_lenght = 100
 
 var bullet_scene = preload(LOAD_SCENE.bullet)
 
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
-	var direction: Vector3 = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	print(Input.get_vector("Left", "Right", "Up", "Down")) 
 	
 	if Input.is_action_pressed("Left Click"):
 		current_control_type = "Mouse"
 		_shoot()
 	
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	if input_dir:
+		velocity.x = input_dir.x * SPEED
+		velocity.z = input_dir.y * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, 0.5)
-		velocity.z = move_toward(velocity.z, 0, 0.5)
+		velocity.x = move_toward(velocity.x, 0, 0.3)
+		velocity.z = move_toward(velocity.z, 0, 0.3)
 	
 	if velocity.length() > 0:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
@@ -46,12 +46,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	var sin = abs(Input.get_joy_axis(0, 3))
-	var cos = abs(Input.get_joy_axis(0, 2))
-	if event is InputEventJoypadMotion and (sin > 0.1 or cos > 0.1):
-		current_control_type = "Controller"
-		r_stick_dir = -Vector2(-(Input.get_joy_axis(0, 3)), Input.get_joy_axis(0, 2)).angle()
-		_shoot()
+	if event is InputEventJoypadMotion:
+		var sticK_sin = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X))
+		var stick_cos = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
+		if sticK_sin > 0.4 or stick_cos > 0.4:
+			current_control_type = "Controller"
+			r_stick_dir = -Vector2(-(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)), Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y)).angle()
+			_shoot()
 
 func _shoot() -> void:
 	if reload_time > 0.5:
@@ -65,12 +66,14 @@ func _shoot() -> void:
 func _mouse_pos_on_plane():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
-	var to = from + camera.project_ray_normal(mouse_pos) * ray_lenght
+	var to = camera.project_ray_normal(mouse_pos)
+	
 	return(target_plane.intersects_ray(from, to))
 
 func _mouse_turn_turret(turret_transform: Transform3D, delta):
 	var mouse_pos = _mouse_pos_on_plane()
-	var current_trans = turret_transform
-	var target_trans = current_trans.looking_at(mouse_pos, Vector3.UP)
+	if mouse_pos == null:
+		return(turret_transform.basis)
+	var target_trans = turret_transform.looking_at(mouse_pos, Vector3.UP)
 	
-	return(current_trans.basis.slerp(target_trans.basis, rotation_speed * delta))
+	return(turret_transform.basis.slerp(target_trans.basis, rotation_speed * delta))
