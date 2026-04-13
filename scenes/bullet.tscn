@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cc5268ml2pk1p" path="res://scenes/bullet.gd" id="1_mkf8s"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkf8s"]
+albedo_color = Color(1, 0, 0, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_mkf8s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h1aey"]
@@ -11,6 +14,7 @@ script = ExtResource("1_mkf8s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1928587758]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_mkf8s")
 mesh = SubResource("SphereMesh_mkf8s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=438964888]

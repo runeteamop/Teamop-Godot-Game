@@ -34,7 +34,6 @@ shadow_blur = 0.1
 directional_shadow_pancake_size = 0.0
 
 [node name="Timer" type="Timer" parent="." unique_id=466695285]
-wait_time = 0.1
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
