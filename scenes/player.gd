@@ -7,7 +7,7 @@ var reload_time: float = 1
 var r_stick_dir
 var current_control_type
 
-@onready var turret:= $Turret
+@onready var turret: Marker3D = $Turret
 @onready var camera = $Camera
 @onready var body = $Body
 @onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
