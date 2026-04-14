@@ -1,4 +1,4 @@
-extends "res://scenes/bullet.gd"
+extends Bullet
 
 @export var target: Player
 

@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://y5pulnkmgra1"]
-
-[ext_resource type="Script" uid="uid://c20hel8lbc6gf" path="res://test scenes/main.gd" id="1_am0sd"]
-
-[node name="Main" type="Node" unique_id=1010419184]
-script = ExtResource("1_am0sd")
-
-[node name="Menus" type="Node" parent="." unique_id=1320525422]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c46py3q0yqh4y"]
 
-[ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://scenes/player.tscn" id="1_5nvco"]
-[ext_resource type="Script" uid="uid://ds8eok3cha7un" path="res://test scenes/runes_test.gd" id="1_a74kq"]
+[ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://bin/entities/player.tscn" id="1_5nvco"]
+[ext_resource type="Script" uid="uid://ds8eok3cha7un" path="res://bin/levels/runes_test.gd" id="1_a74kq"]
 
 [sub_resource type="Environment" id="Environment_7ukyh"]
 background_mode = 1
