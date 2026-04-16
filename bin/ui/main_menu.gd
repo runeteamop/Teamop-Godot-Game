@@ -1,7 +1,4 @@
-class_name Menu extends CanvasLayer
+class_name MainMenu extends Control
 
 func _on_start_pressed() -> void:
-	SCENE_MANAGER.change_scene(LOAD_SCENE.sub_menu)
-	
-func _on_quit_pressed() -> void:
-	get_tree().quit()
+	Global.switch_scene.ui(LOAD_SCENE.sub_menu)

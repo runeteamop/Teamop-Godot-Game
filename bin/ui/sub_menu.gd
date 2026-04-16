@@ -1,4 +1,5 @@
-class_name SubMenu extends Control
+extends Control
 
-func _on_back_pressed() -> void:
-	SCENE_MANAGER.change_scene(LOAD_SCENE.runes_test)
+func _on_button_pressed() -> void:
+	Global.switch_scene.world(LOAD_SCENE.runes_test)
+	queue_free()

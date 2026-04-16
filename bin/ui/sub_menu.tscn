@@ -1,48 +1,30 @@
-[gd_scene format=3 uid="uid://dmg2j14j7w1eb"]
+[gd_scene format=3 uid="uid://x3oqfrahoprv"]
 
-[ext_resource type="Script" uid="uid://xat0fsqifwqy" path="res://bin/ui/sub_menu.gd" id="1_683rq"]
-[ext_resource type="Texture2D" uid="uid://dkc0l7cm5adew" path="res://assets/Dirt.png" id="2_xjk86"]
+[ext_resource type="Script" uid="uid://coqgk7dm8ey5w" path="res://bin/ui/sub_menu.gd" id="1_nsmtu"]
 
-[node name="SubMenu" type="Control" unique_id=1803129516]
+[node name="SubMenu" type="Control" unique_id=1310091872]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("1_683rq")
+script = ExtResource("1_nsmtu")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1068317047]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1200.0
-offset_bottom = -675.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-texture = ExtResource("2_xjk86")
-stretch_mode = 1
-
-[node name="Load Test" type="Button" parent="." unique_id=1607143759]
+[node name="Button" type="Button" parent="." unique_id=259784881]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -290.5
-offset_top = -91.5
-offset_right = 290.5
-offset_bottom = 91.5
+offset_left = -101.0
+offset_top = -70.0
+offset_right = 101.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 128
-text = "Load test
-"
+theme_override_font_sizes/font_size = 96
+text = "Test"
 
-[connection signal="pressed" from="Load Test" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
