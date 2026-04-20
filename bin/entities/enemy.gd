@@ -1,11 +1,11 @@
-extends Bullet
+class_name Enemy extends Bullet
 
 @export var target: Player
 
 func _physics_process(delta: float) -> void:
-	SPEED = 1
+	SPEED = 2
 	look_at(target.position)
 	position.y = 1
 
-func _on_area_entered(area: Area3D) -> void:
+func _hit() -> void:
 	queue_free()
