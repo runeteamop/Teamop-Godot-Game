@@ -9,9 +9,10 @@ radius = 0.45
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo4wm"]
 albedo_color = Color(0, 1, 1, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_wo4wm"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6ymcc"]
 
 [node name="Enemy" type="Area3D" unique_id=1366308759]
+collision_mask = 0
 script = ExtResource("1_fp4fq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=857799634]
@@ -19,4 +20,4 @@ shape = SubResource("CylinderShape3D_fp4fq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1266818480]
 material_override = SubResource("StandardMaterial3D_wo4wm")
-mesh = SubResource("SphereMesh_wo4wm")
+mesh = SubResource("CapsuleMesh_6ymcc")
