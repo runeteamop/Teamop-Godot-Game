@@ -84,10 +84,6 @@ func _shoot() -> void:
 		
 		add_sibling(bullet)
 
-func _xp_collected() -> void:
-	print("brah")
-	xp_bar.value += 1
-
 func _mouse_pos_on_plane():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
@@ -106,3 +102,11 @@ func _mouse_turn_turret(delta):
 func _on_dash_cooldown_timeout() -> void:
 	dash_progressbar.hide()
 	can_dash = true
+
+func _xp_collected() -> void:
+	print("brah")
+	xp_bar.value += 1
+
+func _on_xp_bar_value_changed(value: float) -> void:
+	if xp_bar.max_value == value:
+		xp_bar.value = 0
