@@ -16,6 +16,9 @@ bg_color = Color(0.2, 0.6, 0.99607843, 0.34509805)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntdrc"]
 bg_color = Color(0, 0.6784314, 0.7372549, 0.627451)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnn3t"]
+bg_color = Color(0.5137255, 1, 0, 0.81960785)
+
 [node name="Player" type="CharacterBody3D" unique_id=982876763]
 script = ExtResource("1_g2els")
 
@@ -37,13 +40,10 @@ mesh = SubResource("SphereMesh_qhqgy")
 transform = Transform3D(0.9, 0, 0, 0, 0.2, 0, 0, 0, 0.5, 0, 0.24928802, -0.22423303)
 mesh = SubResource("BoxMesh_dqkch")
 
-[node name="Reload Cooldown" type="Timer" parent="." unique_id=1977409208]
-autostart = true
-
-[node name="Dash Cooldown" type="Timer" parent="." unique_id=816314229]
+[node name="Dash cooldown timer" type="Timer" parent="." unique_id=816314229]
 one_shot = true
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=387691862]
+[node name="Dash cooldown bar" type="ProgressBar" parent="." unique_id=387691862]
 visible = false
 anchors_preset = -1
 anchor_left = 0.4396875
@@ -60,4 +60,17 @@ value = 1.5
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[connection signal="timeout" from="Dash Cooldown" to="." method="_on_dash_cooldown_timeout"]
+[node name="Xp bar" type="ProgressBar" parent="." unique_id=344437732]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -242.0
+offset_top = 31.0
+offset_right = 244.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_hnn3t")
+max_value = 50.0
+show_percentage = false
+
+[connection signal="timeout" from="Dash cooldown timer" to="." method="_on_dash_cooldown_timeout"]

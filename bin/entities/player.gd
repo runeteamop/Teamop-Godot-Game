@@ -10,11 +10,12 @@ var current_control_type: String
 var speed: float = 5.0
 var can_dash: bool = true
 
-@onready var dash_cooldown: Timer = $"Dash Cooldown"
+@onready var dash_cooldown: Timer = $"Dash cooldown timer"
 @onready var turret: Marker3D = $Turret
 @onready var camera := $Camera
 @onready var body: MeshInstance3D = $Body
-@onready var dash_progressbar: ProgressBar = $ProgressBar
+@onready var dash_progressbar: ProgressBar = $"Dash cooldown bar"
+@onready var xp_bar: ProgressBar = $"Xp bar"
 @onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
 
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
@@ -83,6 +84,10 @@ func _shoot() -> void:
 		
 		add_sibling(bullet)
 
+func _xp_collected() -> void:
+	print("brah")
+	xp_bar.value += 1
+
 func _mouse_pos_on_plane():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
@@ -97,7 +102,6 @@ func _mouse_turn_turret(delta):
 	var target_trans = turret.global_transform.looking_at(mouse_pos, Vector3.UP)
 	
 	turret.global_transform.basis = turret.global_transform.basis.slerp(target_trans.basis, rotation_speed * delta)
-
 
 func _on_dash_cooldown_timeout() -> void:
 	dash_progressbar.hide()
