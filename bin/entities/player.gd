@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody3D
 
+static var instance: Player
+
 const rotation_speed = 10
 
 var reload_time: float = 1
@@ -18,6 +20,14 @@ var can_dash: bool = true
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
 
 var bullet_scene: PackedScene = load(LOAD_SCENE.bullet)
+
+func _init() -> void:
+	if !instance: 
+		instance = self
+
+func _notifications(notification) -> void:
+	if notification == NOTIFICATION_PREDELETE:
+		if instance == self: instance = null
 
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")

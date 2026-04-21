@@ -1,11 +1,15 @@
-class_name Enemy extends Bullet
+class_name Enemy extends Area3D
 
-@export var target: Player
+const SPEED = 3
+
+var target
 
 func _physics_process(delta: float) -> void:
-	SPEED = 2
-	look_at(target.position)
-	position.y = 1
+	if Player.instance:
+		target = Player.instance.position
+		look_at(target)
+		global_transform.origin -= transform.basis.z.normalized() * SPEED * delta
 
 func _hit() -> void:
+	print("hey")
 	queue_free()

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bm3vdrvcbmk47"]
 
-[ext_resource type="Script" uid="uid://yt761e2hiur1" path="res://test scenes/enemy.gd" id="1_fp4fq"]
+[ext_resource type="Script" uid="uid://yt761e2hiur1" path="res://bin/entities/enemy.gd" id="1_fp4fq"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fp4fq"]
 margin = 0.0
@@ -11,7 +11,7 @@ albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_wo4wm"]
 
-[node name="Enemy" type="Area3D" unique_id=566514676]
+[node name="Enemy" type="Area3D" unique_id=1366308759]
 script = ExtResource("1_fp4fq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=857799634]
@@ -20,5 +20,3 @@ shape = SubResource("CylinderShape3D_fp4fq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1266818480]
 material_override = SubResource("StandardMaterial3D_wo4wm")
 mesh = SubResource("SphereMesh_wo4wm")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
