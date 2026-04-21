@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dwl5myvwc5q43"]
+
+[ext_resource type="Script" uid="uid://x4kovo7hukw4" path="res://bin/entities/xp.gd" id="1_aw7uk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vrf7l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw7uk"]
+albedo_color = Color(0.124700956, 0.87465554, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p8712"]
+
+[node name="Xp" type="Area3D" unique_id=2125603138]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("1_aw7uk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=58214279]
+transform = Transform3D(0.7071068, -0.50000006, -0.50000006, 0, 0.7071068, -0.7071068, 0.7071068, 0.50000006, 0.50000006, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_vrf7l")
+surface_material_override/0 = SubResource("StandardMaterial3D_aw7uk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1124615960]
+shape = SubResource("BoxShape3D_p8712")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
