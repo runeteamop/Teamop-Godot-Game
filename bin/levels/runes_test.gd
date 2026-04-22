@@ -3,7 +3,9 @@ extends Node3D
 @onready var player: Player = $Player
 
 func _ready() -> void:
+	Global.root.ui.add_scene(Global.UID.sub_menu)
 	Global.root.ui.add_scene(Global.UID.pause_menu)
+
 
 func _on_timer_timeout() -> void:
 	var angle: float = randf() * TAU

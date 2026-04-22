@@ -13,20 +13,26 @@ var memory: Dictionary = {}
 
 var root: Root
 
-func load_into_memory(uid: String):
+func load_scene_into_memory(uid: String) -> void:
 	if uid in memory:
 		push_error("'%s' is already in memory" % uid)
 	else:
 		memory[uid] = load(uid).instantiate()
 
-func free_from_memory(uid: String):
-	if !uid in memory:
-		push_error("'%s' is not in memory" % uid)
-	else:
+func free_scene_from_memory(scene: Node = null, uid: String = "") -> void:
+	#if !uid in memory:
+		#push_error("'%s' is not in memory" % uid)
+	#else:
+		#memory[uid].queue_free()
+		#memory.erase(uid)
+	if scene:
+		scene.queue_free()
+		memory.erase(memory.find_key(scene))
+	elif uid:
 		memory[uid].queue_free()
 		memory.erase(uid)
 
-func flush_memory():
+func flush_memory() -> void:
 	for scenes: Node in memory.values():
 		scenes.queue_free()
 		memory.erase(memory.find_key(scenes))

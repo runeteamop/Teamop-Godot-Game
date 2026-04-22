@@ -9,15 +9,7 @@ func _init() -> void:
 	Global.root = self
 
 func flush_scenes():
-	var world_children: Array = world.get_children()
-	var ui_children: Array = ui.get_children()
-
-	for scenes: Node in current_scenes.values():
-		if scenes in world_children:
-			world.remove_child(scenes)
-			print("removed world")
-		elif scenes in ui_children:
-			ui.remove_child(scenes)
-			print("removed ui")
-
-		current_scenes.erase(current_scenes.find_key(scenes))
+	var game_scope: Array = find_children("*")
+	for scene: GameSpace in game_scope:
+		for children in scene.get_children():
+			scene.remove_child(scene.get_child(0))
