@@ -1,7 +1,11 @@
 class_name MainMenu extends Control
 
 func _ready() -> void:
-	Global.loaded_scenes[Global.UID.main_menu] = self
-
+	Global.memory[Global.UID.main_menu] = self
+	Global.root.current_scenes[Global.UID.main_menu] = self
+	#Global.root.current_scenes[Global.UID.main_menu] = self
 func _on_start_pressed() -> void:
-	Global.root.ui.add_scene_to_tree(Global.UID.sub_menu)
+	Global.root.world.add_scene(Global.UID.runes_test)
+	Global.root.ui.remove_scene(Global.UID.main_menu)
+	#Global.root.ui.add_scene(Global.UID.sub_menu)
+	#Global.root.ui.remove_scene(Global.UID.main_menu)

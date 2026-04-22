@@ -9,23 +9,28 @@ const UID: Dictionary = {
 	"enemy": "uid://bm3vdrvcbmk47"
 }
 
-var loaded_scenes: Dictionary = {}
+var memory: Dictionary = {}
 
 var root: Root
 
-func load_scene_into_memory(uid: String):
-	if uid in loaded_scenes:
+func load_into_memory(uid: String):
+	if uid in memory:
 		push_error("'%s' is already in memory" % uid)
 	else:
-		loaded_scenes[uid] = load(uid).instantiate()
-		
-func free_scene_from_memory(uid: String):
-	if !uid in loaded_scenes:
+		memory[uid] = load(uid).instantiate()
+
+func free_from_memory(uid: String):
+	if !uid in memory:
 		push_error("'%s' is not in memory" % uid)
 	else:
-		loaded_scenes[uid].queue_free()
-		loaded_scenes.erase(uid)
+		memory[uid].queue_free()
+		memory.erase(uid)
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		print(Global.loaded_scenes)
+func flush_memory():
+	for scenes: Node in memory.values():
+		scenes.queue_free()
+		memory.erase(memory.find_key(scenes))
+
+#func _input(_event: InputEvent) -> void:
+	#if Input.is_action_just_pressed("ui_cancel"):
+		#print(memory)

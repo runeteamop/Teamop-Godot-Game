@@ -14,33 +14,33 @@ var current_control_type
 
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
 
-var bullet_scene: PackedScene = load(LOAD_SCENE.bullet)
+var bullet_scene: PackedScene = load(Global.UID.bullet)
 
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
-	
+
 	if Input.is_action_pressed("Left Click"):
 		current_control_type = "Mouse"
 		_shoot()
-	
+
 	if input_dir:
 		velocity.x = input_dir.x * SPEED
 		velocity.z = input_dir.y * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, 0.3)
 		velocity.z = move_toward(velocity.z, 0, 0.3)
-	
+
 	if velocity.length() > 0:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
 		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
-	
+
 	reload_time += delta
-	
+
 	if current_control_type == "Mouse":
 		_mouse_turn_turret(delta)
 	elif current_control_type == "Controller":
 		turret.rotation.y = lerp_angle(turret.rotation.y, r_stick_dir, rotation_speed * delta)
-	
+
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
@@ -58,14 +58,14 @@ func _shoot() -> void:
 		var bullet: Bullet = bullet_scene.instantiate()
 		bullet.rotation = turret.rotation
 		bullet.position = turret_cannon.global_position
-		
+
 		add_sibling(bullet)
 
 func _mouse_pos_on_plane():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = camera.project_ray_normal(mouse_pos)
-	
+
 	return(target_plane.intersects_ray(from, to))
 
 func _mouse_turn_turret(delta):
@@ -73,5 +73,5 @@ func _mouse_turn_turret(delta):
 	if mouse_pos == null:
 		return(turret.global_transform.basis)
 	var target_trans = turret.global_transform.looking_at(mouse_pos, Vector3.UP)
-	
+
 	turret.global_transform.basis = turret.global_transform.basis.slerp(target_trans.basis, rotation_speed * delta)

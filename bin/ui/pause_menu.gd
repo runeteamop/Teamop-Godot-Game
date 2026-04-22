@@ -1,4 +1,4 @@
 extends Control
 
 func _on_button_pressed() -> void:
-	pass
+	Global.root.flush_scenes()
