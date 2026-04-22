@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://bin/entities/player.tscn" id="1_5nvco"]
 [ext_resource type="Script" uid="uid://ds8eok3cha7un" path="res://bin/levels/runes_test.gd" id="1_a74kq"]
+[ext_resource type="PackedScene" uid="uid://derwfrsent340" path="res://bin/ui/player_interface.tscn" id="3_7yrey"]
 
 [sub_resource type="Environment" id="Environment_7ukyh"]
 background_mode = 1
@@ -42,5 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=466695285]
 autostart = true
+
+[node name="player interface" parent="." unique_id=489266276 instance=ExtResource("3_7yrey")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

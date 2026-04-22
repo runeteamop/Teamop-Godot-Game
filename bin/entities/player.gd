@@ -14,8 +14,6 @@ var can_dash: bool = true
 @onready var turret: Marker3D = $Turret
 @onready var camera := $Camera
 @onready var body: MeshInstance3D = $Body
-@onready var dash_progressbar: ProgressBar = $"Dash cooldown bar"
-@onready var xp_bar: ProgressBar = $"Xp bar"
 @onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
 
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
@@ -33,10 +31,10 @@ func _notifications(notification) -> void:
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
 	
-	dash_progressbar.value = dash_cooldown.wait_time - dash_cooldown.time_left
+	if can_dash == false:
+		Player_values.dash_cooldown = dash_cooldown.wait_time - dash_cooldown.time_left
 	
 	if Input.is_action_pressed("Left Click"):
-		current_control_type = "Mouse"
 		_shoot()
 	speed = move_toward(speed, 5, 1)
 	
@@ -63,10 +61,12 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Dash") && can_dash == true:
 		can_dash = false
-		dash_progressbar.visible = true
-		dash_progressbar.value = 0
 		dash_cooldown.start(1.5)
 		speed = speed * 6
+	
+	if event is InputEventMouse:
+		current_control_type = "Mouse"
+	
 	if event is InputEventJoypadMotion:
 		var sticK_sin = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X))
 		var stick_cos = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
@@ -74,6 +74,10 @@ func _input(event: InputEvent) -> void:
 			current_control_type = "Controller"
 			r_stick_dir = -Vector2(-Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y), Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)).angle()
 			_shoot()
+
+func _on_dash_cooldown_timeout() -> void:
+	can_dash = true
+	Player_values.dash_cooldown = 0
 
 func _shoot() -> void:
 	if reload_time > 0.5:
@@ -98,15 +102,3 @@ func _mouse_turn_turret(delta):
 	var target_trans = turret.global_transform.looking_at(mouse_pos, Vector3.UP)
 	
 	turret.global_transform.basis = turret.global_transform.basis.slerp(target_trans.basis, rotation_speed * delta)
-
-func _on_dash_cooldown_timeout() -> void:
-	dash_progressbar.hide()
-	can_dash = true
-
-func _xp_collected() -> void:
-	print("brah")
-	xp_bar.value += 1
-
-func _on_xp_bar_value_changed(value: float) -> void:
-	if xp_bar.max_value == value:
-		xp_bar.value = 0

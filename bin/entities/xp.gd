@@ -5,5 +5,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Player:
-		body._xp_collected()
+		Player_values.xp += 1
 		queue_free()
