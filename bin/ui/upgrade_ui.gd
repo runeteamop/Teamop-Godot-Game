@@ -9,9 +9,9 @@ class_name Upgrade_UI extends ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#upgrade.text = upgrade_name
-	#discription.text = discription_text
-	pass
+	upgrade.text = upgrade_name
+	discription.text = discription_text
+	print(discription_text)
 
 func _on_button_button_up() -> void:
 	if select_button.is_hovered():
