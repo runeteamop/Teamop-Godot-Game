@@ -6,23 +6,12 @@ func _init() -> void:
 
 func add_scene(uid: String) -> void:
 	if uid in Global.memory:
-		current_scenes[uid] = Global.memory[uid]
-		add_child(current_scenes[uid])
+		add_child(Global.memory[uid])
 	else:
 		Global.load_scene_into_memory(uid)
-		current_scenes[uid] = Global.memory[uid]
-		add_child(current_scenes[uid])
+		add_child(Global.memory[uid])
 
-
-func remove_scene(scene: Node = null, uid: String = "") -> void:
-	#if !uid in Global.memory:
-		#print("'%s' is not in memory" % uid)
-	#else:
-		#remove_child(current_scenes[uid])
-		#current_scenes.erase(uid)
-	if scene:
-		remove_child(scene)
-		current_scenes.erase(current_scenes.find_key(scene))
-	elif uid:
-		remove_child(current_scenes[uid])
-		current_scenes.erase(uid)
+func flush_scenes() -> void:
+	var children: Array = self.get_children()
+	for child in children:
+		remove_child(child)
