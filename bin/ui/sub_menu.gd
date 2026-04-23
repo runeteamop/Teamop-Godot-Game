@@ -1,5 +1,5 @@
 extends Control
 
 func _on_button_pressed() -> void:
-	Global.switch_scene.world(LOAD_SCENE.runes_test)
-	queue_free()
+	Global.root.world.add_scene(Global.UID.runes_test)
+	Global.root.ui.remove_child(self)
