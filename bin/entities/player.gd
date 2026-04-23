@@ -80,7 +80,7 @@ func _on_dash_cooldown_timeout() -> void:
 	Player_values.dash_cooldown = 0
 
 func _shoot() -> void:
-	if reload_time > 0.5:
+	if reload_time > 0.2:
 		reload_time = 0.0
 		var bullet: Bullet = bullet_scene.instantiate()
 		bullet.rotation = turret.rotation

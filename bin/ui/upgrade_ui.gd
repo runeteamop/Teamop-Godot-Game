@@ -1,9 +1,18 @@
-extends ColorRect
+class_name Upgrade_UI extends ColorRect
 
-@onready var upgrade_name: Label = $Name
+@export var upgrade_name: String
+@export var discription_text: String
+
+@onready var upgrade: Label = $Name
 @onready var discription: Label = $Discription
+@onready var select_button: Button = $"Select button"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	upgrade_name.text = "fire ball"
-	discription.text = "gives you projectile fire dmg"
+	#upgrade.text = upgrade_name
+	#discription.text = discription_text
+	pass
+
+func _on_button_button_up() -> void:
+	if select_button.is_hovered():
+		Player_values._get_upgrade()
