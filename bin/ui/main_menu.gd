@@ -5,4 +5,4 @@ func _ready() -> void:
 
 func _on_start_pressed() -> void:
 	Global.root.ui.add_scene(Global.UID.sub_menu)
-	Global.root.ui.remove_child(self)
+	Global.root.ui.remove_scene(Global.UID.bullet)

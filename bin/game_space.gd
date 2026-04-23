@@ -11,6 +11,9 @@ func add_scene(uid: String) -> void:
 		Global.load_scene_into_memory(uid)
 		add_child(Global.memory[uid])
 
+func remove_scene(uid: String) -> void:
+	remove_child(get_node(uid))
+
 func flush_scenes() -> void:
 	var children: Array = self.get_children()
 	for child in children:

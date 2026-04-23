@@ -24,10 +24,17 @@ func free_scene_from_memory(uid: String) -> void:
 	memory.erase(uid)
 
 func flush_memory() -> void:
-	for scene: String in memory:
-		memory[scene].queue_free()
-	memory.clear()
+	var memory_dictionary_size: int = memory.size()
+	var index: int = 0
+	for i in range(memory_dictionary_size):
+		var node: String = memory.keys()[index]
+		if memory[node].is_inside_tree():
+			print("skipping \"%s\"" % node)
+			index += 1
+		else:
+			print("Deleting \"%s\"", node)
+			free_scene_from_memory(node)
 
-#func _input(_event: InputEvent) -> void:
+##func _input(_event: InputEvent) -> void:
 	#if Input.is_action_just_pressed("ui_cancel"):
 		#print(memory)
