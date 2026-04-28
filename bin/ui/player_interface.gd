@@ -12,7 +12,7 @@ func _ready() -> void:
 func _xp_bar(xp_value: float) -> void:
 	if xp_value >= xp_bar.max_value:
 		Player_values.xp = 0
-		xp_bar.max_value += 5
+		xp_bar.max_value += Player_values.xp_increase_on_levelup
 		Player_values._level_up()
 	xp_bar.value = Player_values.xp
 

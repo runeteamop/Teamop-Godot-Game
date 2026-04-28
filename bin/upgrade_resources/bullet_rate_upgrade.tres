@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Bullet_rate_upgrade" format=3 uid="uid://c0tq5s4jdf74u"]
+
+[ext_resource type="Script" uid="uid://clje31233ymg3" path="res://bin/upgrade_scrips/bullet_rate_script.gd" id="1_p71db"]
+
+[resource]
+script = ExtResource("1_p71db")
+upgrade_name = "Reload Speed"
+discription = "Decreases the time it takes to reload after every shoot by 0.05 seconds"
+metadata/_custom_type_script = "uid://clje31233ymg3"

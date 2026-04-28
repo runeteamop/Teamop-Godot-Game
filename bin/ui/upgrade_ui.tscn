@@ -13,6 +13,9 @@ offset_right = 400.0
 offset_bottom = 600.0
 color = Color(0.54901963, 0.54901963, 0.54901963, 0.7647059)
 script = ExtResource("1_vakex")
+upgrade_name_text = null
+discription_text = null
+upgrade_path = null
 
 [node name="Name" type="Label" parent="." unique_id=837381507]
 layout_mode = 0
