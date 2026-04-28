@@ -11,8 +11,8 @@ var all_upgrade_uis: Array
 
 var reload_speed = 0.5
 
-const starting_levelup_threshold: int = 1
-const xp_increase_on_levelup: int = 0
+const starting_levelup_threshold: int = 10
+const xp_increase_on_levelup: int = 5
 
 var xp: float = 0:
 	set(value):
