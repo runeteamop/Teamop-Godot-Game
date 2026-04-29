@@ -7,6 +7,7 @@ margin = 0.0
 radius = 0.45
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo4wm"]
+resource_local_to_scene = true
 albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6ymcc"]
