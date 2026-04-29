@@ -5,9 +5,10 @@
 [sub_resource type="BoxMesh" id="BoxMesh_vrf7l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aw7uk"]
-albedo_color = Color(0.124700956, 0.87465554, 0, 1)
+albedo_color = Color(0.21733348, 1.353256, 0, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_p8712"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_aw7uk"]
+radius = 15.0
 
 [node name="Xp" type="Area3D" unique_id=2125603138]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -20,6 +21,6 @@ mesh = SubResource("BoxMesh_vrf7l")
 surface_material_override/0 = SubResource("StandardMaterial3D_aw7uk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1124615960]
-shape = SubResource("BoxShape3D_p8712")
+shape = SubResource("SphereShape3D_aw7uk")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
