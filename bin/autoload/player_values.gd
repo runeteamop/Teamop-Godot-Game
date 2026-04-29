@@ -35,7 +35,7 @@ func _level_up() -> void:
 	var x_pos = Vector2(-500, 0)
 	var spawn = get_viewport().get_visible_rect().size/2
 	for i in 3:
-		var upgrade_option: Upgrade_UI = preload(LOAD_SCENE.upgrade_option).instantiate()
+		var upgrade_option: Upgrade_UI = load("res://bin/ui/upgrade_ui.tscn").instantiate()
 		upgrade_option.position = spawn - upgrade_option.size/2 + x_pos
 		upgrade_option.upgrade_name_text = random_upgrade.upgrade_name
 		upgrade_option.discription_text = random_upgrade.discription

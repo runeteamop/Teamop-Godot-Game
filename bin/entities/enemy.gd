@@ -2,7 +2,7 @@ class_name Enemy extends Area3D
 
 const SPEED = 3
 
-var xp_scene: PackedScene = load(LOAD_SCENE.xp)
+var xp_scene: PackedScene = load("uid://x4kovo7hukw4")
 
 func _physics_process(delta: float) -> void:
 	if Player.instance:
