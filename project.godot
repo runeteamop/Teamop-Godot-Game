@@ -17,9 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*uid://ch6ue07qcgf62"
 LOAD_SCENE="*uid://by383sedl0jmd"
 Player_values="*uid://khaal13m4sqy"
+Global="*uid://c20hel8lbc6gf"
+UID="*uid://b501nj4v4nmkr"
 
 [display]
 

@@ -14,3 +14,6 @@ func _hit() -> void:
 	xp.position = position
 	add_sibling(xp)
 	queue_free()
+
+func _on_area_entered(_area: Area3D) -> void:
+	queue_free()
