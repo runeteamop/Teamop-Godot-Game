@@ -4,7 +4,6 @@ extends Node3D
 
 func _ready() -> void:
 	Player_values.upgrade_pause.connect(pause)
-	Global.root.ui.add_scene(Global.UID.pause_menu)
 
 func _on_timer_timeout() -> void:
 	var angle: float = randf() * TAU
