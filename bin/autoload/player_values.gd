@@ -18,7 +18,6 @@ var xp: float = 0:
 	set(value):
 		if xp != value:
 			xp = value
-			print(reload_speed)
 			xp_changed.emit(xp)
 
 var dash_cooldown: float = 0:

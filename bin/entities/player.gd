@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("Left Click"):
 		_shoot()
-	speed = move_toward(speed, 5, 1)
+		
 
 	if Input.is_action_pressed("Left Click"):
 		current_control_type = "Mouse"
@@ -52,9 +52,10 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
 		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
-
+	
+	speed = move_toward(speed, 5, 1)
 	reload_time += delta
-
+	
 	if current_control_type == "Mouse":
 		_mouse_turn_turret(delta)
 	elif current_control_type == "Controller":
