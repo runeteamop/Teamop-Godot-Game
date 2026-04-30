@@ -16,6 +16,7 @@ func _physics_process(delta: float) -> void:
 		material.albedo_color = material.albedo_color.lerp(material_color, 0.05)
 	
 	speed = move_toward(speed, 3, 0.1)
+	
 	if Player.instance:
 		look_at(Vector3(Player.instance.position.x, 1, Player.instance.position.z))
 		global_transform.origin -= transform.basis.z.normalized() * speed * delta

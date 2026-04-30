@@ -42,6 +42,7 @@ shape = SubResource("WorldBoundaryShape3D_710v2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="enemy spawner" type="Timer" parent="." unique_id=466695285]
+wait_time = 0.5
 autostart = true
 
 [node name="player interface" parent="." unique_id=489266276 instance=ExtResource("3_7yrey")]
