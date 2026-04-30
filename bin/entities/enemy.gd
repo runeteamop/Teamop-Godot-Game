@@ -3,6 +3,7 @@ class_name Enemy extends Area3D
 @onready var material: StandardMaterial3D = $MeshInstance3D.get_active_material(0)
 var material_color: Color
 
+var base_speed = 2
 var speed = 3
 var health = 40
 
@@ -15,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	if material_color != material.albedo_color:
 		material.albedo_color = material.albedo_color.lerp(material_color, 0.05)
 	
-	speed = move_toward(speed, 3, 0.1)
+	speed = move_toward(speed, base_speed, 0.1)
 	
 	if Player.instance:
 		look_at(Vector3(Player.instance.position.x, 1, Player.instance.position.z))

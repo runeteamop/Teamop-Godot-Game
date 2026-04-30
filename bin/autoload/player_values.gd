@@ -12,7 +12,7 @@ var all_upgrade_uis: Array
 var reload_speed = 0.5
 
 const starting_levelup_threshold: int = 1
-const xp_increase_on_levelup: int = 5
+const xp_increase_on_levelup: int = 1
 
 var xp: float = 0:
 	set(value):
@@ -31,12 +31,18 @@ func _ready() -> void:
 
 func _level_up() -> void:
 	var temp_upgrades = all_upgrades
+	print(temp_upgrades)
 	var x_pos = Vector2(-500, 0)
 	var spawn = get_viewport().get_visible_rect().size/2
 	for i in 3:
-		var random_upgrade: Upgrade_Template = load(upgrades_folder + "/" + temp_upgrades.pick_random())
+		var random_upgrade_string = temp_upgrades.pick_random()
+		var random_upgrade: Upgrade_Template = load(upgrades_folder + "/" + random_upgrade_string)
+		
 		if temp_upgrades.size() > 1:
-			temp_upgrades.erase(random_upgrade)
+			print(random_upgrade_string)
+			temp_upgrades.erase(random_upgrade_string)
+			print(all_upgrades)
+		
 		var upgrade_option: Upgrade_UI = load("res://bin/ui/upgrade_ui.tscn").instantiate()
 		upgrade_option.position = spawn - upgrade_option.size/2 + x_pos
 		upgrade_option.upgrade_name_text = random_upgrade.upgrade_name
