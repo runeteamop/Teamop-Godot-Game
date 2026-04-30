@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		global_transform.origin -= transform.basis.z.normalized() * speed * delta
 
 func _hit(damage) -> void:
-	material.albedo_color = Color(0.5, 0, 0, 1)
+	material.albedo_color = Color(1.0, 0.0, 0.0, 1.0)
 	speed = 1.5
 	health -= damage
 	if health < 1:

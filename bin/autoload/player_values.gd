@@ -31,7 +31,6 @@ func _ready() -> void:
 
 func _level_up() -> void:
 	var temp_upgrades = all_upgrades
-	print(temp_upgrades)
 	var x_pos = Vector2(-500, 0)
 	var spawn = get_viewport().get_visible_rect().size/2
 	for i in 3:
@@ -39,9 +38,7 @@ func _level_up() -> void:
 		var random_upgrade: Upgrade_Template = load(upgrades_folder + "/" + random_upgrade_string)
 		
 		if temp_upgrades.size() > 1:
-			print(random_upgrade_string)
 			temp_upgrades.erase(random_upgrade_string)
-			print(all_upgrades)
 		
 		var upgrade_option: Upgrade_UI = load("res://bin/ui/upgrade_ui.tscn").instantiate()
 		upgrade_option.position = spawn - upgrade_option.size/2 + x_pos
