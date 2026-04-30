@@ -4,7 +4,7 @@ class_name Enemy extends Area3D
 var material_color: Color
 
 var speed = 3
-var health = 3
+var health = 40
 
 var xp_scene: PackedScene = load("res://bin/entities/xp.tscn")
 
@@ -20,10 +20,10 @@ func _physics_process(delta: float) -> void:
 		look_at(Vector3(Player.instance.position.x, 1, Player.instance.position.z))
 		global_transform.origin -= transform.basis.z.normalized() * speed * delta
 
-func _hit() -> void:
+func _hit(damage) -> void:
 	material.albedo_color = Color(0.5, 0, 0, 1)
 	speed = 1.5
-	health -= 1
+	health -= damage
 	if health < 1:
 		var xp: Xp = xp_scene.instantiate()
 		xp.position = position

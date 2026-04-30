@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Piercing_upgrade" format=3 uid="uid://celovy8guieau"]
+
+[ext_resource type="Script" uid="uid://cxq534bd87wsi" path="res://bin/upgrade_scrips/piercing_script.gd" id="1_xmun1"]
+
+[resource]
+script = ExtResource("1_xmun1")
+upgrade_name = "piercing"
+discription = "gives you piercing"
+metadata/_custom_type_script = "uid://cxq534bd87wsi"
