@@ -32,6 +32,18 @@ func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
 	
 	if can_dash == false:
+		if Player_values.dash_cooldown < 0.2:
+			var material_for_after_image : BaseMaterial3D = body.get_active_material(0).duplicate()
+			material_for_after_image.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+			material_for_after_image.albedo_color = Color(0.5, 0.6, 1.0, 0.2)
+			
+			var after_image = body.duplicate()
+			after_image.position = position
+			after_image.material_override = material_for_after_image
+			after_image.get_child(0).material_override = material_for_after_image
+			
+			add_sibling(after_image)
+		
 		Player_values.dash_cooldown = dash_cooldown.wait_time - dash_cooldown.time_left
 	
 	if Input.is_action_pressed("Left Click"):
@@ -107,5 +119,5 @@ func _mouse_turn_turret(delta):
 	if mouse_pos == null:
 		return(turret.global_transform.basis)
 	var target_trans = turret.global_transform.looking_at(mouse_pos, Vector3.UP)
-
+	
 	turret.global_transform.basis = turret.global_transform.basis.slerp(target_trans.basis, rotation_speed * delta)

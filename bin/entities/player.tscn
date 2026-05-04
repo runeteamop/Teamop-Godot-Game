@@ -8,7 +8,11 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_qhqgy"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flly5"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntdrc"]
 
 [node name="Player" type="CharacterBody3D" unique_id=982876763]
 script = ExtResource("1_g2els")
@@ -26,10 +30,12 @@ far = 50.0
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1752458292]
 mesh = SubResource("SphereMesh_qhqgy")
+surface_material_override/0 = SubResource("StandardMaterial3D_flly5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Body" unique_id=1481500639]
 transform = Transform3D(0.9, 0, 0, 0, 0.2, 0, 0, 0, 0.5, 0, 0.24928802, -0.22423303)
 mesh = SubResource("BoxMesh_dqkch")
+surface_material_override/0 = SubResource("StandardMaterial3D_ntdrc")
 
 [node name="Dash cooldown timer" type="Timer" parent="." unique_id=816314229]
 one_shot = true
