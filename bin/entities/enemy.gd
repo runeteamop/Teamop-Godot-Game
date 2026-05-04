@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 
 func _hit(damage) -> void:
 	material.albedo_color = Color(1.0, 0.0, 0.0, 1.0)
-	speed = 1.5
+	speed = 0
 	health -= damage
 	if health < 1:
 		var xp: Xp = xp_scene.instantiate()
