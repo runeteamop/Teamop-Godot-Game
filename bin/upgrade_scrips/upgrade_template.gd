@@ -6,5 +6,5 @@ class_name Upgrade_Template extends Resource
 func _apply_to_player():
 	pass
 
-func _apply_to_bullet():
+func _apply_to_bullet(bullet : Bullet):
 	pass

@@ -90,8 +90,10 @@ func _shoot() -> void:
 		var bullet: Bullet = bullet_scene.instantiate()
 		bullet.rotation = turret.rotation
 		bullet.position = turret_cannon.global_position
-
 		add_sibling(bullet)
+		
+		for upgrade : Upgrade_Template in Player_values.current_upgrades:
+			upgrade._apply_to_bullet(bullet)
 
 func _mouse_pos_on_plane():
 	var mouse_pos = get_viewport().get_mouse_position()

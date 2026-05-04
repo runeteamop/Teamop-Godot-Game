@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var xp_bar: ProgressBar = $"Xp bar"
 
 func _ready() -> void:
-	xp_bar.max_value = Player_values.starting_levelup_threshold
+	xp_bar.max_value = Player_values.STARTING_LEVELUP_THRESHOLD
 	dash_progressbar.hide()
 	Player_values.xp_changed.connect(_xp_bar)
 	Player_values.dash_cooldown_changed.connect(_dash_cooldown)
@@ -12,7 +12,7 @@ func _ready() -> void:
 func _xp_bar(xp_value: float) -> void:
 	if xp_value >= xp_bar.max_value:
 		Player_values.xp = 0
-		xp_bar.max_value += Player_values.xp_increase_on_levelup
+		xp_bar.max_value += Player_values.XP_INCREASE_ON_LEVELUP
 		Player_values._level_up()
 	xp_bar.value = Player_values.xp
 

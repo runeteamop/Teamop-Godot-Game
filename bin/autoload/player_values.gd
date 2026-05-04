@@ -4,15 +4,15 @@ signal upgrade_pause
 signal xp_changed
 signal dash_cooldown_changed
 
+const STARTING_LEVELUP_THRESHOLD: int = 1
+const XP_INCREASE_ON_LEVELUP: int = 0
 
 var upgrades_folder: String = "res://bin/upgrade_resources/"
 var all_upgrades: Array
 var all_upgrade_uis: Array
+var current_upgrades: Array
 
 var reload_speed = 0.5
-
-const starting_levelup_threshold: int = 10
-const xp_increase_on_levelup: int = 2
 
 var xp: float = 0:
 	set(value):
@@ -54,8 +54,10 @@ func _level_up() -> void:
 func _get_upgrade(upgrade: String) -> void:
 	for item: Upgrade_UI in all_upgrade_uis:
 		remove_child(item)
+	
 	var chosen_upgrade: Upgrade_Template = load(upgrade)
 	chosen_upgrade._apply_to_player()
-	chosen_upgrade._apply_to_bullet()
+	current_upgrades.append(chosen_upgrade)
+	print(current_upgrades)
 	all_upgrade_uis.clear()
 	upgrade_pause.emit()

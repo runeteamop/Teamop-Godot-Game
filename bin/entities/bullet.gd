@@ -1,15 +1,8 @@
 class_name Bullet extends Area3D
 
-static var base_damage: float = 10
-static var base_piercing: int = 0
-
+var damage: float = 10
+var piercing: int = 0
 var speed = 10
-var piercing : int
-var damage : float
-
-func _ready() -> void:
-	piercing = base_piercing
-	damage = base_damage
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
