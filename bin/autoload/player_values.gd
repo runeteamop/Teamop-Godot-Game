@@ -4,8 +4,8 @@ signal upgrade_pause
 signal xp_changed
 signal dash_cooldown_changed
 
-const STARTING_LEVELUP_THRESHOLD: int = 1
-const XP_INCREASE_ON_LEVELUP: int = 0
+const STARTING_LEVELUP_THRESHOLD: int = 10
+const XP_INCREASE_ON_LEVELUP: int = 5
 
 var upgrades_folder: String = "res://bin/upgrade_resources/"
 var all_upgrades: Array
