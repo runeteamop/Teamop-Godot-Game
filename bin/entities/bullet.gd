@@ -1,6 +1,6 @@
 class_name Bullet extends Area3D
 
-static var base_damage: float = 5
+static var base_damage: float = 10
 static var base_piercing: int = 0
 
 var speed = 10
