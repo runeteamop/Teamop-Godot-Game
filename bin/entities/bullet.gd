@@ -3,6 +3,7 @@ class_name Bullet extends Area3D
 var damage: float = 10
 var piercing: int = 0
 var speed = 10
+var knockback = 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -10,7 +11,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is Enemy:
-		area._hit(damage)
+		area._hit(damage, knockback)
 		if piercing < 1:
 			queue_free()
 		piercing -= 1
