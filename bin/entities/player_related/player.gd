@@ -32,10 +32,10 @@ func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
 	
 	if can_dash == false:
-		if Player_values.dash_cooldown < 0.4:
+		if speed > 5.5:
 			var material_for_after_image : BaseMaterial3D = body.get_active_material(0).duplicate()
 			material_for_after_image.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			material_for_after_image.albedo_color = Color(0.5, 0.6, 1.0, 0.2)
+			material_for_after_image.albedo_color = Color(0.5, 0.6, 1.0, 0.15)
 			
 			var after_image = body.duplicate()
 			after_image.position = position
