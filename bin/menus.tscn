@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://clvwo403rm0wr"]
+
+[ext_resource type="Script" uid="uid://cm08rbhb4n8ln" path="res://bin/menus.gd" id="1_l132s"]
+[ext_resource type="PackedScene" uid="uid://dti63sqrcco35" path="res://bin/ui/main_menu.tscn" id="1_lmbyv"]
+[ext_resource type="PackedScene" uid="uid://bsn18oy7s7sd5" path="res://bin/options.tscn" id="3_v1ntp"]
+
+[node name="Menus" type="Node" unique_id=2147145836 node_paths=PackedStringArray("main_menu", "options")]
+script = ExtResource("1_l132s")
+main_menu = NodePath("MainMenu")
+options = NodePath("Options")
+
+[node name="MainMenu" parent="." unique_id=1674113353 instance=ExtResource("1_lmbyv")]
+
+[node name="Options" parent="." unique_id=198537425 instance=ExtResource("3_v1ntp")]

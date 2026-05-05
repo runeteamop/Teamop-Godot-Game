@@ -36,7 +36,7 @@ func _level_up() -> void:
 	for i in 3:
 		var random_upgrade_string = temp_upgrades.pick_random()
 		var random_upgrade: Upgrade_Template = load(upgrades_folder + "/" + random_upgrade_string)
-		
+
 		if temp_upgrades.size() > 1:
 			temp_upgrades.erase(random_upgrade_string)
 		var upgrade_option: Upgrade_UI = load("res://bin/ui/upgrade_ui.tscn").instantiate()
@@ -44,9 +44,9 @@ func _level_up() -> void:
 		upgrade_option.upgrade_name_text = random_upgrade.upgrade_name
 		upgrade_option.discription_text = random_upgrade.discription
 		upgrade_option.upgrade_path = random_upgrade.resource_path
-		
+
 		all_upgrade_uis.append(upgrade_option)
-		
+
 		add_child(upgrade_option)
 		x_pos += Vector2(500, 0)
 	upgrade_pause.emit()
@@ -54,7 +54,7 @@ func _level_up() -> void:
 func _get_upgrade(upgrade: String) -> void:
 	for item: Upgrade_UI in all_upgrade_uis:
 		remove_child(item)
-	
+
 	var chosen_upgrade: Upgrade_Template = load(upgrade)
 	chosen_upgrade._apply_to_player()
 	current_upgrades.append(chosen_upgrade)

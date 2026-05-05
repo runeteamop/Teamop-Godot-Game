@@ -18,7 +18,7 @@ var can_dash: bool = true
 
 @onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
 
-var bullet_scene: PackedScene = load(Global.UID.bullet)
+var bullet_scene: PackedScene = load("res://bin/entities/player_related/bullet.tscn")
 
 func _init() -> void:
 	if !instance:
@@ -30,29 +30,29 @@ func _notifications(notification) -> void:
 
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
-	
+
 	if can_dash == false:
 		if speed > 5.5:
 			var material_for_after_image : BaseMaterial3D = body.get_active_material(0).duplicate()
 			material_for_after_image.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 			material_for_after_image.albedo_color = Color(0.5, 0.6, 1.0, 0.15)
-			
+
 			var after_image = body.duplicate()
 			after_image.position = position
 			after_image.material_override = material_for_after_image
 			after_image.get_child(0).material_override = material_for_after_image
-			
+
 			var tween = create_tween()
 			tween.tween_property(after_image, "transparency", 1, 0.2)
 			tween.tween_callback(after_image.queue_free)
-			
+
 			add_sibling(after_image)
-		
+
 		Player_values.dash_cooldown = dash_cooldown.wait_time - dash_cooldown.time_left
-	
+
 	if Input.is_action_pressed("Left Click"):
 		_shoot()
-		
+
 
 	if Input.is_action_pressed("Left Click"):
 		current_control_type = "Mouse"
@@ -68,10 +68,10 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() > 0:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
 		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
-	
+
 	speed = move_toward(speed, 5, 1)
 	reload_time += delta
-	
+
 	if current_control_type == "Mouse":
 		_mouse_turn_turret(delta)
 	elif current_control_type == "Controller":
@@ -84,10 +84,10 @@ func _input(event: InputEvent) -> void:
 		can_dash = false
 		dash_cooldown.start(1.5)
 		speed = speed * 6
-	
+
 	if event is InputEventMouse:
 		current_control_type = "Mouse"
-	
+
 	if event is InputEventJoypadMotion:
 		var sticK_sin = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X))
 		var stick_cos = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
@@ -107,7 +107,7 @@ func _shoot() -> void:
 		bullet.rotation = turret.rotation
 		bullet.position = turret_cannon.global_position
 		add_sibling(bullet)
-		
+
 		for upgrade : Upgrade_Template in Player_values.current_upgrades:
 			upgrade._apply_to_bullet(bullet)
 
@@ -123,5 +123,5 @@ func _mouse_turn_turret(delta):
 	if mouse_pos == null:
 		return(turret.global_transform.basis)
 	var target_trans = turret.global_transform.looking_at(mouse_pos, Vector3.UP)
-	
+
 	turret.global_transform.basis = turret.global_transform.basis.slerp(target_trans.basis, rotation_speed * delta)
