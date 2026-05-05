@@ -16,13 +16,18 @@ var can_dash: bool = true
 @onready var body: MeshInstance3D = $Body
 @onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
 
-@onready var target_plane = Plane(Vector3(0, 1, 0), position.y)
+@onready var target_plane : Plane
 
 var bullet_scene: PackedScene = load(Global.UID.bullet)
+
+var look_at: float
 
 func _init() -> void:
 	if !instance:
 		instance = self
+
+func _ready() -> void:
+	target_plane = Plane(Vector3(0, 1, 0), (turret.global_position.y))
 
 func _notifications(notification) -> void:
 	if notification == NOTIFICATION_PREDELETE:
@@ -73,10 +78,16 @@ func _physics_process(delta: float) -> void:
 	reload_time += delta
 	
 	if current_control_type == "Mouse":
-		_mouse_turn_turret(delta)
+		var mouse_pos_viewport = get_viewport().get_mouse_position()
+		var from = camera.project_ray_origin(mouse_pos_viewport)
+		var to = camera.project_ray_normal(mouse_pos_viewport)
+		var mouse_pos = target_plane.intersects_ray(from, to)
+		look_at = atan2(-mouse_pos.x - -position.x, -mouse_pos.z - -position.z)
 	elif current_control_type == "Controller":
-		turret.rotation.y = lerp_angle(turret.rotation.y, r_stick_dir, rotation_speed * delta)
-
+		look_at = r_stick_dir
+	
+	turret.rotation.y = lerp_angle(turret.rotation.y, look_at, rotation_speed * delta)
+	
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
@@ -110,18 +121,3 @@ func _shoot() -> void:
 		
 		for upgrade : Upgrade_Template in Player_values.current_upgrades:
 			upgrade._apply_to_bullet(bullet)
-
-func _mouse_pos_on_plane():
-	var mouse_pos = get_viewport().get_mouse_position()
-	var from = camera.project_ray_origin(mouse_pos)
-	var to = camera.project_ray_normal(mouse_pos)
-
-	return(target_plane.intersects_ray(from, to))
-
-func _mouse_turn_turret(delta):
-	var mouse_pos = _mouse_pos_on_plane()
-	if mouse_pos == null:
-		return(turret.global_transform.basis)
-	var target_trans = turret.global_transform.looking_at(mouse_pos, Vector3.UP)
-	
-	turret.global_transform.basis = turret.global_transform.basis.slerp(target_trans.basis, rotation_speed * delta)
