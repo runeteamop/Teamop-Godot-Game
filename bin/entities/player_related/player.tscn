@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cqtiesahm64pj"]
 
-[ext_resource type="Script" uid="uid://cd4uvc046lbo0" path="res://bin/entities/player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://cd4uvc046lbo0" path="res://bin/entities/player_related/player.gd" id="1_flly5"]
 [ext_resource type="PackedScene" uid="uid://do2r14ve4hl7y" path="res://bin/entities/camera.tscn" id="2_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://cnh2cpb2r350u" path="res://bin/entities/turret.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://cnh2cpb2r350u" path="res://bin/entities/player_related/turret.tscn" id="3_qhqgy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dqkch"]
 
@@ -15,7 +15,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntdrc"]
 
 [node name="Player" type="CharacterBody3D" unique_id=982876763]
-script = ExtResource("1_g2els")
+script = ExtResource("1_flly5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=956873532]
 shape = SubResource("BoxShape3D_dqkch")

@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
 	
 	if can_dash == false:
-		if Player_values.dash_cooldown < 0.2:
+		if Player_values.dash_cooldown < 0.4:
 			var material_for_after_image : BaseMaterial3D = body.get_active_material(0).duplicate()
 			material_for_after_image.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 			material_for_after_image.albedo_color = Color(0.5, 0.6, 1.0, 0.2)
@@ -41,6 +41,10 @@ func _physics_process(delta: float) -> void:
 			after_image.position = position
 			after_image.material_override = material_for_after_image
 			after_image.get_child(0).material_override = material_for_after_image
+			
+			var tween = create_tween()
+			tween.tween_property(after_image, "transparency", 1, 0.2)
+			tween.tween_callback(after_image.queue_free)
 			
 			add_sibling(after_image)
 		
