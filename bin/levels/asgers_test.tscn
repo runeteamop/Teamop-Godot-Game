@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bdgdcxmhtkjgp"]
+
+[ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://bin/entities/player_related/player.tscn" id="1_6fvhl"]
+[ext_resource type="Texture2D" uid="uid://de4c3bqrswnuj" path="res://assets/DevMønster.png" id="1_7un3p"]
+
+[sub_resource type="Environment" id="Environment_vq8ib"]
+background_mode = 1
+background_color = Color(0.5649617, 0.5649616, 0.5649616, 1)
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_giqiv"]
+albedo_texture = ExtResource("1_7un3p")
+uv1_scale = Vector3(128, 128, 128)
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vq8ib"]
+lightmap_size_hint = Vector2i(12, 12)
+material = SubResource("StandardMaterial3D_giqiv")
+size = Vector2(1024, 1024)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6fvhl"]
+
+[node name="AsgersTest" type="Node3D" unique_id=998206716]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=768872514]
+environment = SubResource("Environment_vq8ib")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=584523512]
+transform = Transform3D(0.70710665, 0.35355344, -0.6123725, 0, 0.8660254, 0.5, 0.7071069, -0.35355332, 0.61237234, 0, 0, 0)
+light_specular = 5.0
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1317764397]
+mesh = SubResource("PlaneMesh_vq8ib")
+
+[node name="Player" parent="." unique_id=982876763 instance=ExtResource("1_6fvhl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51393783, 0)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1995363299]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=319485781]
+shape = SubResource("WorldBoundaryShape3D_6fvhl")
