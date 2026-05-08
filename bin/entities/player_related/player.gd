@@ -98,6 +98,11 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouse:
 		current_control_type = "Mouse"
+		if event.is_action_pressed("Left Click"):
+			var xp_scene: PackedScene = load("res://bin/entities/xp.tscn")
+			var xp: Xp = xp_scene.instantiate()
+			xp.position = Vector3(0,0,0)
+			add_sibling(xp)
 	
 	if event is InputEventJoypadMotion:
 		var sticK_sin = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X))

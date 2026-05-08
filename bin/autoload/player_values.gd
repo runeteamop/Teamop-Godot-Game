@@ -11,6 +11,7 @@ var upgrades_folder: String = "res://bin/upgrade_resources/"
 var all_upgrades: Array
 var all_upgrade_uis: Array[Upgrade_UI]
 var current_upgrades: Array
+var overflow_of_upgrades: int = 0
 
 var reload_speed = 0.5
 
@@ -30,6 +31,11 @@ func _ready() -> void:
 	all_upgrades = DirAccess.get_files_at(upgrades_folder)
 
 func _level_up() -> void:
+	print(overflow_of_upgrades)
+	if all_upgrade_uis.size() > 0:
+		for i in all_upgrade_uis.size()/3:
+			overflow_of_upgrades += 1
+		return
 	var temp_upgrades = all_upgrades.duplicate()
 	var x_pos = Vector2(-500, 0)
 	var spawn = get_viewport().get_visible_rect().size/2
@@ -62,7 +68,10 @@ func _level_up() -> void:
 			item.select_button.focus_neighbor_right = all_upgrade_uis[num + 1].select_button.get_path()
 		num += 1
 	
-	upgrade_pause.emit()
+	if overflow_of_upgrades == 0:
+		upgrade_pause.emit()
+	else:
+		overflow_of_upgrades -= 1
 
 func _get_upgrade(upgrade: String) -> void:
 	for item: Upgrade_UI in all_upgrade_uis:
@@ -71,6 +80,9 @@ func _get_upgrade(upgrade: String) -> void:
 	var chosen_upgrade: Upgrade_Template = load(upgrade)
 	chosen_upgrade._apply_to_player()
 	current_upgrades.append(chosen_upgrade)
-	print(current_upgrades)
 	all_upgrade_uis.clear()
-	upgrade_pause.emit()
+	
+	if overflow_of_upgrades > 0:
+		_level_up()
+	else:
+		upgrade_pause.emit()
