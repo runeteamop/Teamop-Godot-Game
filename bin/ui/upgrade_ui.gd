@@ -18,18 +18,12 @@ func _ready() -> void:
 	upgrade.text = upgrade_name_text
 	discription.text = discription_text
 
-func _on_button_button_up() -> void:
+func _on_select_button_pressed() -> void:
 	Player_values._get_upgrade(upgrade_path)
 
-func _on_select_button_focus_entered() -> void:
-	color = Color(0, 0.5, 0.5, 0.4)
-
-func _on_select_button_focus_exited() -> void:
+func make_base_color() -> void:
 	color = base_color
 
-func _on_mouse_entered() -> void:
-	color = Color(0, 0.5, 0.5, 0.4)
+func make_selection_color() -> void:
 	select_button.grab_focus()
-
-func _on_mouse_exited() -> void:
-	color = base_color
+	color = Color(0, 0.5, 0.5, 0.4)
