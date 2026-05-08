@@ -1,16 +1,7 @@
-class_name Menus extends Node
-
-@export var main_menu: MainMenu
-@export var options: Options
+class_name Menus extends Control
 
 func _init() -> void:
-	Global.connect("request_options", _show_options)
-	Global.connect("request_main_menu", _show_main_menu)
+	Global.connect("toggle_options_visibility", _on_toggle_options_visibility)
 
-func _show_options(origin: Node) -> void:
-	origin.visible = false
-	options.visible = true
-	options.entered_from = origin
-
-func _show_main_menu() -> void:
-	main_menu.visible = true
+func _on_toggle_options_visibility(origin: Control) -> void:
+	origin.visible = !origin.visible
