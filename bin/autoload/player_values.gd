@@ -4,12 +4,12 @@ signal upgrade_pause
 signal xp_changed
 signal dash_cooldown_changed
 
-const STARTING_LEVELUP_THRESHOLD: int = 10
-const XP_INCREASE_ON_LEVELUP: int = 2
+const STARTING_LEVELUP_THRESHOLD: int = 1
+const XP_INCREASE_ON_LEVELUP: int = 0
 
 var upgrades_folder: String = "res://bin/upgrade_resources/"
 var all_upgrades: Array
-var all_upgrade_uis: Array
+var all_upgrade_uis: Array[Upgrade_UI]
 var current_upgrades: Array
 
 var reload_speed = 0.5
@@ -48,7 +48,20 @@ func _level_up() -> void:
 		all_upgrade_uis.append(upgrade_option)
 		
 		add_child(upgrade_option)
+		
+		if i == 1:
+			upgrade_option.select_button.grab_focus()
+		
 		x_pos += Vector2(500, 0)
+	
+	var num = 0
+	for item : Upgrade_UI in all_upgrade_uis:
+		if num != 0:
+			item.select_button.focus_neighbor_left = all_upgrade_uis[num - 1].select_button.get_path()
+		if num != all_upgrade_uis.size() - 1:
+			item.select_button.focus_neighbor_right = all_upgrade_uis[num + 1].select_button.get_path()
+		num += 1
+	
 	upgrade_pause.emit()
 
 func _get_upgrade(upgrade: String) -> void:
