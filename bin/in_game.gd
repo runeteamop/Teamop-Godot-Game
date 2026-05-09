@@ -1,14 +1,9 @@
-extends Node
-
-func _init() -> void:
-	Global.connect("request_main_menu", _exit_level)
+class_name InGame extends Node
 
 func _ready() -> void:
 	add_child(load("res://bin/levels/asgers_test.tscn").instantiate())
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
-		Global.emit_signal("request_pause_menu", self)
-
-func _exit_level() -> void:
-	queue_free()
+		Global.emit_signal("toggle_pause_menu")
+		get_tree().paused = !get_tree().paused

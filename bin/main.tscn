@@ -1,99 +1,37 @@
 [gd_scene format=3 uid="uid://y5pulnkmgra1"]
 
 [ext_resource type="Script" uid="uid://bvvqs643vcqya" path="res://bin/main.gd" id="1_gwm3d"]
-[ext_resource type="Texture2D" uid="uid://dmh6ejh57fs6l" path="res://assets/Panorama_0_test.png" id="2_gwm3d"]
-[ext_resource type="Script" uid="uid://cvo3d26f3upva" path="res://bin/menus.gd" id="2_hkaov"]
-[ext_resource type="Script" uid="uid://bbq312nndww08" path="res://bin/ui/main_menu.gd" id="3_lksuh"]
-[ext_resource type="Script" uid="uid://dnk5aspmot7y7" path="res://bin/ui/options_menu.gd" id="4_lksuh"]
+[ext_resource type="PackedScene" uid="uid://bedlcclod8ggt" path="res://bin/ui/options.tscn" id="2_lksuh"]
+[ext_resource type="PackedScene" uid="uid://dbgny30wbvmde" path="res://bin/ui/main_menu.tscn" id="3_hkaov"]
+[ext_resource type="PackedScene" uid="uid://bualodl08ag0v" path="res://bin/ui/pause_menu.tscn" id="4_x5fk4"]
+[ext_resource type="Texture2D" uid="uid://dmh6ejh57fs6l" path="res://assets/Panorama_0_test.png" id="5_hkaov"]
 
-[node name="Main" type="Node" unique_id=1010419184]
+[node name="Main" type="Node" unique_id=1010419184 node_paths=PackedStringArray("main_menu", "pause_menu", "options", "background")]
 script = ExtResource("1_gwm3d")
+main_menu = NodePath("CanvasLayer/MainMenu")
+pause_menu = NodePath("CanvasLayer/PauseMenu")
+options = NodePath("CanvasLayer/Options")
+background = NodePath("Background")
 
-[node name="Menus" type="Control" parent="." unique_id=31217792]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_hkaov")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1829170368]
+process_mode = 3
 
-[node name="Background" type="TextureRect" parent="Menus" unique_id=1124022079]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_gwm3d")
-stretch_mode = 6
+[node name="MainMenu" parent="CanvasLayer" unique_id=1919505469 instance=ExtResource("3_hkaov")]
+process_mode = 3
 
-[node name="MainMenu" type="Control" parent="Menus" unique_id=1106805026]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_lksuh")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Menus/MainMenu" unique_id=1581918699]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -156.0
-offset_right = 291.0
-offset_bottom = 156.0
-grow_vertical = 2
-
-[node name="Singleplayer" type="Button" parent="Menus/MainMenu/VBoxContainer" unique_id=419211541]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Singleplayer
-"
-
-[node name="Multiplayer" type="Button" parent="Menus/MainMenu/VBoxContainer" unique_id=1120248976]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Multiplayer"
-
-[node name="Options" type="Button" parent="Menus/MainMenu/VBoxContainer" unique_id=979214015]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Options
-"
-
-[node name="ExitGame" type="Button" parent="Menus/MainMenu/VBoxContainer" unique_id=411652087]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Exit"
-
-[node name="IndependentMenus" type="CanvasLayer" parent="Menus" unique_id=1613740133]
-
-[node name="OptionsMenu" type="Control" parent="Menus/IndependentMenus" unique_id=1333715105]
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1174587948 instance=ExtResource("4_x5fk4")]
+process_mode = 3
 visible = false
-layout_mode = 3
+
+[node name="Options" parent="CanvasLayer" unique_id=1634851606 instance=ExtResource("2_lksuh")]
+visible = false
+
+[node name="Background" type="TextureRect" parent="." unique_id=15825163]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_lksuh")
-
-[node name="Back" type="Button" parent="Menus/IndependentMenus/OptionsMenu" unique_id=1467998548]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -31.0
-offset_right = 45.0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 48
-text = "Back"
-
-[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/Singleplayer" to="Menus/MainMenu" method="_on_singleplayer_pressed"]
-[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/Multiplayer" to="Menus/MainMenu" method="_on_multiplayer_pressed"]
-[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/Options" to="Menus/MainMenu" method="_on_options_pressed"]
-[connection signal="pressed" from="Menus/MainMenu/VBoxContainer/ExitGame" to="Menus/MainMenu" method="_on_exit_game_pressed"]
+texture = ExtResource("5_hkaov")
+stretch_mode = 6
