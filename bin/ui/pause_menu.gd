@@ -1,12 +1,7 @@
 class_name PauseMenu extends Control
 
 func _on_exit_pressed() -> void:
-	Global.emit_signal("toggle_level")
-	Global.emit_signal("toggle_main_menu")
-	Global.emit_signal("toggle_pause_menu")
-	get_tree().paused = false
-
+	pass
 
 func _on_options_pressed() -> void:
-	Global.emit_signal("toggle_pause_menu")
-	Global.emit_signal("toggle_options", Global.ENTERED_FROM.PAUSE_MENU)
+	Global.emit_signal("enter_menu", "res://bin/ui/options.tscn")
