@@ -19,15 +19,17 @@ func _process(delta: float) -> void:
 		for area in homing_area.get_overlapping_areas():
 			if area is Enemy:
 				if temp_enemy:
-					var area_angle = -global_basis.z.dot(area.global_position - global_position)
-					if area_angle > -global_basis.z.dot(temp_enemy.global_position - global_position):
+					if angle_from_bullet(temp_enemy) < 0.2:
+						temp_enemy = area
+					elif position.distance_to(area.position) < position.distance_to(temp_enemy.position):
 						temp_enemy = area
 				else:
 					temp_enemy = area
 		
 		if temp_enemy:
-			var b = atan2(-temp_enemy.position.x - -position.x, -temp_enemy.position.z - -position.z)
-			rotation.y = lerp_angle(rotation.y, b, 5 * delta)
+			if angle_from_bullet(temp_enemy) > 0.2:
+				var b = atan2(-temp_enemy.position.x - -position.x, -temp_enemy.position.z - -position.z)
+				rotation.y = lerp_angle(rotation.y, b, 2 * delta)
 	
 	global_transform.origin -= transform.basis.z.normalized() * speed * delta
 
@@ -40,3 +42,6 @@ func _on_area_entered(area: Area3D) -> void:
 
 func _on_timer_timeout() -> void:
 	queue_free()
+
+func angle_from_bullet(area: Area3D):
+	return -global_basis.z.dot((area.global_position - global_position).normalized())
