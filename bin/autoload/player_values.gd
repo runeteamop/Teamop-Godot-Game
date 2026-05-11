@@ -31,7 +31,6 @@ func _ready() -> void:
 	all_upgrades = DirAccess.get_files_at(upgrades_folder)
 
 func _level_up() -> void:
-	print(overflow_of_upgrades)
 	if all_upgrade_uis.size() > 0:
 		for i in all_upgrade_uis.size()/3:
 			overflow_of_upgrades += 1
@@ -41,7 +40,7 @@ func _level_up() -> void:
 	var spawn = get_viewport().get_visible_rect().size/2
 	for i in 3:
 		var random_upgrade_string = temp_upgrades.pick_random()
-		var random_upgrade: Upgrade_Template = load(upgrades_folder + "/" + random_upgrade_string)
+		var random_upgrade: Strategy_Template = load(upgrades_folder + "/" + random_upgrade_string)
 		
 		if temp_upgrades.size() > 1:
 			temp_upgrades.erase(random_upgrade_string)
@@ -77,7 +76,7 @@ func _get_upgrade(upgrade: String) -> void:
 	for item: Upgrade_UI in all_upgrade_uis:
 		remove_child(item)
 	
-	var chosen_upgrade: Upgrade_Template = load(upgrade)
+	var chosen_upgrade: Strategy_Template = load(upgrade)
 	chosen_upgrade._apply_to_player()
 	current_upgrades.append(chosen_upgrade)
 	all_upgrade_uis.clear()

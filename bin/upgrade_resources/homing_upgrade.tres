@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Homing_upgrade" format=3 uid="uid://dw7y1n20grg86"]
+
+[ext_resource type="Script" uid="uid://cc4l60cr4amqn" path="res://bin/upgrade_scrips/homing_strategy.gd" id="1_w7u17"]
+
+[resource]
+script = ExtResource("1_w7u17")
+upgrade_name = "Homing"
+discription = "bullets will curve towrds the enemy when it gets close"
+metadata/_custom_type_script = "uid://cc4l60cr4amqn"

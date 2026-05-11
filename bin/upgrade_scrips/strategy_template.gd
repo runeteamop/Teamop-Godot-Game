@@ -1,4 +1,4 @@
-class_name Upgrade_Template extends Resource
+class_name Strategy_Template extends Resource
 
 @export var upgrade_name: String = "temp"
 @export var discription: String = "temp"

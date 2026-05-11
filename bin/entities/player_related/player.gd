@@ -20,7 +20,7 @@ var can_dash: bool = true
 
 var bullet_scene: PackedScene = load(Global.UID.bullet)
 
-var look_at: float
+var look_here: float
 
 func _init() -> void:
 	if !instance:
@@ -82,11 +82,11 @@ func _physics_process(delta: float) -> void:
 		var from = camera.project_ray_origin(mouse_pos_viewport)
 		var to = camera.project_ray_normal(mouse_pos_viewport)
 		var mouse_pos = target_plane.intersects_ray(from, to)
-		look_at = atan2(-mouse_pos.x - -position.x, -mouse_pos.z - -position.z)
+		look_here = atan2(-mouse_pos.x - -position.x, -mouse_pos.z - -position.z)
 	elif current_control_type == "Controller":
-		look_at = r_stick_dir
+		look_here = r_stick_dir
 	
-	turret.rotation.y = lerp_angle(turret.rotation.y, look_at, rotation_speed * delta)
+	turret.rotation.y = lerp_angle(turret.rotation.y, look_here, rotation_speed * delta)
 	
 	move_and_slide()
 
@@ -117,7 +117,8 @@ func _shoot() -> void:
 		var bullet: Bullet = bullet_scene.instantiate()
 		bullet.rotation = turret.rotation
 		bullet.position = turret_cannon.global_position
-		add_sibling(bullet)
 		
-		for upgrade : Upgrade_Template in Player_values.current_upgrades:
+		for upgrade : Strategy_Template in Player_values.current_upgrades:
 			upgrade._apply_to_bullet(bullet)
+			
+		add_sibling(bullet)
