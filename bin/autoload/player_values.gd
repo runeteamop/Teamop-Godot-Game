@@ -4,8 +4,8 @@ signal upgrade_pause
 signal xp_changed
 signal dash_cooldown_changed
 
-const STARTING_LEVELUP_THRESHOLD: int = 1
-const XP_INCREASE_ON_LEVELUP: int = 0
+const STARTING_LEVELUP_THRESHOLD: int = 5
+const XP_INCREASE_ON_LEVELUP: int = 2
 
 var upgrades_folder: String = "res://bin/upgrade_resources/"
 var all_upgrades: Array
@@ -32,9 +32,7 @@ func _ready() -> void:
 
 func _level_up() -> void:
 	if all_upgrade_uis.size() > 0:
-		for i in all_upgrade_uis.size()/3:
-			overflow_of_upgrades += 1
-		return
+		overflow_of_upgrades = floori(all_upgrade_uis.size()/3.0)
 	var temp_upgrades = all_upgrades.duplicate()
 	var x_pos = Vector2(-500, 0)
 	var spawn = get_viewport().get_visible_rect().size/2

@@ -4,6 +4,7 @@ var damage: float = 10
 var piercing: int = 0
 var speed = 10
 var knockback = 2
+var homing: float = 0
 
 var is_homing: bool = false
 var homing_area: Area3D
@@ -13,7 +14,7 @@ func  _ready() -> void:
 		homing_area = $"Homing detection"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_homing:
 		var temp_enemy: Enemy = null
 		for area in homing_area.get_overlapping_areas():
@@ -27,9 +28,14 @@ func _process(delta: float) -> void:
 					temp_enemy = area
 		
 		if temp_enemy:
-			if angle_from_bullet(temp_enemy) > 0.2:
-				var b = atan2(-temp_enemy.position.x - -position.x, -temp_enemy.position.z - -position.z)
-				rotation.y = lerp_angle(rotation.y, b, 2 * delta)
+			var turing_angle = atan2(-temp_enemy.position.x - -position.x, -temp_enemy.position.z - -position.z)
+			if angle_from_bullet(temp_enemy) > 0.1 and !is_equal_approx(turing_angle, rotation.y):
+				if turing_angle - rotation.y > 0:
+					pass
+					rotate_y(homing)
+				else:
+					pass
+					rotate_y(-homing)
 	
 	global_transform.origin -= transform.basis.z.normalized() * speed * delta
 

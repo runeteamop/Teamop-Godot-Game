@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Bullet_rate_upgrade" format=3 uid="uid://c0tq5s4jdf74u"]
 
-[ext_resource type="Script" uid="uid://clje31233ymg3" path="res://bin/upgrade_scrips/bullet_rate_strategy.gd" id="1_p71db"]
+[ext_resource type="Script" uid="uid://clje31233ymg3" path="res://bin/upgrade_stratergs/bullet_rate_strategy.gd" id="1_p71db"]
 
 [resource]
 script = ExtResource("1_p71db")
