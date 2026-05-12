@@ -29,8 +29,8 @@ func _init() -> void:
 func _ready() -> void:
 	target_plane = Plane(Vector3(0, 1, 0), (turret.global_position.y))
 
-func _notifications(notification) -> void:
-	if notification == NOTIFICATION_PREDELETE:
+func _notifications(notif) -> void:
+	if notif == NOTIFICATION_PREDELETE:
 		if instance == self: instance = null
 
 func _physics_process(delta: float) -> void:
