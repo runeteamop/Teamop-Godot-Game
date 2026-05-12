@@ -1,6 +1,6 @@
 extends Node
 
-signal switch_game_state
+signal load_game_state(requested_game_state: String)
 
 signal enter_menu(desired_menu: String)
 signal go_back

@@ -3,30 +3,14 @@
 [ext_resource type="Script" uid="uid://bvvqs643vcqya" path="res://bin/main.gd" id="1_gwm3d"]
 [ext_resource type="Script" uid="uid://dn38k21kpa852" path="res://bin/game_state_manager.gd" id="2_hkaov"]
 [ext_resource type="Script" uid="uid://cm2s3b3xl5gvi" path="res://bin/static_menu_manager.gd" id="2_x5fk4"]
-[ext_resource type="PackedScene" uid="uid://dbgny30wbvmde" path="res://bin/ui/main_menu.tscn" id="3_hkaov"]
-[ext_resource type="Texture2D" uid="uid://dmh6ejh57fs6l" path="res://assets/Panorama_0_test.png" id="5_hkaov"]
 
 [node name="Main" type="Node" unique_id=1010419184]
 script = ExtResource("1_gwm3d")
 
-[node name="GameStateManager" type="Node" parent="." unique_id=1984791024 node_paths=PackedStringArray("background")]
+[node name="GameStateManager" type="Node" parent="." unique_id=1984791024]
 script = ExtResource("2_hkaov")
-background = NodePath("Background")
+game_states = Array[String](["res://bin/menus.tscn", "res://bin/in_game.tscn"])
 
-[node name="Background" type="TextureRect" parent="GameStateManager" unique_id=15825163]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_hkaov")
-stretch_mode = 6
-
-[node name="StaticMenuManager" type="CanvasLayer" parent="." unique_id=1829170368 node_paths=PackedStringArray("stack", "current_menu")]
+[node name="StaticMenuManager" type="CanvasLayer" parent="." unique_id=1829170368]
 process_mode = 3
 script = ExtResource("2_x5fk4")
-stack = [NodePath("MainMenu")]
-current_menu = NodePath("MainMenu")
-
-[node name="MainMenu" parent="StaticMenuManager" unique_id=1919505469 instance=ExtResource("3_hkaov")]

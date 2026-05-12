@@ -6,8 +6,8 @@ var menus: Dictionary[String, Control] = {
 	"res://bin/ui/options.tscn": load("res://bin/ui/options.tscn").instantiate()
 }
 
-@export var stack: Array[Control]
-@export var current_menu: Control
+var stack: Array[Control]
+var current_menu: Control
 
 func _init() -> void:
 	Global.connect("enter_menu", _on_enter_menu)
@@ -21,8 +21,8 @@ func _on_enter_menu(desired_menu: String) -> void:
 	if current_menu:
 		remove_child(current_menu)
 
-	add_child(menus[desired_menu])
 	current_menu = menus[desired_menu]
+	add_child(current_menu)
 
 	stack.append(current_menu)
 
@@ -35,7 +35,7 @@ func _on_go_back() -> void:
 	add_child(current_menu)
 
 func _on_flush_menu_stack() -> void:
-	stack.clear()
-
-	remove_child(current_menu)
-	current_menu = null
+	if stack.size() > 0:
+		stack.clear()
+		remove_child(current_menu)
+		current_menu = null

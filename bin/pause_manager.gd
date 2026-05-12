@@ -7,4 +7,4 @@ func _input(event: InputEvent) -> void:
 		else:
 			Global.emit_signal("enter_menu", "res://bin/ui/pause_menu.tscn")
 
-		get_tree().paused = !get_tree().paused
+		RuntimeManager.toggle_runtime()

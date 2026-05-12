@@ -1,17 +1,20 @@
 class_name GameStateManager extends Node
 
-@export var background: TextureRect
+@export var game_states: Array[String]
 
-var in_game: InGame
+var current_game_state: Node
 
 func _init() -> void:
-	Global.connect("switch_game_state", _on_switch_game_state)
+	Global.connect("load_game_state", _on_load_game_state)
 
-func _on_switch_game_state() -> void:
-	background.visible = !background.visible
+func _on_load_game_state(requested_game_state: String) -> void:
+	if !requested_game_state in game_states:
+		return push_error("\"%s\" is not a game state." % requested_game_state)
 
-	if in_game:
-		in_game.queue_free()
-	else:
-		in_game = load("res://bin/in_game.tscn").instantiate()
-		add_child(in_game)
+	Global.emit_signal("flush_menu_stack")
+
+	if current_game_state:
+		current_game_state.queue_free()
+
+	current_game_state = load(requested_game_state).instantiate()
+	add_child(current_game_state)
