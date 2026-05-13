@@ -6,7 +6,7 @@
 [node name="InGame" type="Node" unique_id=133576714]
 script = ExtResource("1_rglmw")
 
-[node name="PauseManager" type="Node" parent="." unique_id=1525501009]
+[node name="TogglePauseMenu" type="Node" parent="." unique_id=1525501009]
 process_mode = 3
 script = ExtResource("2_7tr5f")
 
