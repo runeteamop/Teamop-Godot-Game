@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://dlqs3v8l3mufh" path="res://bin/ui/main_menu.gd" id="1_gqptq"]
 
 [node name="MainMenu" type="Control" unique_id=1919505469]
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -13,13 +15,15 @@ script = ExtResource("1_gqptq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1041156703]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 14
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -116.5
-offset_right = 291.0
-offset_bottom = 116.5
+offset_top = -120.5
+offset_bottom = 120.5
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 8
 
 [node name="Singleplayer" type="Button" parent="VBoxContainer" unique_id=2006110362]
 layout_mode = 2

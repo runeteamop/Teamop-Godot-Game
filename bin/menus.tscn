@@ -1,17 +1,15 @@
 [gd_scene format=3 uid="uid://clvwo403rm0wr"]
 
 [ext_resource type="Script" uid="uid://cm08rbhb4n8ln" path="res://bin/menus.gd" id="1_lmbyv"]
-[ext_resource type="Texture2D" uid="uid://dmh6ejh57fs6l" path="res://assets/Panorama_0_test.png" id="2_sdsdc"]
+[ext_resource type="PackedScene" uid="uid://bdgdcxmhtkjgp" path="res://bin/levels/asgers_test.tscn" id="2_sdsdc"]
 
 [node name="Menus" type="Node" unique_id=170979547]
 script = ExtResource("1_lmbyv")
 
-[node name="Background" type="TextureRect" parent="." unique_id=69566200]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_sdsdc")
-stretch_mode = 6
+[node name="AsgersTest" parent="." unique_id=998206716 instance=ExtResource("2_sdsdc")]
+process_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=792237480]
+transform = Transform3D(-0.7071067, -0.218508, -0.67249846, 0, 0.9510565, -0.30901697, 0.7071067, -0.218508, -0.67249846, -1.5, 0.1, -1.5)
+current = true
+fov = 45.0

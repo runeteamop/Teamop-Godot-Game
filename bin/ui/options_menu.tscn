@@ -1,69 +1,67 @@
 [gd_scene format=3 uid="uid://bedlcclod8ggt"]
 
 [ext_resource type="Script" uid="uid://d2jsu0hxqy0rh" path="res://bin/ui/options_menu.gd" id="1_wlw1i"]
+[ext_resource type="ButtonGroup" uid="uid://badjuuf5d67kc" path="res://bin/autoload/options_menu_buttons.tres" id="2_qahfp"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_wlw1i"]
-content_margin_right = 512.0
-thickness = 8
-
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("window_mode_checkbox")]
+[node name="OptionsMenu" type="Control" unique_id=1634851606]
 process_mode = 3
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlw1i")
-window_mode_checkbox = NodePath("MarginContainer/VBoxContainer/CheckBox")
 
-[node name="Back" type="Button" parent="." unique_id=2058963644]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1345368372]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -75.0
-offset_right = 119.0
-grow_vertical = 0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -162.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1308785009]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=303915117]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Input" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer2" unique_id=473341695]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+toggle_mode = true
+button_group = ExtResource("2_qahfp")
+text = "Input"
+
+[node name="Audio" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer2" unique_id=880977582]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Audio"
+
+[node name="Graphics" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer2" unique_id=1910048388]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+toggle_mode = true
+button_group = ExtResource("2_qahfp")
+text = "Graphics"
+
+[node name="Back" type="Button" parent="HBoxContainer/VBoxContainer/VBoxContainer2" unique_id=2058963644]
+layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Back"
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=620959817]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -66.5
-offset_right = 256.0
-offset_bottom = 66.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1162967706]
-layout_mode = 2
-
-[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer" unique_id=348018078]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Fullscreen"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1497439457]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=144458163]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 48
-text = "Render scale"
-
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=142389587]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_styles/slider = SubResource("StyleBoxLine_wlw1i")
-scrollable = false
-
-[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer2/Graphics" to="." method="_on_graphics_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
