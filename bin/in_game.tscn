@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://lqcet3nxe4nh"]
+
+[ext_resource type="Script" uid="uid://sb2cohtq72i0" path="res://bin/in_game.gd" id="1_rglmw"]
+[ext_resource type="Script" uid="uid://cp8xsqjqsf7h" path="res://bin/pause_manager.gd" id="2_7tr5f"]
+
+[node name="InGame" type="Node" unique_id=133576714]
+script = ExtResource("1_rglmw")
+
+[node name="PauseManager" type="Node" parent="." unique_id=1525501009]
+process_mode = 3
+script = ExtResource("2_7tr5f")
+
+[node name="HUD" type="Control" parent="." unique_id=16306874]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://lqcet3nxe4nh"]
+
+[ext_resource type="Script" uid="uid://sb2cohtq72i0" path="res://bin/in_game.gd" id="1_rglmw"]
+
+[node name="InGame" type="Node" unique_id=133576714]
+script = ExtResource("1_rglmw")
+
+[node name="3DSpace" type="Node3D" parent="." unique_id=566320448]
+
+[node name="UserInterface" type="Control" parent="." unique_id=1724406077]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseMenu" type="CanvasLayer" parent="UserInterface" unique_id=2119927272]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UserInterface/PauseMenu" unique_id=944423143]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_right = 70.0
+offset_bottom = 33.0
+grow_vertical = 2
+
+[node name="Options" type="Button" parent="UserInterface/PauseMenu/VBoxContainer" unique_id=426154467]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Options"
+
+[node name="Exit" type="Button" parent="UserInterface/PauseMenu/VBoxContainer" unique_id=885058472]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Exit"

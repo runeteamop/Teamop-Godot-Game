@@ -1,4 +1,4 @@
-class_name Root extends Node
+class_name Main extends Node
 
-func _init() -> void:
-	Global.root = self
+func _ready() -> void:
+	Global.emit_signal("load_game_state", "res://bin/menus.tscn")

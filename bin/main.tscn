@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://y5pulnkmgra1"]
 
 [ext_resource type="Script" uid="uid://bvvqs643vcqya" path="res://bin/main.gd" id="1_gwm3d"]
+[ext_resource type="Script" uid="uid://dn38k21kpa852" path="res://bin/game_state_manager.gd" id="2_hkaov"]
+[ext_resource type="Script" uid="uid://cm2s3b3xl5gvi" path="res://bin/static_menu_manager.gd" id="2_x5fk4"]
 
 [node name="Main" type="Node" unique_id=1010419184]
 script = ExtResource("1_gwm3d")
 
-[node name="World" type="Node3D" parent="." unique_id=1404164791]
+[node name="GameStateManager" type="Node" parent="." unique_id=1984791024]
+script = ExtResource("2_hkaov")
+game_states = Array[String](["res://bin/menus.tscn", "res://bin/in_game.tscn"])
 
-[node name="UI" type="Control" parent="." unique_id=2078092303]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="StaticMenuManager" type="CanvasLayer" parent="." unique_id=1829170368]
+process_mode = 3
+script = ExtResource("2_x5fk4")

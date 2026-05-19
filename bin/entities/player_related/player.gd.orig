@@ -117,8 +117,30 @@ func _shoot() -> void:
 		var bullet: Bullet = bullet_scene.instantiate()
 		bullet.rotation = turret.rotation
 		bullet.position = turret_cannon.global_position
+<<<<<<< HEAD
 		
 		for upgrade : Strategy_Template in Player_values.current_upgrades:
 			upgrade._apply_to_bullet(bullet)
 			
 		add_sibling(bullet)
+=======
+		add_sibling(bullet)
+
+		for upgrade : Upgrade_Template in Player_values.current_upgrades:
+			upgrade._apply_to_bullet(bullet)
+
+func _mouse_pos_on_plane():
+	var mouse_pos = get_viewport().get_mouse_position()
+	var from = camera.project_ray_origin(mouse_pos)
+	var to = camera.project_ray_normal(mouse_pos)
+
+	return(target_plane.intersects_ray(from, to))
+
+func _mouse_turn_turret(delta):
+	var mouse_pos = _mouse_pos_on_plane()
+	if mouse_pos == null:
+		return(turret.global_transform.basis)
+	var target_trans = turret.global_transform.looking_at(mouse_pos, Vector3.UP)
+
+	turret.global_transform.basis = turret.global_transform.basis.slerp(target_trans.basis, rotation_speed * delta)
+>>>>>>> 98be110791ca3b2e6d59b2a41a8f88318154ff62
