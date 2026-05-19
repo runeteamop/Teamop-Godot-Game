@@ -20,24 +20,23 @@ func _physics_process(delta: float) -> void:
 		for area in homing_area.get_overlapping_areas():
 			if area is Enemy:
 				if temp_enemy:
-					if angle_from_bullet(temp_enemy) < 0.2:
+					if angle_from_bullet_to_area(temp_enemy) < 0.2:
 						temp_enemy = area
-					elif position.distance_to(area.position) < position.distance_to(temp_enemy.position):
+					elif area.position.distance_to(global_position) < temp_enemy.position.distance_to(global_position):
 						temp_enemy = area
 				else:
 					temp_enemy = area
 		
 		if temp_enemy:
-			var turing_angle = atan2(-temp_enemy.position.x - -position.x, -temp_enemy.position.z - -position.z)
-			if angle_from_bullet(temp_enemy) > 0.1 and !is_equal_approx(turing_angle, rotation.y):
-				if turing_angle - rotation.y > 0:
-					pass
-					rotate_y(homing)
-				else:
-					pass
-					rotate_y(-homing)
+			var angle = angle_from_bullet_to_area(temp_enemy)
+			if angle > 0.2:
+				if angle < 0.999:
+					var rotation_to_enemy: Vector3 = -global_transform.basis.z.cross((temp_enemy.global_position - global_position).normalized()).normalized()
+					if rotation_to_enemy.is_normalized():
+						global_transform.basis = global_transform.basis.rotated(rotation_to_enemy, homing * delta)
+						global_transform.basis = global_transform.basis.orthonormalized()
 	
-	global_transform.origin -= transform.basis.z.normalized() * speed * delta
+	global_translate(-global_transform.basis.z * speed * delta)
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is Enemy:
@@ -49,5 +48,5 @@ func _on_area_entered(area: Area3D) -> void:
 func _on_timer_timeout() -> void:
 	queue_free()
 
-func angle_from_bullet(area: Area3D):
-	return -global_basis.z.dot((area.global_position - global_position).normalized())
+func angle_from_bullet_to_area(area: Area3D):
+	return -global_transform.basis.z.dot((area.global_position - global_position).normalized())
