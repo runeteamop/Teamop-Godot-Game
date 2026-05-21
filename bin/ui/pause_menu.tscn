@@ -5,36 +5,49 @@
 [node name="PauseMenu" type="Control" unique_id=1174587948]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 3
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ncyv0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=182583734]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1159712554]
 layout_mode = 1
-anchors_preset = 14
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -79.0
-offset_bottom = 79.0
+offset_left = -168.0
+offset_top = -87.0
+offset_right = 168.0
+offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1791926926]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=182583734]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Options" type="Button" parent="VBoxContainer" unique_id=394214918]
+[node name="Options" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=394214918]
 process_mode = 3
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Options"
 
-[node name="Exit" type="Button" parent="VBoxContainer" unique_id=507752206]
+[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=507752206]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -10,11 +10,8 @@ func _init() -> void:
 	Global.connect("flush_menu_stack", _on_flush_menu_stack)
 
 func _on_enter_menu(path: String) -> void:
-	#if current_menu:
-		#remove_child(current_menu)
-	if menu_stack.size() > 0:
-		for menu in menu_stack:
-			menu.position.x -= current_menu.size.x
+	if current_menu:
+		remove_child(current_menu)
 
 	if !path in cache:
 		cache[path] = load(path).instantiate()
@@ -28,11 +25,8 @@ func _on_goto_last_menu() -> void:
 	menu_stack.pop_back()
 
 	if menu_stack.size() > 0:
-		for menu in menu_stack:
-			menu.position.x += current_menu.size.x
-
 		current_menu = menu_stack[-1]
-		#add_child(current_menu)
+		add_child(current_menu)
 	else:
 		current_menu = null
 
@@ -41,6 +35,6 @@ func _on_flush_menu_stack() -> void:
 	current_menu = null
 	menu_stack.clear()
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		_on_goto_last_menu()
+#func _input(event: InputEvent) -> void:
+	#if Input.is_action_just_pressed("ui_cancel"):
+		#_on_goto_last_menu()
