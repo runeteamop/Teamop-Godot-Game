@@ -9,7 +9,7 @@ func _init() -> void:
 		options.load(OPTIONS_PATH)
 	else:
 		options.set_value("display", "fullscreen", false)
-		options.set_value("display", "resolusion_scale", 1)
+		options.set_value("display", "resolusion_scale", 3)
 		options.set_value("display", "resolusion", "1920x1080")
 
 		options.set_value("graphics", "texture_resolusion", 1.0)
