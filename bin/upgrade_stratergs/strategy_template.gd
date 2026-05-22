@@ -6,5 +6,6 @@ class_name Strategy_Template extends Resource
 func _apply_to_player():
 	pass
 
-func _apply_to_bullet(_bullet : Bullet):
+@warning_ignore("unused_parameter")
+func _apply_to_bullet(bullet : Bullet):
 	pass
