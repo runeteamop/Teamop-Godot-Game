@@ -31,7 +31,8 @@ func _on_goto_last_menu() -> void:
 		current_menu = null
 
 func _on_flush_menu_stack() -> void:
-	remove_child(current_menu)
+	if current_menu:
+		remove_child(current_menu)
 	current_menu = null
 	menu_stack.clear()
 

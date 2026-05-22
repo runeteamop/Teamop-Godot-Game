@@ -12,7 +12,7 @@ var xp_scene: PackedScene = load("res://bin/entities/xp.tscn")
 func _ready() -> void:
 	material_color = material.albedo_color
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if material_color != material.albedo_color:
 		material.albedo_color = material.albedo_color.lerp(material_color, 0.05)
 	
