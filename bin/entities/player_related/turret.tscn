@@ -12,9 +12,9 @@ cast_shadow = 2
 mesh = SubResource("SphereMesh_8xk5y")
 
 [node name="Cannon" type="MeshInstance3D" parent="." unique_id=1384469863]
-transform = Transform3D(-0.17999999, 3.218651e-08, -7.0345843e-16, 0, -1.5736099e-08, -0.17999999, -1.6093255e-08, -0.35999998, 7.868049e-09, 2.090782e-08, 0.55749094, -0.3443126)
+transform = Transform3D(-0.17999999, 3.218651e-08, -7.0345843e-16, 0, -1.5736099e-08, -0.17999999, -1.6093255e-08, -0.35999998, 7.868049e-09, 0, 0.55, -0.35)
 cast_shadow = 2
 mesh = SubResource("CylinderMesh_3oylf")
 
 [node name="Cannon End" type="Node3D" parent="Cannon" unique_id=27813028]
-transform = Transform3D(1, -2.842171e-14, 0, 7.1054274e-15, 1, 0, 0, 0, 1, 1.8043431e-07, 1.0090616, -2.3841858e-07)
+transform = Transform3D(1, -2.842171e-14, 0, 7.1054274e-15, 1, 0, 0, 0, 1, 0, 1, 0)

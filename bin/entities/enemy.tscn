@@ -2,23 +2,22 @@
 
 [ext_resource type="Script" uid="uid://yt761e2hiur1" path="res://bin/entities/enemy.gd" id="1_fp4fq"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_fp4fq"]
-margin = 0.0
-radius = 0.45
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo4wm"]
 resource_local_to_scene = true
 albedo_color = Color(0, 1, 1, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6ymcc"]
 
-[node name="Enemy" type="Area3D" unique_id=1366308759]
-collision_mask = 0
-script = ExtResource("1_fp4fq")
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fp4fq"]
+margin = 0.0
+radius = 0.45
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=857799634]
-shape = SubResource("CylinderShape3D_fp4fq")
+[node name="Enemy" type="CharacterBody3D" unique_id=1233357673]
+script = ExtResource("1_fp4fq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1266818480]
 material_override = SubResource("StandardMaterial3D_wo4wm")
 mesh = SubResource("CapsuleMesh_6ymcc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=857799634]
+shape = SubResource("CylinderShape3D_fp4fq")

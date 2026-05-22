@@ -1,4 +1,4 @@
-class_name Upgrade_Template extends Resource
+class_name Strategy_Template extends Resource
 
 @export var upgrade_name: String = "temp"
 @export var discription: String = "temp"
@@ -6,5 +6,5 @@ class_name Upgrade_Template extends Resource
 func _apply_to_player():
 	pass
 
-func _apply_to_bullet(bullet : Bullet):
+func _apply_to_bullet(_bullet : Bullet):
 	pass
