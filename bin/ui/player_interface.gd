@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @onready var dash_progressbar: ProgressBar = $"Dash cooldown bar"
 @onready var xp_bar: ProgressBar = $"Xp bar"

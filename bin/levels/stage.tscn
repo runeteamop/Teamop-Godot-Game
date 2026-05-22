@@ -28,10 +28,12 @@ size = Vector2(1024, 1024)
 [node name="Stage" type="Node" unique_id=1495175313]
 script = ExtResource("1_oe2wg")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2130850347]
+[node name="3D environment" type="Node3D" parent="." unique_id=1701848042]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3D environment" unique_id=2130850347]
 environment = SubResource("Environment_7ukyh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=286070476]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D environment" unique_id=286070476]
 transform = Transform3D(0.70710665, 0.35355344, -0.6123725, 0, 0.8660254, 0.5, 0.7071069, -0.35355332, 0.61237234, 0, 0, 0)
 light_specular = 5.0
 light_bake_mode = 1
@@ -39,17 +41,30 @@ shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 10.0
 
-[node name="Player" parent="." unique_id=982876763 instance=ExtResource("2_1dfug")]
+[node name="Player" parent="3D environment" unique_id=982876763 instance=ExtResource("2_1dfug")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Map" type="StaticBody3D" parent="." unique_id=588692771]
+[node name="Map" type="StaticBody3D" parent="3D environment" unique_id=588692771]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=1092235018]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3D environment/Map" unique_id=1092235018]
 mesh = SubResource("PlaneMesh_sh46w")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map" unique_id=99371767]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D environment/Map" unique_id=99371767]
 shape = SubResource("WorldBoundaryShape3D_hq2m5")
 
-[node name="player interface" parent="." unique_id=489266276 instance=ExtResource("3_6rmuk")]
+[node name="UI" type="Control" parent="." unique_id=237045001]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="player interface" parent="UI" unique_id=489266276 instance=ExtResource("3_6rmuk")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 
 [node name="enemy manager" parent="." unique_id=1012470169 instance=ExtResource("5_1dfug")]
