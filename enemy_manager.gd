@@ -12,5 +12,5 @@ func _on_timer_timeout() -> void:
 		var enemy: CharacterBody3D = preload("res://bin/entities/enemy.tscn").instantiate()
 
 		enemy.position = spawn_circle + Vector3(player.position.x, 1, player.position.z)
-		
+
 		environment.add_child(enemy)

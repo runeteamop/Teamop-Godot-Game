@@ -15,7 +15,7 @@ func _on_option_button_item_selected(index: int) -> void:
 	Options.save("display", "resolusion_scale", index)
 
 func _on_back_pressed() -> void:
-	Global.emit_signal("goto_last_menu")
+	Global.goto_last_menu()
 
 func _on_apply_pressed() -> void:
 	Options.apply()

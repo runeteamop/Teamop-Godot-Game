@@ -5,9 +5,9 @@ var menu_stack: Array[Control]
 var current_menu: Control
 
 func _init() -> void:
-	Global.connect("enter_menu", _on_enter_menu)
-	Global.connect("goto_last_menu", _on_goto_last_menu)
-	Global.connect("flush_menu_stack", _on_flush_menu_stack)
+	Global.signal_enter_menu.connect(_on_enter_menu)
+	Global.signal_goto_last_menu.connect(_on_goto_last_menu)
+	Global.signal_flush_menu_stack.connect(_on_flush_menu_stack)
 
 func _on_enter_menu(path: String) -> void:
 	if current_menu:
@@ -35,7 +35,3 @@ func _on_flush_menu_stack() -> void:
 		remove_child(current_menu)
 	current_menu = null
 	menu_stack.clear()
-
-#func _input(event: InputEvent) -> void:
-	#if Input.is_action_just_pressed("ui_cancel"):
-		#_on_goto_last_menu()

@@ -2,18 +2,22 @@
 
 [ext_resource type="Script" uid="uid://sb2cohtq72i0" path="res://bin/in_game.gd" id="1_rglmw"]
 [ext_resource type="Script" uid="uid://cp8xsqjqsf7h" path="res://bin/pause_manager.gd" id="2_7tr5f"]
+[ext_resource type="PackedScene" uid="uid://derwfrsent340" path="res://bin/ui/player_interface.tscn" id="3_y2k51"]
 
 [node name="InGame" type="Node" unique_id=133576714]
 script = ExtResource("1_rglmw")
 
-[node name="TogglePauseMenu" type="Node" parent="." unique_id=1525501009]
+[node name="PauseManager" type="Node" parent="." unique_id=1854987001]
 process_mode = 3
 script = ExtResource("2_7tr5f")
 
-[node name="HUD" type="Control" parent="." unique_id=16306874]
+[node name="UI" type="Control" parent="." unique_id=915890887]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="player interface" parent="UI" unique_id=482268870 instance=ExtResource("3_y2k51")]
+layout_mode = 1

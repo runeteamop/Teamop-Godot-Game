@@ -3,7 +3,7 @@ class_name GameStateManager extends Node
 var current_game_state: Node
 
 func _init() -> void:
-	Global.connect("request_game_state", _on_request_game_state)
+	Global.signal_request_game_state.connect(_on_request_game_state)
 
 func _on_request_game_state(file_path: String) -> void:
 	if current_game_state:

@@ -2,5 +2,39 @@
 
 [ext_resource type="Script" uid="uid://cm08rbhb4n8ln" path="res://bin/menus.gd" id="1_lmbyv"]
 
-[node name="Menus" type="Node" unique_id=170979547]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v1ntp"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_l132s"]
+sky_material = SubResource("ProceduralSkyMaterial_v1ntp")
+
+[sub_resource type="Environment" id="Environment_4otfu"]
+background_mode = 2
+sky = SubResource("Sky_l132s")
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_h1aqf"]
+
+[node name="Menus" type="Node" unique_id=170979547 node_paths=PackedStringArray("block")]
 script = ExtResource("1_lmbyv")
+block = NodePath("MeshInstance3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1909525375]
+environment = SubResource("Environment_4otfu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2004441859]
+transform = Transform3D(0.70710677, 0.49999997, -0.49999997, 0, 0.70710677, 0.70710677, 0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
+light_energy = 2.0
+light_specular = 2.0
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=520935097]
+mesh = SubResource("BoxMesh_h1aqf")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=892323683]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
+fov = 7.5
