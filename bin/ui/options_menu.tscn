@@ -142,14 +142,20 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 alignment = 1
-selected = 1
-item_count = 3
-popup/item_0/text = "50%"
+selected = 3
+item_count = 6
+popup/item_0/text = "12.5%"
 popup/item_0/id = 0
-popup/item_1/text = "100%"
-popup/item_1/id = 1
-popup/item_2/text = "200%"
-popup/item_2/id = 2
+popup/item_1/text = "25%"
+popup/item_1/id = 0
+popup/item_2/text = "50%"
+popup/item_2/id = 0
+popup/item_3/text = "100%"
+popup/item_3/id = 0
+popup/item_4/text = "200%"
+popup/item_4/id = 0
+popup/item_5/text = "400%"
+popup/item_5/id = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions" unique_id=374929973]
 custom_minimum_size = Vector2(320, 0)

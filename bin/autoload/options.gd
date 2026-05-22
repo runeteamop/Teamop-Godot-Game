@@ -50,8 +50,14 @@ func apply() -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	match option_values.resolusion_scale:
 		0:
-			get_window().scaling_3d_scale = 0.5
+			get_window().scaling_3d_scale = 0.125
 		1:
-			get_window().scaling_3d_scale = 1.0
+			get_window().scaling_3d_scale = 0.25
 		2:
+			get_window().scaling_3d_scale = 0.5
+		3:
+			get_window().scaling_3d_scale = 1.0
+		4:
 			get_window().scaling_3d_scale = 2.0
+		5:
+			get_window().scaling_3d_scale = 4.0
