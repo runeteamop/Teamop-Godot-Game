@@ -10,14 +10,14 @@ tonemap_mode = 2
 ssao_enabled = true
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_giqiv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7un3p"]
 albedo_texture = ExtResource("1_7un3p")
 uv1_scale = Vector3(128, 128, 128)
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_vq8ib"]
 lightmap_size_hint = Vector2i(12, 12)
-material = SubResource("StandardMaterial3D_giqiv")
+material = SubResource("StandardMaterial3D_7un3p")
 size = Vector2(1024, 1024)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6fvhl"]
@@ -39,7 +39,7 @@ directional_shadow_max_distance = 10.0
 mesh = SubResource("PlaneMesh_vq8ib")
 
 [node name="Player" parent="." unique_id=982876763 instance=ExtResource("1_6fvhl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51393783, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1995363299]
 
