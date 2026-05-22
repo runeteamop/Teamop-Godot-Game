@@ -10,7 +10,7 @@ func _on_timer_timeout() -> void:
 
 	var spawn_circle := Vector3(sin(angle), 0, cos(angle)) * 17.0
 
-	var enemy: Area3D = load("res://bin/entities/enemy.tscn").instantiate()
+	var enemy: CharacterBody3D = load("res://bin/entities/enemy.tscn").instantiate()
 
 	enemy.position = spawn_circle + Vector3(player.position.x, 1, player.position.z)
 	

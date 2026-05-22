@@ -1,10 +1,10 @@
-class_name Enemy extends Area3D
+class_name Enemy extends CharacterBody3D
 
 @onready var material: StandardMaterial3D = $MeshInstance3D.get_active_material(0)
 var material_color: Color
 
-var base_speed = 2
-var speed = 3
+var base_speed = 1.5
+var speed = 1.5
 var health = 40
 
 var xp_scene: PackedScene = load("res://bin/entities/xp.tscn")
@@ -16,11 +16,13 @@ func _physics_process(delta: float) -> void:
 	if material_color != material.albedo_color:
 		material.albedo_color = material.albedo_color.lerp(material_color, 0.05)
 	
-	speed = move_toward(speed, base_speed, 0.1)
-	
 	if Player.instance:
-		look_at(Vector3(Player.instance.position.x, 1, Player.instance.position.z))
-		global_transform.origin -= transform.basis.z.normalized() * speed * delta
+		var player_postion: Vector3 = Player.instance.global_position
+		player_postion.y = global_position.y
+		var direction: Vector3 = (player_postion - global_position).normalized()
+		velocity = direction * speed
+		speed = move_toward(speed, base_speed, 0.1)
+		move_and_slide()
 
 func _hit(damage, knockback) -> void:
 	material.albedo_color = Color(1.0, 0.0, 0.0, 1.0)

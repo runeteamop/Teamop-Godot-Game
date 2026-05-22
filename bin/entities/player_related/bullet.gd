@@ -17,18 +17,18 @@ func  _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_homing:
 		var temp_enemy: Enemy = null
-		for area in homing_area.get_overlapping_areas():
-			if area is Enemy:
+		for body in homing_area.get_overlapping_bodies():
+			if body is Enemy:
 				if temp_enemy:
-					if angle_from_bullet_to_area(temp_enemy) < 0.2:
-						temp_enemy = area
-					elif area.position.distance_to(global_position) < temp_enemy.position.distance_to(global_position):
-						temp_enemy = area
+					if angle_from_bullet_to_body(temp_enemy) < 0.2:
+						temp_enemy = body
+					elif body.position.distance_to(global_position) < temp_enemy.position.distance_to(global_position):
+						temp_enemy = body
 				else:
-					temp_enemy = area
+					temp_enemy = body
 		
 		if temp_enemy:
-			var angle = angle_from_bullet_to_area(temp_enemy)
+			var angle = angle_from_bullet_to_body(temp_enemy)
 			if angle > 0.2:
 				if angle < 0.999:
 					var rotation_to_enemy: Vector3 = -global_transform.basis.z.cross((temp_enemy.global_position - global_position).normalized()).normalized()
@@ -38,9 +38,10 @@ func _physics_process(delta: float) -> void:
 	
 	global_translate(-global_transform.basis.z * speed * delta)
 
-func _on_area_entered(area: Area3D) -> void:
-	if area is Enemy:
-		area._hit(damage, knockback)
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is Enemy:
+		body._hit(damage, knockback)
 		if piercing < 1:
 			queue_free()
 		piercing -= 1
@@ -48,5 +49,5 @@ func _on_area_entered(area: Area3D) -> void:
 func _on_timer_timeout() -> void:
 	queue_free()
 
-func angle_from_bullet_to_area(area: Area3D):
+func angle_from_bullet_to_body(area: CharacterBody3D):
 	return -global_transform.basis.z.dot((area.global_position - global_position).normalized())
