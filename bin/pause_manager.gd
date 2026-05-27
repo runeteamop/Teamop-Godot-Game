@@ -7,6 +7,6 @@ func _input(_event: InputEvent) -> void:
 		if runtime:
 			Global.emit_signal("flush_menu_stack")
 		else:
-			Global.emit_signal("enter_menu", "res://bin/ui/pause_menu.tscn")
+			Global.emit_enter_menu("res://bin/ui/pause_menu.tscn")
 
 		get_tree().paused = !runtime

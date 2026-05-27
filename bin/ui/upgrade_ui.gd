@@ -27,3 +27,7 @@ func make_base_color() -> void:
 func make_selection_color() -> void:
 	select_button.grab_focus()
 	color = Color(0, 0.5, 0.5, 0.4)
+
+
+func _on_upgrade_ui_mouse_entered() -> void:
+	pass # Replace with function body.
