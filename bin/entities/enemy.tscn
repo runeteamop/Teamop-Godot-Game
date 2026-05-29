@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bm3vdrvcbmk47"]
 
 [ext_resource type="Script" uid="uid://yt761e2hiur1" path="res://bin/entities/enemy.gd" id="1_fp4fq"]
+[ext_resource type="Script" uid="uid://d3lacsof8lnfd" path="res://bin/entity_logic/hit_box.gd" id="2_5a3xb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo4wm"]
 resource_local_to_scene = true
@@ -12,12 +13,25 @@ albedo_color = Color(0, 1, 1, 1)
 margin = 0.0
 radius = 0.45
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_365wb"]
+
 [node name="Enemy" type="CharacterBody3D" unique_id=1233357673]
 script = ExtResource("1_fp4fq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1266818480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009418011, 0.013555169, -0.0008409023)
 material_override = SubResource("StandardMaterial3D_wo4wm")
 mesh = SubResource("CapsuleMesh_6ymcc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=857799634]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("CylinderShape3D_fp4fq")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=741847516]
+script = ExtResource("2_5a3xb")
+damage = 3
+metadata/_custom_type_script = "uid://d3lacsof8lnfd"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=714533162]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_365wb")

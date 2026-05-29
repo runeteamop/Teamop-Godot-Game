@@ -3,6 +3,8 @@ extends Node
 signal upgrade_pause
 signal xp_changed
 signal dash_cooldown_changed
+signal health_changed
+signal max_health_changed
 
 const STARTING_LEVELUP_THRESHOLD: int = 1
 const XP_INCREASE_ON_LEVELUP: int = 0
@@ -14,6 +16,18 @@ var current_upgrades: Array
 var overflow_of_upgrades: int = 0
 
 var reload_speed = 0.5
+
+var health: int = 20:
+	set(value):
+		if health != value:
+			health = value
+			health_changed.emit()
+
+var max_health: int = 20:
+	set(value):
+		if max_health != value:
+			max_health = value
+			max_health_changed.emit()
 
 var xp: float = 0:
 	set(value):

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cd4uvc046lbo0" path="res://bin/entities/player_related/player.gd" id="1_flly5"]
 [ext_resource type="PackedScene" uid="uid://do2r14ve4hl7y" path="res://bin/entities/camera.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cnh2cpb2r350u" path="res://bin/entities/player_related/turret.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://y5riccjafnif" path="res://bin/entity_logic/hurt_box.gd" id="4_h5l3b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kbw50"]
 
@@ -13,6 +14,8 @@
 [sub_resource type="BoxMesh" id="BoxMesh_dqkch"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntdrc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0axqk"]
 
 [node name="Player" type="CharacterBody3D" unique_id=982876763]
 script = ExtResource("1_flly5")
@@ -39,5 +42,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ntdrc")
 
 [node name="Dash cooldown timer" type="Timer" parent="." unique_id=816314229]
 one_shot = true
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=639728592]
+script = ExtResource("4_h5l3b")
+metadata/_custom_type_script = "uid://y5riccjafnif"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1945343622]
+shape = SubResource("SphereShape3D_0axqk")
 
 [connection signal="timeout" from="Dash cooldown timer" to="." method="_on_dash_cooldown_timeout"]

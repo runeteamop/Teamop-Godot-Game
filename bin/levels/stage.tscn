@@ -57,11 +57,6 @@ shape = SubResource("WorldBoundaryShape3D_hq2m5")
 layer = -1
 
 [node name="player interface" parent="UI" unique_id=489266276 instance=ExtResource("3_6rmuk")]
-anchors_preset = 15
-anchor_left = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_vertical = 2
 
 [node name="enemy manager" parent="." unique_id=1012470169 instance=ExtResource("5_1dfug")]
 

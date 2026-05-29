@@ -15,6 +15,7 @@ var can_dash: bool = true
 @onready var camera := $Camera
 @onready var body: MeshInstance3D = $Body
 @onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
+@onready var hurtbox: Hurtbox = $Hurtbox
 
 @onready var target_plane : Plane
 
@@ -27,6 +28,7 @@ func _init() -> void:
 		instance = self
 
 func _ready() -> void:
+	hurtbox.hurt.connect(_received_damage)
 	target_plane = Plane(Vector3(0, 1, 0), (turret.global_position.y))
 
 func _notifications(notif) -> void:
@@ -126,3 +128,6 @@ func _shoot() -> void:
 			upgrade._apply_to_bullet(bullet)
 			
 		add_sibling(bullet)
+
+func _received_damage(damage : int) -> void:
+	Player_values.health -= damage
