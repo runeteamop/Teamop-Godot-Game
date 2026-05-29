@@ -10,7 +10,8 @@ ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 sky_material = SubResource("ProceduralSkyMaterial_v1ntp")
 
 [sub_resource type="Environment" id="Environment_4otfu"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.30402955, 0.30402955, 0.30402955, 1)
 sky = SubResource("Sky_l132s")
 tonemap_mode = 2
 ssao_enabled = true

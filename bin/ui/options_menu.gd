@@ -1,28 +1,21 @@
 class_name OptionsMenu extends Control
 
+const OPTIONS_MENU_PATH: String = "user://options_menu.tres"
+
 @export var fullscreen_toggle_button: CheckBox
 @export var resolusion_scale_dropdown: OptionButton
 
-func _enter_tree() -> void:
-	var fullscreen_button_toggled: bool
-	var dropdown_item_selected: int
+var options_menu_values: Resource = OptionsMenuResource.new()
 
-	match DisplayServer.window_get_mode():
-		0:
-			fullscreen_button_toggled = false
-		3:
-			fullscreen_button_toggled = true
+var applied: bool = false
 
-	match get_viewport().scaling_3d_scale:
-		0.5:
-			dropdown_item_selected = 0
-		1.0:
-			dropdown_item_selected = 1
-		2.0:
-			dropdown_item_selected = 2
+func _init() -> void:
+	if ResourceLoader.exists(OPTIONS_MENU_PATH):
+		options_menu_values = ResourceLoader.load(OPTIONS_MENU_PATH)
 
-	fullscreen_toggle_button.button_pressed = fullscreen_button_toggled
-	resolusion_scale_dropdown.selected = dropdown_item_selected
+func _ready() -> void:
+	fullscreen_toggle_button.button_pressed = options_menu_values.window_mode_toggled
+	resolusion_scale_dropdown.selected = options_menu_values.dropdown_selected
 
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	var value: int = 0
@@ -30,7 +23,8 @@ func _on_check_box_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		value = 3
 
-	OptionsManager.display_settings_to_buffer("window_mode", value)
+	OptionsManager.options_file.window_mode = value
+	options_menu_values.window_mode_toggled = toggled_on
 
 func _on_option_button_item_selected(index: int) -> void:
 	var value: float
@@ -43,14 +37,14 @@ func _on_option_button_item_selected(index: int) -> void:
 		2:
 			value = 2.0
 
-	OptionsManager.display_settings_to_buffer("resolusion_scale", value)
+	OptionsManager.options_file.resolusion_scale = value
+	options_menu_values.dropdown_selected = resolusion_scale_dropdown.selected
 
 func _on_back_pressed() -> void:
-	if OptionsManager.options_buffer.size() > 0:
-		OptionsManager.options_buffer.clear()
-
-	Global.goto_last_menu()
+	Global.goto_last_menu(Global.REMOVE_FROM_CACHE)
 
 func _on_apply_pressed() -> void:
 	OptionsManager.save_options()
 	OptionsManager.apply_options()
+
+	ResourceSaver.save(options_menu_values, OPTIONS_MENU_PATH)
