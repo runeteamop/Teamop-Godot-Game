@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qahfp"]
 bg_color = Color(0.17558163, 0.17558163, 0.17558163, 0.6)
 
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("toggle_fullscreen", "resolusion_scale")]
+[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("fullscreen_toggle_button", "resolusion_scale_dropdown")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -15,8 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlw1i")
-toggle_fullscreen = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/CheckBox")
-resolusion_scale = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer/OptionButton")
+fullscreen_toggle_button = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/CheckBox")
+resolusion_scale_dropdown = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer/OptionButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1009251567]
 custom_minimum_size = Vector2(1440, 1080)
@@ -142,20 +142,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 alignment = 1
-selected = 3
-item_count = 6
-popup/item_0/text = "12.5%"
+selected = 1
+item_count = 3
+popup/item_0/text = "50%"
 popup/item_0/id = 0
-popup/item_1/text = "25%"
-popup/item_1/id = 0
-popup/item_2/text = "50%"
-popup/item_2/id = 0
-popup/item_3/text = "100%"
-popup/item_3/id = 0
-popup/item_4/text = "200%"
-popup/item_4/id = 0
-popup/item_5/text = "400%"
-popup/item_5/id = 0
+popup/item_1/text = "100%"
+popup/item_1/id = 1
+popup/item_2/text = "200%"
+popup/item_2/id = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions" unique_id=374929973]
 custom_minimum_size = Vector2(320, 0)

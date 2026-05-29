@@ -39,7 +39,7 @@ func _level_up() -> void:
 	for i in 3:
 		var random_upgrade_string = temp_upgrades.pick_random()
 		var random_upgrade: Strategy_Template = load(upgrades_folder + "/" + random_upgrade_string)
-		
+
 		if temp_upgrades.size() > 1:
 			temp_upgrades.erase(random_upgrade_string)
 		var upgrade_option: Upgrade_UI = load("res://bin/ui/upgrade_ui.tscn").instantiate()
@@ -51,12 +51,12 @@ func _level_up() -> void:
 		all_upgrade_uis.append(upgrade_option)
 
 		add_child(upgrade_option)
-		
+
 		if i == 1:
 			upgrade_option.select_button.grab_focus()
-		
+
 		x_pos += Vector2(500, 0)
-	
+
 	var num = 0
 	for item : Upgrade_UI in all_upgrade_uis:
 		if num != 0:
@@ -64,7 +64,7 @@ func _level_up() -> void:
 		if num != all_upgrade_uis.size() - 1:
 			item.select_button.focus_neighbor_right = all_upgrade_uis[num + 1].select_button.get_path()
 		num += 1
-	
+
 	if overflow_of_upgrades == 0:
 		upgrade_pause.emit()
 	else:
@@ -73,12 +73,12 @@ func _level_up() -> void:
 func _get_upgrade(upgrade: String) -> void:
 	for item: Upgrade_UI in all_upgrade_uis:
 		remove_child(item)
-	
+
 	var chosen_upgrade: Strategy_Template = load(upgrade)
 	chosen_upgrade._apply_to_player()
 	current_upgrades.append(chosen_upgrade)
 	all_upgrade_uis.clear()
-	
+
 	if overflow_of_upgrades > 0:
 		_level_up()
 	else:
