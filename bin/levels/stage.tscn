@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ds8eok3cha7un" path="res://bin/levels/stage.gd" id="1_6rmuk"]
 [ext_resource type="PackedScene" uid="uid://cqtiesahm64pj" path="res://bin/entities/player_related/player.tscn" id="2_1dfug"]
-[ext_resource type="PackedScene" uid="uid://derwfrsent340" path="res://bin/ui/player_interface.tscn" id="3_6rmuk"]
 [ext_resource type="Texture2D" uid="uid://de4c3bqrswnuj" path="res://assets/DevMønster.png" id="4_w8hns"]
 [ext_resource type="PackedScene" uid="uid://c2emsud78nf15" path="res://bin/enemy_manager.tscn" id="5_1dfug"]
-[ext_resource type="Script" uid="uid://cp8xsqjqsf7h" path="res://bin/pause_manager.gd" id="6_6rmuk"]
 
 [sub_resource type="Environment" id="Environment_7ukyh"]
 background_mode = 1
@@ -28,6 +26,10 @@ size = Vector2(1024, 1024)
 
 [node name="Stage" type="Node" unique_id=1495175313]
 script = ExtResource("1_6rmuk")
+
+[node name="enemy manager" parent="." unique_id=1012470169 node_paths=PackedStringArray("player", "environment") instance=ExtResource("5_1dfug")]
+player = NodePath("../3D environment/Player")
+environment = NodePath("../3D environment")
 
 [node name="3D environment" type="Node3D" parent="." unique_id=1701848042]
 
@@ -52,14 +54,3 @@ mesh = SubResource("PlaneMesh_sh46w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3D environment/Map" unique_id=99371767]
 shape = SubResource("WorldBoundaryShape3D_hq2m5")
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=1852181400]
-layer = -1
-
-[node name="player interface" parent="UI" unique_id=489266276 instance=ExtResource("3_6rmuk")]
-
-[node name="enemy manager" parent="." unique_id=1012470169 instance=ExtResource("5_1dfug")]
-
-[node name="PauseManager" type="Node" parent="." unique_id=1646240606]
-process_mode = 3
-script = ExtResource("6_6rmuk")

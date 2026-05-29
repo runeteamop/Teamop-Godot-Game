@@ -37,50 +37,50 @@ func _notifications(notif) -> void:
 
 func _physics_process(delta: float) -> void:
 	var input_dir:= Input.get_vector("Left", "Right", "Up", "Down")
-	
+
 	if can_dash == false:
 		if speed > 5.5:
 			var material_for_after_image : BaseMaterial3D = body.get_active_material(0).duplicate()
 			material_for_after_image.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 			material_for_after_image.albedo_color = Color(0.5, 0.6, 1.0, 0.15)
-			
+
 			var after_image = body.duplicate()
 			after_image.position = position
 			after_image.material_override = material_for_after_image
 			after_image.get_child(0).material_override = material_for_after_image
-			
+
 			var tween = create_tween()
 			tween.tween_property(after_image, "transparency", 1, 0.2)
 			tween.tween_callback(after_image.queue_free)
-			
+
 			add_sibling(after_image)
 		else:
 			set_collision_layer_value(1, true)
 			set_collision_mask_value(1, true)
-	
+
 		Player_values.dash_cooldown = dash_cooldown.wait_time - dash_cooldown.time_left
-	
+
 	if Input.is_action_pressed("Left Click"):
 		_shoot()
-	
+
 	if Input.is_action_pressed("Left Click"):
 		current_control_type = "Mouse"
 		_shoot()
-	
+
 	if input_dir:
 		velocity.x = input_dir.x * speed
 		velocity.z = input_dir.y * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, 0.3)
 		velocity.z = move_toward(velocity.z, 0, 0.3)
-	
+
 	if velocity.length() > 0:
 		var facing_dir = atan2(-velocity.x, -velocity.z)
 		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
-	
+
 	speed = move_toward(speed, 5, 1)
 	reload_time += delta
-	
+
 	if current_control_type == "Mouse":
 		var mouse_pos_viewport = get_viewport().get_mouse_position()
 		var from = camera.project_ray_origin(mouse_pos_viewport)
@@ -89,9 +89,9 @@ func _physics_process(delta: float) -> void:
 		look_here = atan2(-mouse_pos.x - -position.x, -mouse_pos.z - -position.z)
 	elif current_control_type == "Controller":
 		look_here = r_stick_dir
-	
+
 	turret.rotation.y = lerp_angle(turret.rotation.y, look_here, rotation_speed * delta)
-	
+
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
@@ -123,10 +123,10 @@ func _shoot() -> void:
 		var bullet: Bullet = bullet_scene.instantiate()
 		bullet.rotation = turret.rotation
 		bullet.position = turret_cannon.global_position
-		
+
 		for upgrade : Strategy_Template in Player_values.current_upgrades:
 			upgrade._apply_to_bullet(bullet)
-			
+
 		add_sibling(bullet)
 
 func _received_damage(damage : int) -> void:

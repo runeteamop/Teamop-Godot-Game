@@ -1,19 +1,16 @@
 extends Node
 
-signal request_game_state(file_path: String)
-signal enter_menu(file_path: String)
-signal goto_last_menu
-signal flush_menu_stack
+signal signal_request_game_state(file_path: String)
+signal signal_enter_menu(file_path: String)
+signal signal_goto_last_menu
+signal signal_flush_menu_stack
 
 func enter_game_state(file_path: String) -> void:
-	emit_signal("flush_menu_stack")
-	emit_signal("request_game_state", file_path)
+	signal_flush_menu_stack.emit()
+	signal_request_game_state.emit(file_path)
 	get_tree().paused = false
 
-func emit_request_game_state(file_path: String) -> void: request_game_state.emit(file_path)
-
-func emit_enter_menu(file_path: String) -> void: enter_menu.emit(file_path)
-
-func emit_goto_last_menu(file_path: String) -> void: goto_last_menu.emit(file_path)
-
-func emit_flush_menu_stack(file_path: String) -> void: flush_menu_stack.emit(file_path)
+#func request_game_state(file_path: String) -> void: request_game_state.emit(file_path)
+func enter_menu(file_path: String) -> void: signal_enter_menu.emit(file_path)
+func goto_last_menu() -> void: signal_goto_last_menu.emit()
+func flush_menu_stack() -> void: signal_flush_menu_stack.emit()
