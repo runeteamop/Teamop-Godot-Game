@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qahfp"]
 bg_color = Color(0.17558163, 0.17558163, 0.17558163, 0.6)
 
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("fullscreen_toggle_button", "resolusion_scale_dropdown")]
+[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("fullscreen_toggle_button", "resolusion_scale_dropdown", "resolusions")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -17,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_wlw1i")
 fullscreen_toggle_button = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/CheckBox")
 resolusion_scale_dropdown = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer/OptionButton")
+resolusions = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2/OptionButton2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1009251567]
 custom_minimum_size = Vector2(1440, 1080)
@@ -124,6 +125,33 @@ theme_override_font_sizes/font_size = 24
 text = "Fullscreen
 "
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer" unique_id=167313891]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2" unique_id=1001643612]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_qahfp")
+text = "Resolusion scale"
+
+[node name="OptionButton2" type="OptionButton" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2" unique_id=131424593]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+selected = 1
+item_count = 4
+popup/item_0/text = "1280x720"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+popup/item_2/text = "2560x1440"
+popup/item_2/id = 2
+popup/item_3/text = "3840x2160"
+popup/item_3/id = 3
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer" unique_id=951106860]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -166,5 +194,6 @@ text = "Apply"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2/OptionButton2" to="." method="_on_option_button_2_item_selected"]
 [connection signal="item_selected" from="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/GraphicsOptions/MarginContainer/Apply" to="." method="_on_apply_pressed"]
