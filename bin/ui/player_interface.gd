@@ -13,7 +13,6 @@ var overflow_of_upgrades: int = 0
 
 func _ready() -> void:
 	Player_values.apply_upgrade.connect(_appling_upgrade)
-	Player_values.leveling_up.connect(_upgrade_ui_handler)
 	all_upgrades = DirAccess.get_files_at(upgrades_folder)
 	xp_bar.max_value = Player_values.STARTING_LEVELUP_THRESHOLD
 	dash_progressbar.hide()
@@ -31,7 +30,7 @@ func _xp_bar(xp_value: float) -> void:
 	if xp_value >= xp_bar.max_value:
 		Player_values.xp = 0
 		xp_bar.max_value += Player_values.XP_INCREASE_ON_LEVELUP
-		Player_values._level_up()
+		_level_up()
 	xp_bar.value = Player_values.xp
 
 func _dash_cooldown(dash_cooldown) -> void:
@@ -47,7 +46,7 @@ func _health() -> void:
 	health_bar.value = Player_values.health
 	health_bar.size.x = 300 + Player_values.max_health * 2
 
-func _upgrade_ui_handler():
+func _level_up():
 	if all_upgrade_uis.size() > 0:
 		overflow_of_upgrades = floori(all_upgrade_uis.size()/3.0)
 	var temp_upgrades = all_upgrades.duplicate()
@@ -83,7 +82,7 @@ func _upgrade_ui_handler():
 		num += 1
 
 	if overflow_of_upgrades == 0:
-		Player_values.upgrade_pause.emit()
+		Player_values._pause()
 	else:
 		overflow_of_upgrades -= 1
 

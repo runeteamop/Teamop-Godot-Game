@@ -5,7 +5,6 @@ signal xp_changed
 signal dash_cooldown_changed
 signal health_changed
 signal max_health_changed
-signal leveling_up
 signal apply_upgrade
 
 const STARTING_LEVELUP_THRESHOLD: int = 1
@@ -46,11 +45,11 @@ var dash_cooldown: float = 0:
 func _ready() -> void:
 	all_upgrades = DirAccess.get_files_at(upgrades_folder)
 
-func _level_up() -> void:
-	leveling_up.emit()
-
 func _get_upgrade(upgrade: String) -> void:
 	apply_upgrade.emit()
 	var chosen_upgrade: Strategy_Template = load(upgrade)
 	chosen_upgrade._apply_to_player()
 	current_upgrades.append(chosen_upgrade)
+
+func _pause():
+	upgrade_pause.emit()
