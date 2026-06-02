@@ -83,7 +83,6 @@ func _upgrade_ui_handler():
 		num += 1
 
 	if overflow_of_upgrades == 0:
-		print("hello")
 		Player_values.upgrade_pause.emit()
 	else:
 		overflow_of_upgrades -= 1
