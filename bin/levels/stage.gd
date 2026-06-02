@@ -10,6 +10,6 @@ func _ready() -> void:
 
 func pause() -> void:
 	if process_mode == PROCESS_MODE_DISABLED:
-		set_deferred("process_mode", PROCESS_MODE_ALWAYS)
+		set_deferred("process_mode", PROCESS_MODE_PAUSABLE)
 	else:
 		set_deferred("process_mode", PROCESS_MODE_DISABLED)
