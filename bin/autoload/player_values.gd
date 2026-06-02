@@ -13,7 +13,8 @@ const XP_INCREASE_ON_LEVELUP: int = 0
 var upgrades_folder: String = "res://bin/upgrade_resources/"
 var all_upgrades: Array
 var all_upgrade_uis: Array[Upgrade_UI]
-var current_upgrades: Array
+var current_upgrades: Array[Strategy_Template]
+var upgrades_with_on_hit_effect: Array[Strategy_Template]
 var overflow_of_upgrades: int = 0
 
 var reload_speed = 0.5
@@ -48,6 +49,8 @@ func _ready() -> void:
 func _get_upgrade(upgrade: String) -> void:
 	apply_upgrade.emit()
 	var chosen_upgrade: Strategy_Template = load(upgrade)
+	if chosen_upgrade._has_bullet_hit_effect == true:
+		upgrades_with_on_hit_effect.append(chosen_upgrade)
 	chosen_upgrade._apply_to_player()
 	current_upgrades.append(chosen_upgrade)
 

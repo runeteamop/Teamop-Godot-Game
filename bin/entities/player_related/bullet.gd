@@ -1,5 +1,7 @@
 class_name Bullet extends Area3D
 
+var on_hit_upgrades: Array
+
 var damage: float = 10
 var piercing: int = 0
 var speed = 10
@@ -41,6 +43,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy:
+		if Player_values.upgrades_with_on_hit_effect:
+			for upgrades in Player_values.upgrades_with_on_hit_effect:
+				upgrades._bullet_hit_effect(body)
+		
 		body._hit(damage, knockback)
 		if piercing < 1:
 			queue_free()

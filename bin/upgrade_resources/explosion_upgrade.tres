@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Explosion_upgrade" format=3 uid="uid://bqhfnmy6eenob"]
+
+[ext_resource type="Script" uid="uid://d4adifexq0jby" path="res://bin/upgrade_stratergs/explosion_strategy.gd" id="1_osdbc"]
+
+[resource]
+script = ExtResource("1_osdbc")
+upgrade_name = "Explosion"
+discription = "Makes a AOE effect that dmgs near by enemys"
+_has_bullet_hit_effect = true
+metadata/_custom_type_script = "uid://d4adifexq0jby"
