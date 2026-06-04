@@ -45,6 +45,8 @@ one_shot = true
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=639728592]
 script = ExtResource("4_h5l3b")
+has_i_frames = true
+i_frames = 0.5
 metadata/_custom_type_script = "uid://y5riccjafnif"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1945343622]

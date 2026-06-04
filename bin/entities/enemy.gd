@@ -4,7 +4,7 @@ class_name Enemy extends CharacterBody3D
 var material_color: Color
 
 var base_speed = 1.5
-var speed = 1.5
+var speed = 0
 var health = 40
 
 var xp_scene: PackedScene = load("res://bin/entities/xp.tscn")

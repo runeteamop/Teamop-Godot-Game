@@ -6,14 +6,17 @@ var on_hit_upgrades: Array
 
 var damage: float = 10
 var piercing: int = 0
-var speed = 10
+var speed: float = 10
 var knockback = 2
 var homing: float = 0
+
+var velocity: Vector3
 
 var is_homing: bool = false
 var homing_area: Area3D
 
 func  _ready() -> void:
+	velocity = -global_transform.basis.z
 	hitbox.damage = 10
 	if is_homing:
 		homing_area = $"Homing detection"
@@ -25,23 +28,18 @@ func _physics_process(delta: float) -> void:
 		for body in homing_area.get_overlapping_bodies():
 			if body is Enemy:
 				if temp_enemy:
-					if angle_from_bullet_to_body(temp_enemy) < 0.2:
-						temp_enemy = body
-					elif body.position.distance_to(global_position) < temp_enemy.position.distance_to(global_position):
+					if position.distance_to(body.position) < position.distance_to(temp_enemy.position):
 						temp_enemy = body
 				else:
 					temp_enemy = body
-		
 		if temp_enemy:
-			var angle = angle_from_bullet_to_body(temp_enemy)
-			if angle > 0.2:
-				if angle < 0.999:
-					var rotation_to_enemy: Vector3 = -global_transform.basis.z.cross((temp_enemy.global_position - global_position).normalized()).normalized()
-					if rotation_to_enemy.is_normalized():
-						global_transform.basis = global_transform.basis.rotated(rotation_to_enemy, homing * delta)
-						global_transform.basis = global_transform.basis.orthonormalized()
+			var direction = position.direction_to(temp_enemy.position)
+			direction.y = 0
+			velocity = velocity.move_toward(direction, homing)
 	
-	global_translate(-global_transform.basis.z * speed * delta)
+	position += (velocity * speed * delta)
+	
+	#global_translate(-global_transform.basis.z * speed * delta)
 
 func _on_timer_timeout() -> void:
 	queue_free()
