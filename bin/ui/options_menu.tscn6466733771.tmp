@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qahfp"]
 bg_color = Color(0.17558163, 0.17558163, 0.17558163, 0.6)
 
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("test", "fullscreen_toggle_button", "resolusion_scale_dropdown", "resolusions")]
+[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("fullscreen_toggle_button", "resolusion_scale_dropdown", "resolusions")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -15,7 +15,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlw1i")
-test = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2/Label")
 fullscreen_toggle_button = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/CheckBox")
 resolusion_scale_dropdown = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer/OptionButton")
 resolusions = NodePath("")
@@ -131,13 +130,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 min_value = 1.0
-max_value = 1.5
+max_value = 2.0
 step = 0.01
 value = 1.0
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2" unique_id=1463455500]
-layout_mode = 2
-text = "100%"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer" unique_id=951106860]
 layout_mode = 2

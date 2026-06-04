@@ -23,10 +23,9 @@ OptionsManager="*uid://bic1nrqev4l2q"
 
 [display]
 
-window/size/viewport_width=3840
-window/size/viewport_height=2160
+window/size/viewport_width=7680
+window/size/viewport_height=4320
 window/size/mode=4
-window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
@@ -101,5 +100,7 @@ lights_and_shadows/positional_shadow/atlas_16_bits=false
 global_illumination/voxel_gi/quality=1
 environment/ssao/quality=3
 environment/ssil/quality=3
+anti_aliasing/quality/msaa_2d=3
+anti_aliasing/quality/msaa_3d=3
 environment/screen_space_reflection/half_size=false
 environment/subsurface_scattering/subsurface_scattering_quality=3
