@@ -24,12 +24,12 @@ func _physics_process(_delta: float) -> void:
 		speed = move_toward(speed, base_speed, 0.1)
 		move_and_slide()
 
-func _hit(damage, knockback) -> void:
-	material.albedo_color = Color(1.0, 0.0, 0.0, 1.0)
-	speed = speed - knockback
+func _on_hurtbox_hurt(damage: int) -> void:
 	health -= damage
-	if health < 1:
+	if health <= 0:
 		var xp: Xp = xp_scene.instantiate()
 		xp.position = position
 		add_sibling(xp)
 		queue_free()
+	else:
+		material.albedo_color = Color(1.0, 0.0, 0.0, 1.0)

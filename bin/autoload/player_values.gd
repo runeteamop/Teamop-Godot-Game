@@ -47,8 +47,13 @@ func _ready() -> void:
 	all_upgrades = DirAccess.get_files_at(upgrades_folder)
 
 func _get_upgrade(upgrade: String) -> void:
-	apply_upgrade.emit()
 	var chosen_upgrade: Strategy_Template = load(upgrade)
+	
+	apply_upgrade.emit(chosen_upgrade)
+	
+	if chosen_upgrade.one_time_upgrade == true:
+		pass
+	
 	if chosen_upgrade._has_bullet_hit_effect == true:
 		upgrades_with_on_hit_effect.append(chosen_upgrade)
 	chosen_upgrade._apply_to_player()

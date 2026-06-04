@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://t8f0re2vibsy"]
 
 [ext_resource type="Script" uid="uid://cc5268ml2pk1p" path="res://bin/entities/player_related/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://d3lacsof8lnfd" path="res://bin/entity_logic/hit_box.gd" id="2_laam1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkf8s"]
 albedo_color = Color(1, 0, 0, 1)
@@ -10,6 +11,8 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_7tr0q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_te4fr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jaogu"]
 
 [node name="Bullet" type="Area3D" unique_id=1344906873]
 script = ExtResource("1_mkf8s")
@@ -33,5 +36,18 @@ autostart = true
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("SphereShape3D_te4fr")
 
+[node name="Hitbox" type="Area3D" parent="." unique_id=1693779198]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_laam1")
+has_extra_hit_logic = true
+damage = 10
+metadata/_custom_type_script = "uid://d3lacsof8lnfd"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1710874301]
+shape = SubResource("SphereShape3D_jaogu")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="extra_hit_logic" from="Hitbox" to="." method="_on_hitbox_extra_hit_logic"]

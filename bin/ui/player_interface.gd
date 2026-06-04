@@ -12,7 +12,7 @@ var current_upgrades: Array
 var overflow_of_upgrades: int = 0
 
 func _ready() -> void:
-	Player_values.apply_upgrade.connect(_appling_upgrade)
+	Player_values.apply_upgrade.connect(_applying_upgrade)
 	all_upgrades = DirAccess.get_files_at(upgrades_folder)
 	xp_bar.max_value = Player_values.STARTING_LEVELUP_THRESHOLD
 	dash_progressbar.hide()
@@ -86,7 +86,11 @@ func _level_up():
 	else:
 		overflow_of_upgrades -= 1
 
-func _appling_upgrade():
+func _applying_upgrade(chosen_upgrade : Strategy_Template):
+	
+	if chosen_upgrade.one_time_upgrade == true:
+		all_upgrades.erase(chosen_upgrade.resource_path.get_file())
+	
 	for item: Upgrade_UI in all_upgrade_uis:
 		remove_child(item)
 	

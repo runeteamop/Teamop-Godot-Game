@@ -1,5 +1,6 @@
 class_name Hurtbox extends Area3D
 
+@export var parent: Node3D
 @export var i_frames: float = 0.5
 
 signal hurt(damage: int)

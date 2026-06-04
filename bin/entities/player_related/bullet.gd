@@ -1,5 +1,7 @@
 class_name Bullet extends Area3D
 
+@onready var hitbox: Hitbox = $Hitbox
+
 var on_hit_upgrades: Array
 
 var damage: float = 10
@@ -12,6 +14,7 @@ var is_homing: bool = false
 var homing_area: Area3D
 
 func  _ready() -> void:
+	hitbox.damage = 10
 	if is_homing:
 		homing_area = $"Homing detection"
 
@@ -40,20 +43,20 @@ func _physics_process(delta: float) -> void:
 	
 	global_translate(-global_transform.basis.z * speed * delta)
 
-
-func _on_body_entered(body: Node3D) -> void:
-	if body is Enemy:
-		if Player_values.upgrades_with_on_hit_effect:
-			for upgrades in Player_values.upgrades_with_on_hit_effect:
-				upgrades._bullet_hit_effect(body)
-		
-		body._hit(damage, knockback)
-		if piercing < 1:
-			queue_free()
-		piercing -= 1
-
 func _on_timer_timeout() -> void:
 	queue_free()
 
 func angle_from_bullet_to_body(area: CharacterBody3D):
 	return -global_transform.basis.z.dot((area.global_position - global_position).normalized())
+
+func _on_hitbox_extra_hit_logic(enemy) -> void:
+	if enemy is Enemy:
+		if Player_values.upgrades_with_on_hit_effect:
+			for upgrades in Player_values.upgrades_with_on_hit_effect:
+				upgrades._bullet_hit_effect(enemy, self)
+		
+		enemy.speed = enemy.speed - knockback
+		
+		if piercing < 1:
+			queue_free()
+		piercing -= 1

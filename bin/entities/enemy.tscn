@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://yt761e2hiur1" path="res://bin/entities/enemy.gd" id="1_fp4fq"]
 [ext_resource type="Script" uid="uid://d3lacsof8lnfd" path="res://bin/entity_logic/hit_box.gd" id="2_5a3xb"]
+[ext_resource type="Script" uid="uid://y5riccjafnif" path="res://bin/entity_logic/hurt_box.gd" id="3_365wb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo4wm"]
 resource_local_to_scene = true
@@ -14,6 +15,8 @@ margin = 0.0
 radius = 0.45
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_365wb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qysfl"]
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1233357673]
 script = ExtResource("1_fp4fq")
@@ -35,3 +38,16 @@ metadata/_custom_type_script = "uid://d3lacsof8lnfd"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=714533162]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_365wb")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=964830096 node_paths=PackedStringArray("parent")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_365wb")
+parent = NodePath("..")
+i_frames = 0.0
+metadata/_custom_type_script = "uid://y5riccjafnif"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1840940115]
+shape = SubResource("CapsuleShape3D_qysfl")
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

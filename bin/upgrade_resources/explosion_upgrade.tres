@@ -6,5 +6,6 @@
 script = ExtResource("1_osdbc")
 upgrade_name = "Explosion"
 discription = "Makes a AOE effect that dmgs near by enemys"
+one_time_upgrade = true
 _has_bullet_hit_effect = true
 metadata/_custom_type_script = "uid://d4adifexq0jby"
