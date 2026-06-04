@@ -16,6 +16,8 @@ func _enter_tree() -> void:
 	fullscreen_toggle_button.button_pressed = true if OptionsManager.options_file.get_value("display", "window_mode", 3) else false
 	resolusion_scale_dropdown.selected = RESOLUSION_SCALE_VALUES.find(OptionsManager.options_file.get_value("display", "resolusion_scale"))
 	resolusions.selected = RESOLUSIONS.find(get_viewport().get_visible_rect().size)
+	
+	print(get_viewport().get_visible_rect().size)
 
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	OptionsManager.options_to_buffer("display", "window_mode", 4 if toggled_on else 0)
@@ -33,5 +35,10 @@ func _on_apply_pressed() -> void:
 	OptionsManager.apply_all_options()
 	
 func _on_option_button_2_item_selected(index: int) -> void:
-	DisplayServer.window_set_size(RESOLUSIONS[index])
+	get_window().set_size(RESOLUSIONS[index])
+	#DisplayServer.window_set_position(DisplayServer.screen_get_size(DisplayServer.window_get_current_screen()) * 2)
+	var t = DisplayServer.screen_get_position() + DisplayServer.screen_get_size() / 2
+	var e = get_window().get_size_with_decorations()
+	print(t-e)
+	get_window().set_position(t-e/2)
 	
