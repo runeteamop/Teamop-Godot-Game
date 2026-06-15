@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://bedlcclod8ggt"]
 
 [ext_resource type="Script" uid="uid://d2jsu0hxqy0rh" path="res://bin/ui/options_menu.gd" id="1_wlw1i"]
-[ext_resource type="ButtonGroup" uid="uid://badjuuf5d67kc" path="res://bin/autoload/options_menu_buttons.tres" id="2_qahfp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qahfp"]
-bg_color = Color(0.17558163, 0.17558163, 0.17558163, 0.6)
-
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("test", "fullscreen_toggle_button", "resolusion_scale_dropdown", "resolusions")]
+[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("window_mode_selector", "resolution_scale_slider", "ui_scale_slider")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -15,172 +11,124 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlw1i")
-test = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2/Label")
-fullscreen_toggle_button = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/CheckBox")
-resolusion_scale_dropdown = NodePath("MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer/OptionButton")
-resolusions = NodePath("")
+window_mode_selector = NodePath("MarginContainer/Panel/GridContainer/WindowModeSelector")
+resolution_scale_slider = NodePath("MarginContainer/Panel/GridContainer/ResolutionScaleSlider")
+ui_scale_slider = NodePath("MarginContainer/Panel/GridContainer/UIScaleSlider")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1009251567]
-custom_minimum_size = Vector2(1440, 1080)
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=353818162]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 256
-theme_override_constants/margin_top = 256
-theme_override_constants/margin_right = 256
-theme_override_constants/margin_bottom = 256
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1803139153]
-layout_mode = 2
-theme_override_constants/separation = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=565486185]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=586967485]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1395280484]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer" unique_id=866032514]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1308785009]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="Graphics" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1910048388]
-layout_mode = 2
+[node name="Back" type="Button" parent="MarginContainer/Panel" unique_id=1789671339]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+offset_right = 270.0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 96
-toggle_mode = true
-button_group = ExtResource("2_qahfp")
-text = "Graphics"
-
-[node name="Audio" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=880977582]
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
-toggle_mode = true
-button_group = ExtResource("2_qahfp")
-text = "Audio"
-
-[node name="Input" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=473341695]
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
-toggle_mode = true
-button_group = ExtResource("2_qahfp")
-text = "Input"
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=2043294724]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=344789289]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2" unique_id=857090259]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=337930080]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=678072302]
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
-text = "Back"
-
-[node name="GraphicsOptions" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=39853688]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions" unique_id=667480919]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="CheckBox" type="CheckBox" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer" unique_id=252872383]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 96
-text = "Fullscreen
+text = "Back
 "
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer" unique_id=167313891]
-layout_mode = 2
-alignment = 1
-
-[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2" unique_id=145830104]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-min_value = 1.0
-max_value = 1.5
-step = 0.01
-value = 1.0
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2" unique_id=1463455500]
-layout_mode = 2
-text = "100%"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer" unique_id=951106860]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer" unique_id=2018319963]
-layout_mode = 2
-theme_override_font_sizes/font_size = 96
-theme_override_styles/normal = SubResource("StyleBoxFlat_qahfp")
-text = "Resolusion scale"
-
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer" unique_id=1941857124]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 96
-alignment = 1
-selected = 1
-item_count = 3
-popup/item_0/text = "50%"
-popup/item_0/id = 0
-popup/item_1/text = "100%"
-popup/item_1/id = 1
-popup/item_2/text = "200%"
-popup/item_2/id = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/GraphicsOptions" unique_id=374929973]
-custom_minimum_size = Vector2(320, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Apply" type="Button" parent="MarginContainer/HBoxContainer/GraphicsOptions/MarginContainer" unique_id=102434637]
-layout_mode = 2
+[node name="Apply" type="Button" parent="MarginContainer/Panel" unique_id=1065271448]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 96
 text = "Apply"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
-[connection signal="value_changed" from="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="item_selected" from="MarginContainer/HBoxContainer/GraphicsOptions/VBoxContainer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/GraphicsOptions/MarginContainer/Apply" to="." method="_on_apply_pressed"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Panel" unique_id=816707021]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="WindowModeLabel" type="Label" parent="MarginContainer/Panel/GridContainer" unique_id=298829647]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 96
+text = "Window mode:"
+horizontal_alignment = 2
+
+[node name="WindowModeSelector" type="OptionButton" parent="MarginContainer/Panel/GridContainer" unique_id=832595853]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 96
+alignment = 1
+item_count = 3
+popup/item_0/text = "Window"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Exclusive fullscreen"
+popup/item_2/id = 2
+
+[node name="ResolutionScaleLabel" type="Label" parent="MarginContainer/Panel/GridContainer" unique_id=1858538434]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 96
+text = "Resolution scale:"
+horizontal_alignment = 2
+
+[node name="ResolutionScaleSlider" type="HSlider" parent="MarginContainer/Panel/GridContainer" unique_id=970319819]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="UIScaleLabel" type="Label" parent="MarginContainer/Panel/GridContainer" unique_id=1314563658]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 96
+text = "UI scale:"
+horizontal_alignment = 2
+
+[node name="UIScaleSlider" type="HSlider" parent="MarginContainer/Panel/GridContainer" unique_id=934266650]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[connection signal="pressed" from="MarginContainer/Panel/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/Apply" to="." method="_on_apply_pressed"]
+[connection signal="item_selected" from="MarginContainer/Panel/GridContainer/WindowModeSelector" to="." method="_on_window_mode_selector_item_selected"]
+[connection signal="value_changed" from="MarginContainer/Panel/GridContainer/ResolutionScaleSlider" to="." method="_on_resolution_scale_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/Panel/GridContainer/UIScaleSlider" to="." method="_on_ui_scale_slider_value_changed"]

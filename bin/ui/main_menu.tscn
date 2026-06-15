@@ -27,14 +27,16 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2053739071]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1041156703]
 layout_mode = 2
-theme_override_constants/separation = 8
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
 
 [node name="Singleplayer" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2006110362]
 layout_mode = 2
