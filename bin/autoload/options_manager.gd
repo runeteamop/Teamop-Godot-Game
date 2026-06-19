@@ -13,6 +13,8 @@ func _init() -> void:
 		options_file.set_value("display", "window_mode", 0)
 		options_file.set_value("display", "resolution_scale", 1.0)
 		options_file.set_value("display", "ui_scale", 1.0)
+		options_file.set_value("display", "vertical_syncronization", 0)
+		options_file.set_value("display", "antialiasing", 0)
 
 		save_options()
 
@@ -20,6 +22,8 @@ func apply_all_options() -> void:
 	DisplayServer.window_set_mode(options_file.get_value("display", "window_mode"))
 	get_viewport().scaling_3d_scale = options_file.get_value("display", "resolution_scale")
 	get_window().content_scale_factor = options_file.get_value("display", "ui_scale")
+	DisplayServer.window_set_vsync_mode(options_file.get_value("display", "vertical_syncronization"))
+	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), options_file.get_value("display", "antialiasing"))
 
 func options_to_buffer(key: String, subkey: String, value: Variant) -> void:
 	options_buffer[subkey] = func() -> void: options_file.set_value(key, subkey, value)
