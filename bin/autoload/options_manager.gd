@@ -15,6 +15,7 @@ func _init() -> void:
 		options_file.set_value("display", "ui_scale", 1.0)
 		options_file.set_value("display", "vertical_syncronization", 0)
 		options_file.set_value("display", "antialiasing", 0)
+		options_file.set_value("display", "framerate_limit", 0)
 
 		save_options()
 
@@ -24,6 +25,7 @@ func apply_all_options() -> void:
 	get_window().content_scale_factor = options_file.get_value("display", "ui_scale")
 	DisplayServer.window_set_vsync_mode(options_file.get_value("display", "vertical_syncronization"))
 	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), options_file.get_value("display", "antialiasing"))
+	Engine.set_max_fps(options_file.get_value("display", "framerate_limit"))
 
 func options_to_buffer(key: String, subkey: String, value: Variant) -> void:
 	options_buffer[subkey] = func() -> void: options_file.set_value(key, subkey, value)
