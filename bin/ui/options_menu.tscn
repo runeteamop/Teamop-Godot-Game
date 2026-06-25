@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2jsu0hxqy0rh" path="res://bin/ui/options_menu.gd" id="1_wlw1i"]
 
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("window_mode_selector", "resolution_scale_slider", "ui_scale_slider", "vsync_selector", "antialiasing_selector", "framerate_limit_slider", "window_mode_label", "ui_scale_label", "resolution_scale_label", "antialiasing_label", "vsync_label", "framerate_limit_label", "resolution_scale_percentage", "ui_scale_percentage", "framerate_limit_number")]
+[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("window_mode_selector", "resolution_scale_slider", "ui_scale_slider", "vsync_selector", "antialiasing_selector", "framerate_limit_slider", "resolution_scale_percentage", "ui_scale_percentage", "framerate_limit_number", "default", "confirmation")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -17,15 +17,11 @@ ui_scale_slider = NodePath("PanelContainer/MarginContainer/GridContainer/UIScale
 vsync_selector = NodePath("PanelContainer/MarginContainer/GridContainer/VSyncSelector")
 antialiasing_selector = NodePath("PanelContainer/MarginContainer/GridContainer/AntiAliasingSelector")
 framerate_limit_slider = NodePath("PanelContainer/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider")
-window_mode_label = NodePath("PanelContainer/MarginContainer/GridContainer/HBoxContainer/WindowModeLabel")
-ui_scale_label = NodePath("PanelContainer/MarginContainer/GridContainer/HBoxContainer2/UIScaleLabel")
-resolution_scale_label = NodePath("PanelContainer/MarginContainer/GridContainer/HBoxContainer3/ResolutionScaleLabel")
-antialiasing_label = NodePath("PanelContainer/MarginContainer/GridContainer/HBoxContainer4/AntiAliasingLabel")
-vsync_label = NodePath("PanelContainer/MarginContainer/GridContainer/HBoxContainer5/VSyncLabel")
-framerate_limit_label = NodePath("PanelContainer/MarginContainer/GridContainer/HBoxContainer6/FramerateLimitLabel")
 resolution_scale_percentage = NodePath("PanelContainer/MarginContainer/GridContainer/ResolutionScale/ResolutionScalePercentage")
 ui_scale_percentage = NodePath("PanelContainer/MarginContainer/GridContainer/UIScale/UIScalePercentage")
 framerate_limit_number = NodePath("PanelContainer/MarginContainer/GridContainer/FramerateLimit/FramerateLimitNumber")
+default = NodePath("Panel/Default")
+confirmation = NodePath("Panel/Confirmation")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1446137768]
 layout_mode = 1
@@ -58,7 +54,7 @@ columns = 2
 layout_mode = 2
 
 [node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer" unique_id=1231111416 groups=["Indicators"]]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "*"
@@ -90,7 +86,7 @@ popup/item_2/id = 2
 layout_mode = 2
 
 [node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer2" unique_id=1586743968 groups=["Indicators"]]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "*"
@@ -132,7 +128,7 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer3" unique_id=1060315482 groups=["Indicators"]]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "*"
@@ -174,7 +170,7 @@ vertical_alignment = 1
 layout_mode = 2
 
 [node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer4" unique_id=1671056272 groups=["Indicators"]]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "*"
@@ -209,7 +205,7 @@ popup/item_3/id = 3
 layout_mode = 2
 
 [node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer5" unique_id=1759191355 groups=["Indicators"]]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "*"
@@ -242,7 +238,7 @@ popup/item_2/id = 2
 layout_mode = 2
 
 [node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer6" unique_id=906784982 groups=["Indicators"]]
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "*"
@@ -288,18 +284,42 @@ offset_top = -128.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Back" type="Button" parent="Panel" unique_id=1789671339]
+[node name="Default" type="HBoxContainer" parent="Panel" unique_id=794198984]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
+
+[node name="Back" type="Button" parent="Panel/Default" unique_id=1789671339]
+layout_mode = 2
+size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 80
 text = "Back
 "
 
-[node name="Apply" type="Button" parent="Panel" unique_id=1065271448]
+[node name="Apply" type="Button" parent="Panel/Default" unique_id=1065271448]
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 80
+text = "Apply"
+
+[node name="Confirmation" type="HBoxContainer" parent="Panel" unique_id=2047935169]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Return" type="Button" parent="Panel/Confirmation" unique_id=712648361]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Return"
+
+[node name="Discard" type="Button" parent="Panel/Confirmation" unique_id=1078110649]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 80
+text = "Discard"
+
+[node name="Apply" type="Button" parent="Panel/Confirmation" unique_id=2032033213]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 80
 text = "Apply"
 
@@ -309,5 +329,11 @@ text = "Apply"
 [connection signal="item_selected" from="PanelContainer/MarginContainer/GridContainer/AntiAliasingSelector" to="." method="_on_anti_aliasing_selector_item_selected"]
 [connection signal="item_selected" from="PanelContainer/MarginContainer/GridContainer/VSyncSelector" to="." method="_on_v_sync_selector_item_selected"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider" to="." method="_on_framerate_limit_slider_value_changed"]
-[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="Panel/Apply" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="Panel/Default/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Panel/Default/Apply" to="." method="_apply"]
+[connection signal="pressed" from="Panel/Confirmation/Return" to="." method="_swap_buttons"]
+[connection signal="pressed" from="Panel/Confirmation/Discard" to="." method="_swap_buttons"]
+[connection signal="pressed" from="Panel/Confirmation/Discard" to="." method="_exit"]
+[connection signal="pressed" from="Panel/Confirmation/Apply" to="." method="_apply"]
+[connection signal="pressed" from="Panel/Confirmation/Apply" to="." method="_swap_buttons"]
+[connection signal="pressed" from="Panel/Confirmation/Apply" to="." method="_exit"]

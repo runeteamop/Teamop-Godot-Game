@@ -2,6 +2,8 @@ class_name OptionsMenu extends Control
 
 const WINDOW_MODE_VALUES: Array[int] = [0, 3, 4]
 
+var options: ConfigFile = OptionsManager.options_file
+
 # Options
 @export var window_mode_selector: OptionButton
 @export var resolution_scale_slider: HSlider
@@ -10,19 +12,12 @@ const WINDOW_MODE_VALUES: Array[int] = [0, 3, 4]
 @export var antialiasing_selector: OptionButton
 @export var framerate_limit_slider: HSlider
 
-# Labels
-@export var window_mode_label: Label
-@export var ui_scale_label: Label
-@export var resolution_scale_label: Label
-@export var antialiasing_label: Label
-@export var vsync_label: Label
-@export var framerate_limit_label: Label
-
 @export var resolution_scale_percentage: Label
 @export var ui_scale_percentage: Label
 @export var framerate_limit_number: Label
 
-var options: ConfigFile = OptionsManager.options_file
+@export var default: HBoxContainer
+@export var confirmation: HBoxContainer
 
 @onready var indicators: Array[Node] = get_tree().get_nodes_in_group("Indicators")
 
@@ -44,20 +39,32 @@ func _enter_tree() -> void:
 		framerate_limit_number.text = "%s" % str(options.get_value("display", "framerate_limit"))
 
 func _option_changed_checker(indicator: Label, section: String, key: String, value: Variant) -> void:
-	indicator.set_modulate(Color(1, 1, 1, 1)) if options.get_value(section, key) != value else indicator.set_modulate(Color(1, 1, 1, 0))
+	#indicator.set_modulate(Color(1, 1, 1, 1)) if options.get_value(section, key) != value else indicator.set_modulate(Color(1, 1, 1, 0))
+	indicator.visible = true if OptionsManager.options_file.get_value(section, key) != value else false
 
 func _reset_indicators() -> void:
 	for indicator in indicators:
-		indicator.set_modulate(Color(1, 1, 1, 0))
+		indicator.visible = false
+
+func _swap_buttons() -> void:
+	default.visible = !default.visible
+	confirmation.visible = !confirmation.visible
 
 func _on_back_pressed() -> void:
-	Global.goto_last_menu()
-	_reset_indicators()
+	if OptionsManager.options_buffer.size() > 0:
+		_swap_buttons()
+	else:
+		_exit()
 
-func _on_apply_pressed() -> void:
+func _apply() -> void:
 	OptionsManager.save_options()
 	OptionsManager.apply_all_options()
 	_reset_indicators()
+
+func _exit() -> void:
+	_reset_indicators()
+	OptionsManager.flush_buffer()
+	Global.goto_last_menu()
 
 func _on_window_mode_selector_item_selected(index: int) -> void:
 	OptionsManager.options_to_buffer("display", "window_mode", WINDOW_MODE_VALUES[index])
@@ -82,6 +89,7 @@ func _on_anti_aliasing_selector_item_selected(index: int) -> void:
 	_option_changed_checker(indicators[3], "display", "antialiasing", index)
 
 func _on_framerate_limit_slider_value_changed(value: int) -> void:
-	OptionsManager.options_to_buffer("display", "framerate_limit", value if value != 501 else 0)
-	_option_changed_checker(indicators[5], "display", "ui_scale", value)
-	framerate_limit_number.text = "%s" % value if value != 501 else "Unlimited"
+	if value == 501: value = 0
+	OptionsManager.options_to_buffer("display", "framerate_limit", value)
+	_option_changed_checker(indicators[5], "display", "framerate_limit", value)
+	framerate_limit_number.text = "%s" % value if value != 0 else "Unlimited"

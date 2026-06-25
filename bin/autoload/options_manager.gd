@@ -30,9 +30,12 @@ func apply_all_options() -> void:
 func options_to_buffer(key: String, subkey: String, value: Variant) -> void:
 	options_buffer[subkey] = func() -> void: options_file.set_value(key, subkey, value)
 
+func flush_buffer() -> void:
+	options_buffer.clear()
+
 func save_options() -> void:
 	for entry in options_buffer:
 		options_buffer[entry].call()
 
 	options_file.save(OPTIONS_PATH)
-	options_buffer.clear()
+	flush_buffer()
