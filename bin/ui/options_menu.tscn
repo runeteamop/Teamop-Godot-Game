@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bedlcclod8ggt"]
 
 [ext_resource type="Script" uid="uid://d2jsu0hxqy0rh" path="res://bin/ui/options_menu.gd" id="1_wlw1i"]
+[ext_resource type="ButtonGroup" uid="uid://ba41m8mit85ed" path="res://bin/ui/option_type_button_group.tres" id="2_qahfp"]
 
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("window_mode_selector", "resolution_scale_slider", "ui_scale_slider", "vsync_selector", "antialiasing_selector", "framerate_limit_slider", "resolution_scale_percentage", "ui_scale_percentage", "framerate_limit_number", "default", "confirmation")]
+[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("display_option_menu", "audio_option_menu", "input_option_menu", "window_mode_selector", "resolution_scale_slider", "ui_scale_slider", "vsync_selector", "antialiasing_selector", "framerate_limit_slider", "resolution_scale_percentage", "ui_scale_percentage", "framerate_limit_number", "default", "tabs", "confirmation")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -11,19 +12,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wlw1i")
-window_mode_selector = NodePath("PanelContainer/MarginContainer/GridContainer/WindowModeSelector")
-resolution_scale_slider = NodePath("PanelContainer/MarginContainer/GridContainer/ResolutionScale/ResolutionScaleSlider")
-ui_scale_slider = NodePath("PanelContainer/MarginContainer/GridContainer/UIScale/UIScaleSlider")
-vsync_selector = NodePath("PanelContainer/MarginContainer/GridContainer/VSyncSelector")
-antialiasing_selector = NodePath("PanelContainer/MarginContainer/GridContainer/AntiAliasingSelector")
-framerate_limit_slider = NodePath("PanelContainer/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider")
-resolution_scale_percentage = NodePath("PanelContainer/MarginContainer/GridContainer/ResolutionScale/ResolutionScalePercentage")
-ui_scale_percentage = NodePath("PanelContainer/MarginContainer/GridContainer/UIScale/UIScalePercentage")
-framerate_limit_number = NodePath("PanelContainer/MarginContainer/GridContainer/FramerateLimit/FramerateLimitNumber")
-default = NodePath("Panel/Default")
-confirmation = NodePath("Panel/Confirmation")
+display_option_menu = NodePath("DisplayOptions")
+audio_option_menu = NodePath("AudioOptions")
+input_option_menu = NodePath("InputOptions")
+window_mode_selector = NodePath("DisplayOptions/MarginContainer/GridContainer/WindowModeSelector")
+resolution_scale_slider = NodePath("DisplayOptions/MarginContainer/GridContainer/ResolutionScale/ResolutionScaleSlider")
+ui_scale_slider = NodePath("DisplayOptions/MarginContainer/GridContainer/UIScale/UIScaleSlider")
+vsync_selector = NodePath("DisplayOptions/MarginContainer/GridContainer/VSyncSelector")
+antialiasing_selector = NodePath("DisplayOptions/MarginContainer/GridContainer/AntiAliasingSelector")
+framerate_limit_slider = NodePath("DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider")
+resolution_scale_percentage = NodePath("DisplayOptions/MarginContainer/GridContainer/ResolutionScale/ResolutionScalePercentage")
+ui_scale_percentage = NodePath("DisplayOptions/MarginContainer/GridContainer/UIScale/UIScalePercentage")
+framerate_limit_number = NodePath("DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitNumber")
+default = NodePath("BottomPanel/Default")
+tabs = NodePath("BottomPanel/Tabs")
+confirmation = NodePath("BottomPanel/Confirmation")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1446137768]
+[node name="DisplayOptions" type="PanelContainer" parent="." unique_id=1446137768]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,29 +36,30 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -1280.0
-offset_top = -366.0
+offset_top = -426.0
 offset_right = 1280.0
-offset_bottom = 366.0
+offset_bottom = 426.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=353818162]
+[node name="MarginContainer" type="MarginContainer" parent="DisplayOptions" unique_id=353818162]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer" unique_id=44777201]
+[node name="GridContainer" type="GridContainer" parent="DisplayOptions/MarginContainer" unique_id=44777201]
 layout_mode = 2
 theme_override_constants/h_separation = 144
 theme_override_constants/v_separation = 32
 columns = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=2094319248]
+[node name="HBoxContainer" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=2094319248]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer" unique_id=1231111416 groups=["Indicators"]]
+[node name="Indicator" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer" unique_id=1231111416 groups=["Indicators"]]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -61,14 +67,14 @@ text = "*"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WindowModeLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer" unique_id=298829647]
+[node name="WindowModeLabel" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer" unique_id=298829647]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 80
 text = "Window mode:"
 
-[node name="WindowModeSelector" type="OptionButton" parent="PanelContainer/MarginContainer/GridContainer" unique_id=832595853]
+[node name="WindowModeSelector" type="OptionButton" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=832595853]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
@@ -82,10 +88,11 @@ popup/item_1/id = 1
 popup/item_2/text = "Exclusive fullscreen"
 popup/item_2/id = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=971130078]
+[node name="HBoxContainer2" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=971130078]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer2" unique_id=1586743968 groups=["Indicators"]]
+[node name="Indicator" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer2" unique_id=1586743968 groups=["Indicators"]]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -93,7 +100,7 @@ text = "*"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UIScaleLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer2" unique_id=1314563658]
+[node name="UIScaleLabel" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer2" unique_id=1314563658]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -101,11 +108,12 @@ theme_override_font_sizes/font_size = 80
 text = "UI scale:"
 vertical_alignment = 1
 
-[node name="UIScale" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=1704393054]
+[node name="UIScale" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=1704393054]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 32
 
-[node name="UIScaleSlider" type="HSlider" parent="PanelContainer/MarginContainer/GridContainer/UIScale" unique_id=934266650]
+[node name="UIScaleSlider" type="HSlider" parent="DisplayOptions/MarginContainer/GridContainer/UIScale" unique_id=934266650]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -114,7 +122,7 @@ max_value = 1.5
 step = 0.1
 value = 1.0
 
-[node name="UIScalePercentage" type="Label" parent="PanelContainer/MarginContainer/GridContainer/UIScale" unique_id=603980785]
+[node name="UIScalePercentage" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/UIScale" unique_id=603980785]
 custom_minimum_size = Vector2(229, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -124,10 +132,11 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=766338316]
+[node name="HBoxContainer3" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=766338316]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer3" unique_id=1060315482 groups=["Indicators"]]
+[node name="Indicator" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer3" unique_id=1060315482 groups=["Indicators"]]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -135,7 +144,7 @@ text = "*"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResolutionScaleLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer3" unique_id=1858538434]
+[node name="ResolutionScaleLabel" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer3" unique_id=1858538434]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -143,11 +152,12 @@ theme_override_font_sizes/font_size = 80
 text = "Resolution scale:"
 vertical_alignment = 1
 
-[node name="ResolutionScale" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=557910304]
+[node name="ResolutionScale" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=557910304]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 32
 
-[node name="ResolutionScaleSlider" type="HSlider" parent="PanelContainer/MarginContainer/GridContainer/ResolutionScale" unique_id=970319819]
+[node name="ResolutionScaleSlider" type="HSlider" parent="DisplayOptions/MarginContainer/GridContainer/ResolutionScale" unique_id=970319819]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -156,7 +166,7 @@ max_value = 2.0
 step = 0.1
 value = 1.0
 
-[node name="ResolutionScalePercentage" type="Label" parent="PanelContainer/MarginContainer/GridContainer/ResolutionScale" unique_id=72776825]
+[node name="ResolutionScalePercentage" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/ResolutionScale" unique_id=72776825]
 custom_minimum_size = Vector2(229, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -166,10 +176,11 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=1380970095]
+[node name="HBoxContainer4" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=1380970095]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer4" unique_id=1671056272 groups=["Indicators"]]
+[node name="Indicator" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer4" unique_id=1671056272 groups=["Indicators"]]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -177,7 +188,7 @@ text = "*"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AntiAliasingLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer4" unique_id=1326951828]
+[node name="AntiAliasingLabel" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer4" unique_id=1326951828]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -185,7 +196,7 @@ theme_override_font_sizes/font_size = 80
 text = "Anti-aliasing:"
 vertical_alignment = 1
 
-[node name="AntiAliasingSelector" type="OptionButton" parent="PanelContainer/MarginContainer/GridContainer" unique_id=2009486185]
+[node name="AntiAliasingSelector" type="OptionButton" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=2009486185]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
@@ -201,10 +212,11 @@ popup/item_2/id = 2
 popup/item_3/text = "MSAA x8"
 popup/item_3/id = 3
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=1351222417]
+[node name="HBoxContainer5" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=1351222417]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer5" unique_id=1759191355 groups=["Indicators"]]
+[node name="Indicator" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer5" unique_id=1759191355 groups=["Indicators"]]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -212,7 +224,7 @@ text = "*"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VSyncLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer5" unique_id=1570201098]
+[node name="VSyncLabel" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer5" unique_id=1570201098]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -220,7 +232,7 @@ theme_override_font_sizes/font_size = 80
 text = "Vertical syncronization:"
 vertical_alignment = 1
 
-[node name="VSyncSelector" type="OptionButton" parent="PanelContainer/MarginContainer/GridContainer" unique_id=2018643151]
+[node name="VSyncSelector" type="OptionButton" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=2018643151]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
@@ -234,10 +246,11 @@ popup/item_1/id = 1
 popup/item_2/text = "Enabled"
 popup/item_2/id = 2
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=1821423693]
+[node name="HBoxContainer6" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=1821423693]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Indicator" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer6" unique_id=906784982 groups=["Indicators"]]
+[node name="Indicator" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer6" unique_id=906784982 groups=["Indicators"]]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
@@ -245,7 +258,7 @@ text = "*"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FramerateLimitLabel" type="Label" parent="PanelContainer/MarginContainer/GridContainer/HBoxContainer6" unique_id=658568314]
+[node name="FramerateLimitLabel" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/HBoxContainer6" unique_id=658568314]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -253,10 +266,11 @@ theme_override_font_sizes/font_size = 80
 text = "Framerate limit:"
 vertical_alignment = 1
 
-[node name="FramerateLimit" type="HBoxContainer" parent="PanelContainer/MarginContainer/GridContainer" unique_id=883798345]
+[node name="FramerateLimit" type="HBoxContainer" parent="DisplayOptions/MarginContainer/GridContainer" unique_id=883798345]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="FramerateLimitSlider" type="HSlider" parent="PanelContainer/MarginContainer/GridContainer/FramerateLimit" unique_id=1456047821]
+[node name="FramerateLimitSlider" type="HSlider" parent="DisplayOptions/MarginContainer/GridContainer/FramerateLimit" unique_id=1456047821]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -264,7 +278,7 @@ min_value = 30.0
 max_value = 501.0
 value = 500.0
 
-[node name="FramerateLimitNumber" type="Label" parent="PanelContainer/MarginContainer/GridContainer/FramerateLimit" unique_id=1064509352]
+[node name="FramerateLimitNumber" type="Label" parent="DisplayOptions/MarginContainer/GridContainer/FramerateLimit" unique_id=1064509352]
 custom_minimum_size = Vector2(229, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -274,7 +288,53 @@ text = "Unlimited"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="PanelContainer" parent="." unique_id=23837239]
+[node name="AudioOptions" type="PanelContainer" parent="." unique_id=1791517120]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1280.0
+offset_top = -400.0
+offset_right = 1280.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="AudioOptions" unique_id=184996638]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 128
+text = "Audio options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputOptions" type="PanelContainer" parent="." unique_id=1130324615]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1280.0
+offset_top = -400.0
+offset_right = 1280.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="InputOptions" unique_id=1528521727]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 128
+text = "Input options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomPanel" type="PanelContainer" parent="." unique_id=23837239]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -284,56 +344,90 @@ offset_top = -128.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Default" type="HBoxContainer" parent="Panel" unique_id=794198984]
+[node name="Default" type="HBoxContainer" parent="BottomPanel" unique_id=794198984]
 layout_mode = 2
 
-[node name="Back" type="Button" parent="Panel/Default" unique_id=1789671339]
+[node name="Back" type="Button" parent="BottomPanel/Default" unique_id=1789671339]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 80
 text = "Back
 "
 
-[node name="Apply" type="Button" parent="Panel/Default" unique_id=1065271448]
+[node name="Apply" type="Button" parent="BottomPanel/Default" unique_id=1065271448]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 80
 text = "Apply"
 
-[node name="Confirmation" type="HBoxContainer" parent="Panel" unique_id=2047935169]
+[node name="Tabs" type="HBoxContainer" parent="BottomPanel" unique_id=1883515878]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Display" type="Button" parent="BottomPanel/Tabs" unique_id=1637346232]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("2_qahfp")
+text = "Display"
+
+[node name="Audio" type="Button" parent="BottomPanel/Tabs" unique_id=946751142]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+toggle_mode = true
+button_group = ExtResource("2_qahfp")
+text = "Audio"
+
+[node name="Input" type="Button" parent="BottomPanel/Tabs" unique_id=1624206446]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+toggle_mode = true
+button_group = ExtResource("2_qahfp")
+text = "Input"
+
+[node name="Confirmation" type="HBoxContainer" parent="BottomPanel" unique_id=2047935169]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 1
 
-[node name="Return" type="Button" parent="Panel/Confirmation" unique_id=712648361]
+[node name="Return" type="Button" parent="BottomPanel/Confirmation" unique_id=712648361]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "Return"
 
-[node name="Discard" type="Button" parent="Panel/Confirmation" unique_id=1078110649]
+[node name="Discard" type="Button" parent="BottomPanel/Confirmation" unique_id=1078110649]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 80
 text = "Discard"
 
-[node name="Apply" type="Button" parent="Panel/Confirmation" unique_id=2032033213]
+[node name="Apply" type="Button" parent="BottomPanel/Confirmation" unique_id=2032033213]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 80
 text = "Apply"
 
-[connection signal="item_selected" from="PanelContainer/MarginContainer/GridContainer/WindowModeSelector" to="." method="_on_window_mode_selector_item_selected"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/GridContainer/UIScale/UIScaleSlider" to="." method="_on_ui_scale_slider_value_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/GridContainer/ResolutionScale/ResolutionScaleSlider" to="." method="_on_resolution_scale_slider_value_changed"]
-[connection signal="item_selected" from="PanelContainer/MarginContainer/GridContainer/AntiAliasingSelector" to="." method="_on_anti_aliasing_selector_item_selected"]
-[connection signal="item_selected" from="PanelContainer/MarginContainer/GridContainer/VSyncSelector" to="." method="_on_v_sync_selector_item_selected"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider" to="." method="_on_framerate_limit_slider_value_changed"]
-[connection signal="pressed" from="Panel/Default/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="Panel/Default/Apply" to="." method="_apply"]
-[connection signal="pressed" from="Panel/Confirmation/Return" to="." method="_swap_buttons"]
-[connection signal="pressed" from="Panel/Confirmation/Discard" to="." method="_swap_buttons"]
-[connection signal="pressed" from="Panel/Confirmation/Discard" to="." method="_exit"]
-[connection signal="pressed" from="Panel/Confirmation/Apply" to="." method="_apply"]
-[connection signal="pressed" from="Panel/Confirmation/Apply" to="." method="_swap_buttons"]
-[connection signal="pressed" from="Panel/Confirmation/Apply" to="." method="_exit"]
+[connection signal="item_selected" from="DisplayOptions/MarginContainer/GridContainer/WindowModeSelector" to="." method="_on_window_mode_selector_item_selected"]
+[connection signal="value_changed" from="DisplayOptions/MarginContainer/GridContainer/UIScale/UIScaleSlider" to="." method="_on_ui_scale_slider_value_changed"]
+[connection signal="value_changed" from="DisplayOptions/MarginContainer/GridContainer/ResolutionScale/ResolutionScaleSlider" to="." method="_on_resolution_scale_slider_value_changed"]
+[connection signal="item_selected" from="DisplayOptions/MarginContainer/GridContainer/AntiAliasingSelector" to="." method="_on_anti_aliasing_selector_item_selected"]
+[connection signal="item_selected" from="DisplayOptions/MarginContainer/GridContainer/VSyncSelector" to="." method="_on_v_sync_selector_item_selected"]
+[connection signal="value_changed" from="DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider" to="." method="_on_framerate_limit_slider_value_changed"]
+[connection signal="pressed" from="BottomPanel/Default/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="BottomPanel/Default/Apply" to="." method="_reset_indicators"]
+[connection signal="pressed" from="BottomPanel/Default/Apply" to="." method="_apply"]
+[connection signal="pressed" from="BottomPanel/Tabs/Display" to="." method="_show_display_options"]
+[connection signal="pressed" from="BottomPanel/Tabs/Audio" to="." method="_show_audio_options"]
+[connection signal="pressed" from="BottomPanel/Tabs/Input" to="." method="_show_input_options"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Return" to="." method="_swap_buttons"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_reset_indicators"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_exit"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_swap_buttons"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_flush_option_buffer"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_reset_indicators"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_exit"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_swap_buttons"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_apply"]

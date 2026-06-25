@@ -4,7 +4,10 @@ const WINDOW_MODE_VALUES: Array[int] = [0, 3, 4]
 
 var options: ConfigFile = OptionsManager.options_file
 
-# Options
+@export var display_option_menu: PanelContainer
+@export var audio_option_menu: PanelContainer
+@export var input_option_menu: PanelContainer
+
 @export var window_mode_selector: OptionButton
 @export var resolution_scale_slider: HSlider
 @export var ui_scale_slider: HSlider
@@ -17,8 +20,10 @@ var options: ConfigFile = OptionsManager.options_file
 @export var framerate_limit_number: Label
 
 @export var default: HBoxContainer
+@export var tabs: HBoxContainer
 @export var confirmation: HBoxContainer
 
+@onready var current_menu: PanelContainer = display_option_menu
 @onready var indicators: Array[Node] = get_tree().get_nodes_in_group("Indicators")
 
 func _enter_tree() -> void:
@@ -42,29 +47,43 @@ func _option_changed_checker(indicator: Label, section: String, key: String, val
 	#indicator.set_modulate(Color(1, 1, 1, 1)) if options.get_value(section, key) != value else indicator.set_modulate(Color(1, 1, 1, 0))
 	indicator.visible = true if OptionsManager.options_file.get_value(section, key) != value else false
 
+func _flush_option_buffer() -> void: OptionsManager.flush_buffer()
+
 func _reset_indicators() -> void:
 	for indicator in indicators:
 		indicator.visible = false
 
 func _swap_buttons() -> void:
 	default.visible = !default.visible
+	tabs.visible = !tabs.visible
 	confirmation.visible = !confirmation.visible
+
+func _swap_current_menu(new_menu: PanelContainer)-> void:
+	current_menu.visible = false
+	current_menu = new_menu
+	current_menu.visible = true
+
+func _show_display_options() -> void:
+	_swap_current_menu(display_option_menu)
+
+func _show_audio_options() -> void:
+	_swap_current_menu(audio_option_menu)
+
+func _show_input_options() -> void:
+	_swap_current_menu(input_option_menu)
+
+func _apply() -> void:
+	OptionsManager.save_options()
+	OptionsManager.apply_all_options()
+
+func _exit() -> void:
+	Global.goto_last_menu()
 
 func _on_back_pressed() -> void:
 	if OptionsManager.options_buffer.size() > 0:
 		_swap_buttons()
 	else:
 		_exit()
-
-func _apply() -> void:
-	OptionsManager.save_options()
-	OptionsManager.apply_all_options()
-	_reset_indicators()
-
-func _exit() -> void:
-	_reset_indicators()
-	OptionsManager.flush_buffer()
-	Global.goto_last_menu()
 
 func _on_window_mode_selector_item_selected(index: int) -> void:
 	OptionsManager.options_to_buffer("display", "window_mode", WINDOW_MODE_VALUES[index])
@@ -93,3 +112,7 @@ func _on_framerate_limit_slider_value_changed(value: int) -> void:
 	OptionsManager.options_to_buffer("display", "framerate_limit", value)
 	_option_changed_checker(indicators[5], "display", "framerate_limit", value)
 	framerate_limit_number.text = "%s" % value if value != 0 else "Unlimited"
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_cancel"):
+		_exit()
