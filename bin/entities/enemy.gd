@@ -15,7 +15,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if material_color != material.albedo_color:
 		material.albedo_color = material.albedo_color.lerp(material_color, 0.05)
-	
+
 	if Player.instance:
 		var player_postion: Vector3 = Player.instance.global_position
 		player_postion.y = global_position.y

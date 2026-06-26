@@ -3,6 +3,7 @@ class_name OptionsMenu extends Control
 const WINDOW_MODE_VALUES: Array[int] = [0, 3, 4]
 
 var options: ConfigFile = OptionsManager.options_file
+var active_keymap: Button = null
 
 @export var display_option_menu: PanelContainer
 @export var audio_option_menu: PanelContainer
@@ -19,12 +20,18 @@ var options: ConfigFile = OptionsManager.options_file
 @export var ui_scale_percentage: Label
 @export var framerate_limit_number: Label
 
+@export var forward: Button
+
 @export var default: HBoxContainer
 @export var tabs: HBoxContainer
 @export var confirmation: HBoxContainer
 
 @onready var current_menu: PanelContainer = display_option_menu
 @onready var indicators: Array[Node] = get_tree().get_nodes_in_group("Indicators")
+@onready var input_option_buttons: Array[Node] = get_tree().get_nodes_in_group("InputOptionButtons")
+
+func _ready() -> void:
+	set_process_unhandled_input(false)
 
 func _enter_tree() -> void:
 	window_mode_selector.selected = WINDOW_MODE_VALUES.find(options.get_value("display", "window_mode"))
@@ -63,14 +70,11 @@ func _swap_current_menu(new_menu: PanelContainer)-> void:
 	current_menu = new_menu
 	current_menu.visible = true
 
-func _show_display_options() -> void:
-	_swap_current_menu(display_option_menu)
+func _show_display_options() -> void: _swap_current_menu(display_option_menu)
 
-func _show_audio_options() -> void:
-	_swap_current_menu(audio_option_menu)
+func _show_audio_options() -> void: _swap_current_menu(audio_option_menu)
 
-func _show_input_options() -> void:
-	_swap_current_menu(input_option_menu)
+func _show_input_options() -> void: _swap_current_menu(input_option_menu)
 
 func _apply() -> void:
 	OptionsManager.save_options()
@@ -113,6 +117,30 @@ func _on_framerate_limit_slider_value_changed(value: int) -> void:
 	_option_changed_checker(indicators[5], "display", "framerate_limit", value)
 	framerate_limit_number.text = "%s" % value if value != 0 else "Unlimited"
 
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_cancel"):
-		_exit()
+func _on_input_option_button_toggled(toggled_on: bool) -> void:
+	set_process_unhandled_input(toggled_on)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.pressed:
+		var old_key: InputEvent
+		var active_button: Button
+		var metadata: String
+
+		for button in input_option_buttons:
+			if button.button_pressed:
+				active_button = button
+				metadata = active_button.get_meta_list()[0]
+
+		print(InputMap.action_get_events(metadata))
+
+		for entry in InputMap.action_get_events(metadata):
+			if entry.as_text() == forward.text:
+				old_key = entry
+
+		InputMap.action_erase_event(metadata, old_key)
+		InputMap.action_add_event(metadata, event)
+
+		active_button.text = event.as_text()
+		active_button.button_pressed = false
+
+		print(InputMap.action_get_events(metadata))

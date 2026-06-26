@@ -17,6 +17,14 @@ func _init() -> void:
 		options_file.set_value("display", "antialiasing", 0)
 		options_file.set_value("display", "framerate_limit", 0)
 
+		options_file.set_value("input", "forward", "w")
+		options_file.set_value("input", "left", "a")
+		options_file.set_value("input", "backward", "s")
+		options_file.set_value("input", "right", "d")
+
+		options_file.set_value ("audio", "master_volume", 100)
+
+
 		save_options()
 
 func apply_all_options() -> void:
