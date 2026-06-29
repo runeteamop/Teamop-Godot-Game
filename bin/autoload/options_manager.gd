@@ -24,7 +24,6 @@ func _init() -> void:
 
 		options_file.set_value ("audio", "master_volume", 100)
 
-
 		save_options()
 
 func apply_all_options() -> void:

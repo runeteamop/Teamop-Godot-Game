@@ -3,7 +3,7 @@ class_name OptionsMenu extends Control
 const WINDOW_MODE_VALUES: Array[int] = [0, 3, 4]
 
 var options: ConfigFile = OptionsManager.options_file
-var active_keymap: Button = null
+#var active_keymap: Button = null
 
 @export var display_option_menu: PanelContainer
 @export var audio_option_menu: PanelContainer
@@ -122,25 +122,30 @@ func _on_input_option_button_toggled(toggled_on: bool) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.pressed:
-		var old_key: InputEvent
+		var key_already_in_use: bool
 		var active_button: Button
-		var metadata: String
+		var active_button_metadata: String
+		var old_letter: InputEvent
 
 		for button in input_option_buttons:
+			for input in InputMap.action_get_events(button.get_meta_list()[0]):
+				if event.as_text() == input.as_text(): key_already_in_use = true
+
 			if button.button_pressed:
 				active_button = button
-				metadata = active_button.get_meta_list()[0]
+				active_button_metadata = button.get_meta_list()[0]
 
-		print(InputMap.action_get_events(metadata))
+				var selected_action = InputMap.action_get_events(active_button_metadata)
+				for input in selected_action:
+					if input.as_text() == button.text: old_letter = input
 
-		for entry in InputMap.action_get_events(metadata):
-			if entry.as_text() == forward.text:
-				old_key = entry
+		if key_already_in_use:
+			print("Key is already in use!")
+		else:
+			InputMap.action_erase_event(active_button_metadata, old_letter)
+			InputMap.action_add_event(active_button_metadata, event)
 
-		InputMap.action_erase_event(metadata, old_key)
-		InputMap.action_add_event(metadata, event)
+			active_button.text = event.as_text()
+			active_button.button_pressed = false
 
-		active_button.text = event.as_text()
-		active_button.button_pressed = false
-
-		print(InputMap.action_get_events(metadata))
+		print(InputMap.action_get_events(active_button_metadata))
