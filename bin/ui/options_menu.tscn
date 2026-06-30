@@ -4,7 +4,7 @@
 [ext_resource type="ButtonGroup" uid="uid://cylomyb0rify6" path="res://bin/ui/input_options_button_group.tres" id="2_i13fs"]
 [ext_resource type="ButtonGroup" uid="uid://ba41m8mit85ed" path="res://bin/ui/option_type_button_group.tres" id="2_qahfp"]
 
-[node name="OptionsMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("display_option_menu", "audio_option_menu", "input_option_menu", "window_mode_selector", "resolution_scale_slider", "ui_scale_slider", "vsync_selector", "antialiasing_selector", "framerate_limit_slider", "resolution_scale_percentage", "ui_scale_percentage", "framerate_limit_number", "forward", "default", "tabs", "confirmation")]
+[node name="OptionMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("display_option_menu", "audio_option_menu", "input_option_menu", "window_mode_selector", "resolution_scale_slider", "ui_scale_slider", "vsync_selector", "antialiasing_selector", "framerate_limit_slider", "resolution_scale_percentage", "ui_scale_percentage", "framerate_limit_number", "move_forward", "move_left", "move_backward", "move_right", "default", "tabs", "confirmation")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -25,7 +25,10 @@ framerate_limit_slider = NodePath("DisplayOptions/MarginContainer/GridContainer/
 resolution_scale_percentage = NodePath("DisplayOptions/MarginContainer/GridContainer/ResolutionScale/ResolutionScalePercentage")
 ui_scale_percentage = NodePath("DisplayOptions/MarginContainer/GridContainer/UIScale/UIScalePercentage")
 framerate_limit_number = NodePath("DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitNumber")
-forward = NodePath("InputOptions/VBoxContainer/Forward")
+move_forward = NodePath("InputOptions/VBoxContainer/MoveForward")
+move_left = NodePath("InputOptions/VBoxContainer/MoveLeft")
+move_backward = NodePath("InputOptions/VBoxContainer/MoveBackward")
+move_right = NodePath("InputOptions/VBoxContainer/MoveRight")
 default = NodePath("BottomPanel/Default")
 tabs = NodePath("BottomPanel/Tabs")
 confirmation = NodePath("BottomPanel/Confirmation")
@@ -328,56 +331,133 @@ offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="InputOptions" unique_id=1528521727]
+[node name="VBoxContainer" type="GridContainer" parent="InputOptions" unique_id=2072091927]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 128
-text = "Input options"
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InputOptions/VBoxContainer" unique_id=860652802]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Indicator" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer" unique_id=795675771 groups=["Indicators"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "*"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InputOptions" unique_id=215815772]
+[node name="MoveForwardLabel" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer" unique_id=629172576]
 layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 80
+text = "Move forward:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Forward" type="Button" parent="InputOptions/VBoxContainer" unique_id=322503992 groups=["InputOptionButtons"]]
+[node name="MoveForward" type="Button" parent="InputOptions/VBoxContainer" unique_id=322503992 groups=["InputOptionButtons"]]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
 toggle_mode = true
 button_group = ExtResource("2_i13fs")
 text = "W"
-metadata/Up = "\"Up\""
+metadata/index = 6
+metadata/action = "move_forward"
 
-[node name="Left" type="Button" parent="InputOptions/VBoxContainer" unique_id=1176749912 groups=["InputOptionButtons"]]
+[node name="HBoxContainer2" type="HBoxContainer" parent="InputOptions/VBoxContainer" unique_id=911264625]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_horizontal = 3
+
+[node name="Indicator" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer2" unique_id=1736283848 groups=["Indicators"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLeftLabel" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer2" unique_id=524388213]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 80
+text = "Move left:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveLeft" type="Button" parent="InputOptions/VBoxContainer" unique_id=1176749912 groups=["InputOptionButtons"]]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
 toggle_mode = true
 button_group = ExtResource("2_i13fs")
 text = "A"
-metadata/Left = "\"Left\""
+metadata/index = 7
+metadata/action = "move_left"
 
-[node name="Backward" type="Button" parent="InputOptions/VBoxContainer" unique_id=860610968 groups=["InputOptionButtons"]]
+[node name="HBoxContainer3" type="HBoxContainer" parent="InputOptions/VBoxContainer" unique_id=1302002925]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_horizontal = 3
+
+[node name="Indicator" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer3" unique_id=75153117 groups=["Indicators"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveBackwardLabel" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer3" unique_id=1280799501]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 80
+text = "Move backward:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveBackward" type="Button" parent="InputOptions/VBoxContainer" unique_id=860610968 groups=["InputOptionButtons"]]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
 toggle_mode = true
 button_group = ExtResource("2_i13fs")
 text = "S"
-metadata/Down = "\"Down\""
+metadata/index = 8
+metadata/action = "move_backward"
 
-[node name="Right" type="Button" parent="InputOptions/VBoxContainer" unique_id=1310987529 groups=["InputOptionButtons"]]
+[node name="HBoxContainer4" type="HBoxContainer" parent="InputOptions/VBoxContainer" unique_id=2257969]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
+size_flags_horizontal = 3
+
+[node name="Indicator" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer4" unique_id=1832466931 groups=["Indicators"]]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "*"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveRightLabel" type="Label" parent="InputOptions/VBoxContainer/HBoxContainer4" unique_id=627718323]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 80
+text = "Move right:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoveRight" type="Button" parent="InputOptions/VBoxContainer" unique_id=1310987529 groups=["InputOptionButtons"]]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
 toggle_mode = true
 button_group = ExtResource("2_i13fs")
 text = "D"
-metadata/Right = "\"Right\""
+metadata/index = 9
+metadata/action = "move_right"
 
 [node name="BottomPanel" type="PanelContainer" parent="." unique_id=23837239]
 layout_mode = 1
@@ -461,10 +541,17 @@ text = "Apply"
 [connection signal="item_selected" from="DisplayOptions/MarginContainer/GridContainer/AntiAliasingSelector" to="." method="_on_anti_aliasing_selector_item_selected"]
 [connection signal="item_selected" from="DisplayOptions/MarginContainer/GridContainer/VSyncSelector" to="." method="_on_v_sync_selector_item_selected"]
 [connection signal="value_changed" from="DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider" to="." method="_on_framerate_limit_slider_value_changed"]
-[connection signal="toggled" from="InputOptions/VBoxContainer/Forward" to="." method="_on_input_option_button_toggled"]
-[connection signal="toggled" from="InputOptions/VBoxContainer/Left" to="." method="_on_input_option_button_toggled"]
-[connection signal="toggled" from="InputOptions/VBoxContainer/Backward" to="." method="_on_input_option_button_toggled"]
-[connection signal="toggled" from="InputOptions/VBoxContainer/Right" to="." method="_on_input_option_button_toggled"]
+[connection signal="button_up" from="InputOptions/VBoxContainer/MoveForward" to="." method="_input_button_deselected"]
+[connection signal="pressed" from="InputOptions/VBoxContainer/MoveForward" to="." method="_on_move_forward_pressed"]
+[connection signal="toggled" from="InputOptions/VBoxContainer/MoveForward" to="." method="_on_input_option_button_toggled"]
+[connection signal="button_up" from="InputOptions/VBoxContainer/MoveLeft" to="." method="_input_button_deselected"]
+[connection signal="pressed" from="InputOptions/VBoxContainer/MoveLeft" to="." method="_on_move_left_pressed"]
+[connection signal="toggled" from="InputOptions/VBoxContainer/MoveLeft" to="." method="_on_input_option_button_toggled"]
+[connection signal="button_up" from="InputOptions/VBoxContainer/MoveBackward" to="." method="_input_button_deselected"]
+[connection signal="pressed" from="InputOptions/VBoxContainer/MoveBackward" to="." method="_on_move_backward_pressed"]
+[connection signal="toggled" from="InputOptions/VBoxContainer/MoveBackward" to="." method="_on_input_option_button_toggled"]
+[connection signal="pressed" from="InputOptions/VBoxContainer/MoveRight" to="." method="_on_move_right_pressed"]
+[connection signal="toggled" from="InputOptions/VBoxContainer/MoveRight" to="." method="_on_input_option_button_toggled"]
 [connection signal="pressed" from="BottomPanel/Default/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="BottomPanel/Default/Apply" to="." method="_apply"]
 [connection signal="pressed" from="BottomPanel/Default/Apply" to="." method="_reset_indicators"]
@@ -473,10 +560,10 @@ text = "Apply"
 [connection signal="pressed" from="BottomPanel/Tabs/Input" to="." method="_show_input_options"]
 [connection signal="pressed" from="BottomPanel/Confirmation/Return" to="." method="_swap_buttons"]
 [connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_exit"]
-[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_swap_buttons"]
-[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_reset_indicators"]
 [connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_flush_option_buffer"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_reset_indicators"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Discard" to="." method="_swap_buttons"]
 [connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_exit"]
 [connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_apply"]
-[connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_swap_buttons"]
 [connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_reset_indicators"]
+[connection signal="pressed" from="BottomPanel/Confirmation/Apply" to="." method="_swap_buttons"]
