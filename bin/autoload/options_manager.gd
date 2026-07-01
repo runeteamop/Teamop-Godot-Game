@@ -58,15 +58,6 @@ func apply_input_options() -> void:
 
 		InputMap.action_add_event(action, input_event)
 
-func input_option_values_to_array() -> Array[String]:
-	var used_keys: Array[String] = []
-	var input_actions: PackedStringArray = _get_input_options()
-
-	for action in input_actions:
-		used_keys.append(options_file.get_value("input", action))
-
-	return used_keys
-
 func options_to_buffer(key: String, subkey: String, value: Variant) -> void:
 	options_buffer[subkey] = func() -> void: options_file.set_value(key, subkey, value)
 
