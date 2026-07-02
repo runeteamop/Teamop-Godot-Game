@@ -34,8 +34,6 @@ func _init() -> void:
 
 		save_options()
 
-func _get_input_options() -> PackedStringArray: return options_file.get_section_keys("input")
-
 func apply_display_options() -> void:
 	DisplayServer.window_set_mode(options_file.get_value("display", "window_mode"))
 	get_viewport().scaling_3d_scale = options_file.get_value("display", "resolution_scale")
@@ -45,10 +43,11 @@ func apply_display_options() -> void:
 	Engine.set_max_fps(options_file.get_value("display", "framerate_limit"))
 
 func apply_input_options() -> void:
-	var input_actions: PackedStringArray = _get_input_options()
+	var input_actions: PackedStringArray = options_file.get_section_keys("input")
 
 	for action in input_actions:
 		var selected_action = InputMap.action_get_events(action)
+
 		for key in selected_action:
 			if key is InputEventKey:
 				InputMap.action_erase_event(action, key)

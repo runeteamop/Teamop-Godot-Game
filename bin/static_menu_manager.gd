@@ -20,8 +20,8 @@ func _on_enter_menu(path: String) -> void:
 	add_child(current_menu)
 	menu_stack.append(current_menu)
 
-func _on_goto_last_menu(remove_from_cache: bool = false) -> void:
-	if remove_from_cache:
+func _on_goto_last_menu(handle_cache: bool) -> void:
+	if !handle_cache:
 		cache.erase(cache.find_key(current_menu))
 		current_menu.queue_free()
 	else:
