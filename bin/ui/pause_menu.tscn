@@ -13,16 +13,17 @@ grow_vertical = 2
 script = ExtResource("1_ncyv0")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1159712554]
+custom_minimum_size = Vector2(1440, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -168.0
-offset_top = -87.0
-offset_right = 168.0
-offset_bottom = 87.0
+offset_left = -720.0
+offset_top = -138.0
+offset_right = 720.0
+offset_bottom = 138.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -41,12 +42,12 @@ theme_override_constants/separation = 8
 [node name="Options" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=394214918]
 process_mode = 3
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 80
 text = "Options"
 
 [node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=507752206]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 80
 text = "Exit"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
