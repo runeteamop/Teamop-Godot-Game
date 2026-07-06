@@ -55,8 +55,9 @@ var input_buttons_overlap: bool
 @export var framerate_limit_number: Label
 
 # Audio options:
-# placeholder
-# placeholder
+@export var master_volume_label: Label
+@export var master_volume_slider: HSlider
+@export var master_volume_percentage: Label
 
 # Display options:
 @export var move_forward_label: Label
@@ -81,17 +82,19 @@ func _ready() -> void:
 	set_process_unhandled_input(false)
 	_set_options_to_option_file_values()
 
+	# Default menu:
 	default_menu_back.pressed.connect(_on_default_menu_back_pressed)
 	default_menu_apply.pressed.connect(_on_default_menu_apply_pressed)
-
 	display_tab.pressed.connect(_on_option_tab_pressed.bind(display_option_menu), 1)
 	audio_tab.pressed.connect(_on_option_tab_pressed.bind(audio_option_menu), 1)
 	input_tab.pressed.connect(_on_option_tab_pressed.bind(input_option_menu), 1)
 
+	# Confirmation menu:
 	confirmation_menu_return.pressed.connect(_on_confirmation_menu_return_pressed)
 	confirmation_menu_discard.pressed.connect(_on_confirmation_menu_discard_pressed)
 	confirmation_menu_apply.pressed.connect(_on_confirmation_menu_apply_pressed)
 
+	# Display options:
 	window_mode_selector.item_selected.connect(_on_window_mode_selector_item_selected)
 	resolution_scale_slider.value_changed.connect(_on_resolution_scale_slider_value_changed)
 	ui_scale_slider.value_changed.connect(_on_ui_scale_slider_value_changed)
@@ -99,12 +102,16 @@ func _ready() -> void:
 	antialiasing_selector.item_selected.connect(_on_antialiasing_selector_item_selected)
 	framerate_limit_slider.value_changed.connect(_on_framerate_limit_slider_value_changed)
 
+	# Audio options:
+	master_volume_slider.value_changed.connect(_on_master_volume_slider_value_changed)
+
+	# Input options:
 	move_forward_button.toggled.connect(_on_input_button_toggled.bind(move_forward_button, move_forward_label, "move_forward"), 3)
 	move_left_button.toggled.connect(_on_input_button_toggled.bind(move_left_button, move_left_label, "move_left"), 3)
 	move_backward_button.toggled.connect(_on_input_button_toggled.bind(move_backward_button, move_backward_label, "move_backward"), 3)
 	move_right_button.toggled.connect(_on_input_button_toggled.bind(move_right_button, move_right_label, "move_right"), 3)
 
-# Called when a corresponding node is handled:
+# Default menu:
 func _on_default_menu_back_pressed() -> void:
 	if OptionsManager.options_buffer.size() > 0:
 		_swap_bottom_panel_buttons(bottom_panel_confirmation_menu)
@@ -118,6 +125,7 @@ func _on_default_menu_apply_pressed() -> void:
 func _on_option_tab_pressed(option_menu: PanelContainer) -> void:
 	_swap_current_menu(option_menu)
 
+# confirmation menu:
 func _on_confirmation_menu_return_pressed() -> void:
 	_swap_bottom_panel_buttons(bottom_panel_default_menu)
 
@@ -130,6 +138,7 @@ func _on_confirmation_menu_apply_pressed() -> void:
 	_apply_options()
 	_exit_options()
 
+# Display options:
 func _on_window_mode_selector_item_selected(index: int) -> void:
 	_update_option(window_mode_label, "display", "window_mode", WINDOW_MODE_VALUES[index])
 
@@ -152,6 +161,11 @@ func _on_framerate_limit_slider_value_changed(value: int) -> void:
 	_update_option(framerate_limit_label, "display", "framerate_limit", value)
 	framerate_limit_number.text = "%s" % value if value != 0 else "Unlimited"
 
+# AUdio options:
+func _on_master_volume_slider_value_changed():
+	pass
+
+# Input options:
 func _on_input_button_toggled(toggled_on: bool, button: Button, label: Label, subkey: String) -> void:
 	_update_input_button_text(toggled_on, button, label, subkey)
 	set_process_unhandled_input(toggled_on)
@@ -168,30 +182,6 @@ func _swap_current_menu(option_menu: PanelContainer)-> void:
 	option_menu.visible = true
 	current_menu = option_menu
 
-func _set_options_to_option_file_values() -> void:
-	var options: ConfigFile = OptionsManager.options_file
-	var framerate_limit_value = options.get_value("display", "framerate_limit")
-
-	window_mode_selector.selected = WINDOW_MODE_VALUES.find(options.get_value("display", "window_mode"))
-
-	resolution_scale_slider.value = options.get_value("display", "resolution_scale")
-	resolution_scale_percentage.text = "%s%%" % int(options.get_value("display", "resolution_scale") * 100)
-
-	ui_scale_slider.value = options.get_value("display", "ui_scale")
-	ui_scale_percentage.text = "%s%%" % int(options.get_value("display", "ui_scale") * 100)
-
-	vsync_selector.selected = options.get_value("display", "vertical_syncronization")
-
-	antialiasing_selector.selected = options.get_value("display", "antialiasing")
-
-	framerate_limit_slider.value = 501 if framerate_limit_value == 0 else framerate_limit_value
-	framerate_limit_number.text = "Unlimited" if framerate_limit_value == 0 else str(framerate_limit_value)
-
-	move_forward_button.text = options.get_value("input", "move_forward").to_upper()
-	move_left_button.text = options.get_value("input", "move_left").to_upper()
-	move_backward_button.text = options.get_value("input", "move_backward").to_upper()
-	move_right_button.text = options.get_value("input", "move_right").to_upper()
-
 func _update_input_button_text(toggled_on: bool, button: Button, label: Label, subkey: String) -> void:
 	if !toggled_on:
 		button.text = input_button_label_buffer
@@ -207,17 +197,6 @@ func _update_input_button_text(toggled_on: bool, button: Button, label: Label, s
 		button.text = "Awaiting input..."
 		current_input_button_toggled = button
 		_update_input_button_color(button, COLOR.WHITE)
-
-func _update_input_button_color(button: Button, color: COLOR) -> void:
-	match color:
-		COLOR.WHITE:
-			button.add_theme_color_override("font_color", Color(255.0, 255.0, 255.0))
-			button.add_theme_color_override("font_pressed_color", Color(255.0, 255.0, 255.0))
-			button.add_theme_color_override("font_hover_color", Color(255.0, 255.0, 255.0))
-		COLOR.RED:
-			button.add_theme_color_override("font_color", Color(255.0, 0.0, 0.0))
-			button.add_theme_color_override("font_pressed_color", Color(255.0, 0.0, 0.0))
-			button.add_theme_color_override("font_hover_color", Color(255.0, 0.0, 0.0))
 
 func _disable_toggled_input_button() -> void:
 	if current_input_button_toggled:
@@ -257,6 +236,41 @@ func _button_overlap_checker() -> void:
 
 		default_menu_apply.disabled = true if identical_buttons.size() > 0 else false
 		confirmation_menu_apply.disabled = true if identical_buttons.size() > 0 else false
+
+func _update_input_button_color(button: Button, color: COLOR) -> void:
+	match color:
+		COLOR.WHITE:
+			button.add_theme_color_override("font_color", Color(255.0, 255.0, 255.0))
+			button.add_theme_color_override("font_pressed_color", Color(255.0, 255.0, 255.0))
+			button.add_theme_color_override("font_hover_color", Color(255.0, 255.0, 255.0))
+		COLOR.RED:
+			button.add_theme_color_override("font_color", Color(255.0, 0.0, 0.0))
+			button.add_theme_color_override("font_pressed_color", Color(255.0, 0.0, 0.0))
+			button.add_theme_color_override("font_hover_color", Color(255.0, 0.0, 0.0))
+
+func _set_options_to_option_file_values() -> void:
+	var options: ConfigFile = OptionsManager.options_file
+	var framerate_limit_value = options.get_value("display", "framerate_limit")
+
+	window_mode_selector.selected = WINDOW_MODE_VALUES.find(options.get_value("display", "window_mode"))
+
+	resolution_scale_slider.value = options.get_value("display", "resolution_scale")
+	resolution_scale_percentage.text = "%s%%" % int(options.get_value("display", "resolution_scale") * 100)
+
+	ui_scale_slider.value = options.get_value("display", "ui_scale")
+	ui_scale_percentage.text = "%s%%" % int(options.get_value("display", "ui_scale") * 100)
+
+	vsync_selector.selected = options.get_value("display", "vertical_syncronization")
+
+	antialiasing_selector.selected = options.get_value("display", "antialiasing")
+
+	framerate_limit_slider.value = 501 if framerate_limit_value == 0 else framerate_limit_value
+	framerate_limit_number.text = "Unlimited" if framerate_limit_value == 0 else str(framerate_limit_value)
+
+	move_forward_button.text = options.get_value("input", "move_forward").to_upper()
+	move_left_button.text = options.get_value("input", "move_left").to_upper()
+	move_backward_button.text = options.get_value("input", "move_backward").to_upper()
+	move_right_button.text = options.get_value("input", "move_right").to_upper()
 
 func _update_option(label: Label, key: String, subkey: String, value: Variant) -> void:
 	if OptionsManager.options_file.get_value(key, subkey) == value:

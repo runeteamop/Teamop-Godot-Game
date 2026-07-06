@@ -4,7 +4,7 @@
 [ext_resource type="ButtonGroup" uid="uid://cylomyb0rify6" path="res://bin/ui/input_options_button_group.tres" id="2_i13fs"]
 [ext_resource type="ButtonGroup" uid="uid://ba41m8mit85ed" path="res://bin/ui/option_type_button_group.tres" id="2_qahfp"]
 
-[node name="OptionMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("bottom_panel_default_menu", "default_menu_back", "default_menu_apply", "display_tab", "audio_tab", "input_tab", "bottom_panel_confirmation_menu", "confirmation_menu_return", "confirmation_menu_discard", "confirmation_menu_apply", "display_option_menu", "audio_option_menu", "input_option_menu", "window_mode_label", "window_mode_selector", "resolution_scale_label", "resolution_scale_slider", "resolution_scale_percentage", "ui_scale_label", "ui_scale_slider", "ui_scale_percentage", "vsync_selector_label", "vsync_selector", "antialiasing_selector_label", "antialiasing_selector", "framerate_limit_label", "framerate_limit_slider", "framerate_limit_number", "move_forward_label", "move_forward_button", "move_left_label", "move_left_button", "move_backward_label", "move_backward_button", "move_right_label", "move_right_button")]
+[node name="OptionMenu" type="Control" unique_id=1634851606 node_paths=PackedStringArray("bottom_panel_default_menu", "default_menu_back", "default_menu_apply", "display_tab", "audio_tab", "input_tab", "bottom_panel_confirmation_menu", "confirmation_menu_return", "confirmation_menu_discard", "confirmation_menu_apply", "display_option_menu", "audio_option_menu", "input_option_menu", "window_mode_label", "window_mode_selector", "resolution_scale_label", "resolution_scale_slider", "resolution_scale_percentage", "ui_scale_label", "ui_scale_slider", "ui_scale_percentage", "vsync_selector_label", "vsync_selector", "antialiasing_selector_label", "antialiasing_selector", "framerate_limit_label", "framerate_limit_slider", "framerate_limit_number", "master_volume_label", "master_volume_slider", "master_volume_percentage", "move_forward_label", "move_forward_button", "move_left_label", "move_left_button", "move_backward_label", "move_backward_button", "move_right_label", "move_right_button")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -41,6 +41,9 @@ antialiasing_selector = NodePath("MarginContainer/DisplayOptions/MarginContainer
 framerate_limit_label = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer6/FramerateLimitLabel")
 framerate_limit_slider = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider")
 framerate_limit_number = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitNumber")
+master_volume_label = NodePath("MarginContainer/AudioOptions/GridContainer/MasterVolumeLabel")
+master_volume_slider = NodePath("MarginContainer/AudioOptions/GridContainer/HBoxContainer/MasterVolumeSlider")
+master_volume_percentage = NodePath("MarginContainer/AudioOptions/GridContainer/HBoxContainer/VolumePercentage")
 move_forward_label = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer/MoveForwardLabel")
 move_forward_button = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/MoveForward")
 move_left_label = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer2/MoveLeftLabel")
@@ -273,11 +276,36 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="MarginContainer/AudioOptions" unique_id=184996638]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/AudioOptions" unique_id=674537546]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 128
-text = "Audio options"
+columns = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/AudioOptions/GridContainer" unique_id=1831789241 groups=["Option labels"]]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 80
+text = "Master volume:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/AudioOptions/GridContainer" unique_id=1362953163]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/AudioOptions/GridContainer/HBoxContainer" unique_id=1297774594]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+
+[node name="VolumePercentage" type="Label" parent="MarginContainer/AudioOptions/GridContainer/HBoxContainer" unique_id=1872712084]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 80
+text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
