@@ -12,7 +12,7 @@ var can_dash: bool = true
 
 @onready var dash_cooldown: Timer = $"Dash cooldown timer"
 @onready var turret: Marker3D = $Turret
-@onready var camera := $Camera
+@onready var camera: Camera3D = $Camera
 @onready var body: MeshInstance3D = $Body
 @onready var turret_cannon: Node3D = $"Turret/Cannon/Cannon End"
 
@@ -29,7 +29,7 @@ func _init() -> void:
 func _ready() -> void:
 	target_plane = Plane(Vector3(0, 1, 0), (turret.global_position.y))
 
-func _notifications(notif) -> void:
+func _notifications(notif: int) -> void:
 	if notif == NOTIFICATION_PREDELETE:
 		if instance == self: instance = null
 
@@ -42,12 +42,13 @@ func _physics_process(delta: float) -> void:
 			material_for_after_image.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 			material_for_after_image.albedo_color = Color(0.5, 0.6, 1.0, 0.15)
 
-			var after_image = body.duplicate()
+			var after_image: MeshInstance3D = body.duplicate()
+			var after_image_child: MeshInstance3D = body.get_child(0)
 			after_image.position = position
 			after_image.material_override = material_for_after_image
-			after_image.get_child(0).material_override = material_for_after_image
+			after_image_child.material_override = material_for_after_image
 
-			var tween = create_tween()
+			var tween: Tween = create_tween()
 			tween.tween_property(after_image, "transparency", 1, 0.2)
 			tween.tween_callback(after_image.queue_free)
 
@@ -73,17 +74,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, 0.3)
 
 	if velocity.length() > 0:
-		var facing_dir = atan2(-velocity.x, -velocity.z)
+		var facing_dir: float = atan2(-velocity.x, -velocity.z)
 		body.rotation.y = lerp_angle(body.rotation.y, facing_dir, 0.05)
 
 	speed = move_toward(speed, 5, 1)
 	reload_time += delta
 
 	if current_control_type == "Mouse":
-		var mouse_pos_viewport = get_viewport().get_mouse_position()
-		var from = camera.project_ray_origin(mouse_pos_viewport)
-		var to = camera.project_ray_normal(mouse_pos_viewport)
-		var mouse_pos = target_plane.intersects_ray(from, to)
+		var mouse_pos_viewport: Vector2 = get_viewport().get_mouse_position()
+		var from: Vector3 = camera.project_ray_origin(mouse_pos_viewport)
+		var to: Vector3 = camera.project_ray_normal(mouse_pos_viewport)
+		var mouse_pos: Vector3 = target_plane.intersects_ray(from, to)
 		look_here = atan2(-mouse_pos.x - -position.x, -mouse_pos.z - -position.z)
 	elif current_control_type == "Controller":
 		look_here = r_stick_dir
@@ -104,8 +105,8 @@ func _input(event: InputEvent) -> void:
 		current_control_type = "Mouse"
 
 	if event is InputEventJoypadMotion:
-		var sticK_sin = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X))
-		var stick_cos = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
+		var sticK_sin: float = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_X))
+		var stick_cos: float = abs(Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y))
 		if sticK_sin > 0.4 or stick_cos > 0.4:
 			current_control_type = "Controller"
 			r_stick_dir = -Vector2(-Input.get_joy_axis(0, JOY_AXIS_RIGHT_Y), Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)).angle()

@@ -6,7 +6,7 @@ var speed: float = 2
 func _physics_process(_delta: float) -> void:
 	rotate_y(0.05)
 	if player:
-		var player_pos = player.position
+		var player_pos: Vector3 = player.position
 		global_position = global_position.move_toward(player_pos, _delta * speed)
 		speed += 0.1
 		

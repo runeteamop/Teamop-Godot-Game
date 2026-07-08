@@ -1,11 +1,12 @@
 class_name Enemy extends CharacterBody3D
 
-@onready var material: StandardMaterial3D = $MeshInstance3D.get_active_material(0)
+@export var material_node: MeshInstance3D
+@onready var material: StandardMaterial3D = material_node.get_active_material(0)
 var material_color: Color
 
-var base_speed = 1.5
-var speed = 1.5
-var health = 40
+var base_speed: float = 1.5
+var speed: float = 1.5
+var health: int = 40
 
 var xp_scene: PackedScene = load("res://bin/entities/xp.tscn")
 
@@ -24,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 		speed = move_toward(speed, base_speed, 0.1)
 		move_and_slide()
 
-func _hit(damage, knockback) -> void:
+func _hit(damage: int, knockback: float) -> void:
 	material.albedo_color = Color(1.0, 0.0, 0.0, 1.0)
 	speed = speed - knockback
 	health -= damage

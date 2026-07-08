@@ -9,5 +9,6 @@ func _on_request_game_state(file_path: String) -> void:
 	if current_game_state:
 		current_game_state.queue_free()
 
-	current_game_state = load(file_path).instantiate()
+	var load_file_path: PackedScene = load(file_path)
+	current_game_state = load_file_path.instantiate()
 	add_child(current_game_state)

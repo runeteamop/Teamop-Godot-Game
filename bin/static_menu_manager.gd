@@ -14,7 +14,8 @@ func _on_enter_menu(path: String) -> void:
 		remove_child(current_menu)
 
 	if !path in cache:
-		cache[path] = load(path).instantiate()
+		var load_path: PackedScene = load(path)
+		cache[path] = load_path.instantiate()
 
 	current_menu = cache[path]
 	add_child(current_menu)

@@ -13,7 +13,7 @@ var all_upgrade_uis: Array[Upgrade_UI]
 var current_upgrades: Array
 var overflow_of_upgrades: int = 0
 
-var reload_speed = 0.5
+var reload_speed: float = 0.5
 
 var xp: float = 0:
 	set(value):
@@ -33,16 +33,18 @@ func _ready() -> void:
 func _level_up() -> void:
 	if all_upgrade_uis.size() > 0:
 		overflow_of_upgrades = floori(all_upgrade_uis.size()/3.0)
-	var temp_upgrades = all_upgrades.duplicate()
-	var x_pos = Vector2(-500, 0)
-	var spawn = get_viewport().get_visible_rect().size/2
+	var temp_upgrades: Array = all_upgrades.duplicate()
+	var x_pos: Vector2 = Vector2(-500, 0)
+	var spawn: Vector2 = get_viewport().get_visible_rect().size/2
 	for i in 3:
-		var random_upgrade_string = temp_upgrades.pick_random()
-		var random_upgrade: Strategy_Template = load(upgrades_folder + "/" + random_upgrade_string)
+		var random_upgrade_string: Array = temp_upgrades.pick_random()
+		var random_upgrade_path: String = "%s/%s" % [upgrades_folder, random_upgrade_string]		
+		var random_upgrade: Strategy_Template = load(random_upgrade_path)
 
 		if temp_upgrades.size() > 1:
 			temp_upgrades.erase(random_upgrade_string)
-		var upgrade_option: Upgrade_UI = load("res://bin/ui/upgrade_ui.tscn").instantiate()
+		var upgrade_option_resource: PackedScene = load("res://bin/ui/upgrade_ui.tscn")
+		var upgrade_option: Upgrade_UI = upgrade_option_resource.instantiate()
 		upgrade_option.position = spawn - upgrade_option.size/2 + x_pos
 		upgrade_option.upgrade_name_text = random_upgrade.upgrade_name
 		upgrade_option.discription_text = random_upgrade.discription
@@ -57,7 +59,7 @@ func _level_up() -> void:
 
 		x_pos += Vector2(500, 0)
 
-	var num = 0
+	var num: int = 0
 	for item : Upgrade_UI in all_upgrade_uis:
 		if num != 0:
 			item.select_button.focus_neighbor_left = all_upgrade_uis[num - 1].select_button.get_path()

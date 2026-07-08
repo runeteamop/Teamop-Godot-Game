@@ -23,35 +23,35 @@ bottom_panel_confirmation_menu = NodePath("MarginContainer/BottomPanel/MarginCon
 confirmation_menu_return = NodePath("MarginContainer/BottomPanel/MarginContainer/BottomPanelConfirmationMenu/ConfirmationReturn")
 confirmation_menu_discard = NodePath("MarginContainer/BottomPanel/MarginContainer/BottomPanelConfirmationMenu/ConfirmationDiscard")
 confirmation_menu_apply = NodePath("MarginContainer/BottomPanel/MarginContainer/BottomPanelConfirmationMenu/ConfirmationApply")
-display_option_menu = NodePath("MarginContainer/DisplayOptions")
-audio_option_menu = NodePath("MarginContainer/AudioOptions")
-input_option_menu = NodePath("MarginContainer/InputOptions")
-window_mode_label = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer/WindowModeLabel")
-window_mode_selector = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/WindowModeSelector")
-resolution_scale_label = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer3/ResolutionScaleLabel")
-resolution_scale_slider = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/ResolutionScale/ResolutionScaleSlider")
-resolution_scale_percentage = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/ResolutionScale/ResolutionScalePercentage")
-ui_scale_label = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer2/UIScaleLabel")
-ui_scale_slider = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/UIScale/UIScaleSlider")
-ui_scale_percentage = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/UIScale/UIScalePercentage")
-vsync_selector_label = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer5/VSyncLabel")
-vsync_selector = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/VSyncSelector")
-antialiasing_selector_label = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer4/AntiAliasingLabel")
-antialiasing_selector = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/AntiAliasingSelector")
-framerate_limit_label = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer6/FramerateLimitLabel")
-framerate_limit_slider = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitSlider")
-framerate_limit_number = NodePath("MarginContainer/DisplayOptions/MarginContainer/GridContainer/FramerateLimit/FramerateLimitNumber")
-master_volume_label = NodePath("MarginContainer/AudioOptions/GridContainer/MasterVolumeLabel")
-master_volume_slider = NodePath("MarginContainer/AudioOptions/GridContainer/HBoxContainer/MasterVolumeSlider")
-master_volume_percentage = NodePath("MarginContainer/AudioOptions/GridContainer/HBoxContainer/VolumePercentage")
-move_forward_label = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer/MoveForwardLabel")
-move_forward_button = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/MoveForward")
-move_left_label = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer2/MoveLeftLabel")
-move_left_button = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/MoveLeft")
-move_backward_label = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer3/MoveBackwardLabel")
-move_backward_button = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/MoveBackward")
-move_right_label = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer4/MoveRightLabel")
-move_right_button = NodePath("MarginContainer/InputOptions/MarginContainer/VBoxContainer/MoveRight")
+display_option_menu = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions")
+audio_option_menu = NodePath("MarginContainer/OptionMenu/MarginContainer/AudioOptions")
+input_option_menu = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions")
+window_mode_label = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/WindowModeLabel")
+window_mode_selector = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/WindowModeSelector")
+resolution_scale_label = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/ResolutionScaleLabel")
+resolution_scale_slider = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/ResolutionScale/ResolutionScaleSlider")
+resolution_scale_percentage = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/ResolutionScale/ResolutionScalePercentage")
+ui_scale_label = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/UIScaleLabel")
+ui_scale_slider = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/UIScale/UIScaleSlider")
+ui_scale_percentage = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/UIScale/UIScalePercentage")
+vsync_selector_label = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/VSyncLabel")
+vsync_selector = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/VSyncSelector")
+antialiasing_selector_label = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/AntiAliasingLabel")
+antialiasing_selector = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/AntiAliasingSelector")
+framerate_limit_label = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/FramerateLimitLabel")
+framerate_limit_slider = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/FramerateLimit/FramerateLimitSlider")
+framerate_limit_number = NodePath("MarginContainer/OptionMenu/MarginContainer/DisplayOptions/FramerateLimit/FramerateLimitNumber")
+master_volume_label = NodePath("MarginContainer/OptionMenu/MarginContainer/AudioOptions/MasterVolumeLabel")
+master_volume_slider = NodePath("MarginContainer/OptionMenu/MarginContainer/AudioOptions/HBoxContainer/MasterVolumeSlider")
+master_volume_percentage = NodePath("MarginContainer/OptionMenu/MarginContainer/AudioOptions/HBoxContainer/VolumePercentage")
+move_forward_label = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer/MoveForwardLabel")
+move_forward_button = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/MoveForward")
+move_left_label = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer2/MoveLeftLabel")
+move_left_button = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/MoveLeft")
+move_backward_label = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer3/MoveBackwardLabel")
+move_backward_button = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/MoveBackward")
+move_right_label = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer4/MoveRightLabel")
+move_right_button = NodePath("MarginContainer/OptionMenu/MarginContainer/InputOptions/MoveRight")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1163114231]
 layout_mode = 1
@@ -65,39 +65,37 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="DisplayOptions" type="PanelContainer" parent="MarginContainer" unique_id=1446137768]
+[node name="OptionMenu" type="PanelContainer" parent="MarginContainer" unique_id=1446137768]
 custom_minimum_size = Vector2(2560, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/DisplayOptions" unique_id=353818162]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/OptionMenu" unique_id=353818162]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/DisplayOptions/MarginContainer" unique_id=44777201]
+[node name="DisplayOptions" type="GridContainer" parent="MarginContainer/OptionMenu/MarginContainer" unique_id=44777201]
 layout_mode = 2
 theme_override_constants/h_separation = 144
 theme_override_constants/v_separation = 32
 columns = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=2094319248]
+[node name="WindowModeLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=298829647 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="WindowModeLabel" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer" unique_id=298829647 groups=["Option labels"]]
-layout_mode = 2
-size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 80
 text = "Window mode:"
+vertical_alignment = 1
 
-[node name="WindowModeSelector" type="OptionButton" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=832595853]
+[node name="WindowModeSelector" type="OptionButton" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=832595853]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 alignment = 1
 selected = 0
@@ -109,24 +107,21 @@ popup/item_1/id = 1
 popup/item_2/text = "Exclusive fullscreen"
 popup/item_2/id = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=971130078]
+[node name="UIScaleLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=1314563658 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="UIScaleLabel" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer2" unique_id=1314563658 groups=["Option labels"]]
-layout_mode = 2
-size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 80
 text = "UI scale:"
 vertical_alignment = 1
 
-[node name="UIScale" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=1704393054]
+[node name="UIScale" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=1704393054]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 32
 
-[node name="UIScaleSlider" type="HSlider" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/UIScale" unique_id=934266650]
+[node name="UIScaleSlider" type="HSlider" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions/UIScale" unique_id=934266650]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -135,8 +130,8 @@ max_value = 1.5
 step = 0.01
 value = 1.0
 
-[node name="UIScalePercentage" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/UIScale" unique_id=603980785]
-custom_minimum_size = Vector2(229, 0)
+[node name="UIScalePercentage" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions/UIScale" unique_id=603980785]
+custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 1
@@ -145,24 +140,21 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=766338316]
+[node name="ResolutionScaleLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=1858538434 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="ResolutionScaleLabel" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer3" unique_id=1858538434 groups=["Option labels"]]
-layout_mode = 2
-size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 80
 text = "Resolution scale:"
 vertical_alignment = 1
 
-[node name="ResolutionScale" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=557910304]
+[node name="ResolutionScale" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=557910304]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 32
 
-[node name="ResolutionScaleSlider" type="HSlider" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/ResolutionScale" unique_id=970319819]
+[node name="ResolutionScaleSlider" type="HSlider" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions/ResolutionScale" unique_id=970319819]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -171,8 +163,8 @@ max_value = 2.0
 step = 0.01
 value = 1.0
 
-[node name="ResolutionScalePercentage" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/ResolutionScale" unique_id=72776825]
-custom_minimum_size = Vector2(229, 0)
+[node name="ResolutionScalePercentage" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions/ResolutionScale" unique_id=72776825]
+custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 1
@@ -181,21 +173,18 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=1380970095]
+[node name="AntiAliasingLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=1326951828 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="AntiAliasingLabel" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer4" unique_id=1326951828 groups=["Option labels"]]
-layout_mode = 2
-size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 80
 text = "Anti-aliasing:"
 vertical_alignment = 1
 
-[node name="AntiAliasingSelector" type="OptionButton" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=2009486185]
+[node name="AntiAliasingSelector" type="OptionButton" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=2009486185]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 alignment = 1
 selected = 0
@@ -209,21 +198,18 @@ popup/item_2/id = 2
 popup/item_3/text = "MSAA x8"
 popup/item_3/id = 3
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=1351222417]
+[node name="VSyncLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=1570201098 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="VSyncLabel" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer5" unique_id=1570201098 groups=["Option labels"]]
-layout_mode = 2
-size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 80
 text = "Vertical syncronization:"
 vertical_alignment = 1
 
-[node name="VSyncSelector" type="OptionButton" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=2018643151]
+[node name="VSyncSelector" type="OptionButton" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=2018643151]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 48
 alignment = 1
 selected = 0
@@ -235,23 +221,20 @@ popup/item_1/id = 1
 popup/item_2/text = "Enabled"
 popup/item_2/id = 2
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=1821423693]
+[node name="FramerateLimitLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=658568314 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="FramerateLimitLabel" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/HBoxContainer6" unique_id=658568314 groups=["Option labels"]]
-layout_mode = 2
-size_flags_horizontal = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 80
 text = "Framerate limit:"
 vertical_alignment = 1
 
-[node name="FramerateLimit" type="HBoxContainer" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer" unique_id=883798345]
+[node name="FramerateLimit" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions" unique_id=883798345]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="FramerateLimitSlider" type="HSlider" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/FramerateLimit" unique_id=1456047821]
+[node name="FramerateLimitSlider" type="HSlider" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions/FramerateLimit" unique_id=1456047821]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -259,7 +242,7 @@ min_value = 30.0
 max_value = 501.0
 value = 500.0
 
-[node name="FramerateLimitNumber" type="Label" parent="MarginContainer/DisplayOptions/MarginContainer/GridContainer/FramerateLimit" unique_id=1064509352]
+[node name="FramerateLimitNumber" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/DisplayOptions/FramerateLimit" unique_id=1064509352]
 custom_minimum_size = Vector2(229, 0)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -269,71 +252,54 @@ text = "Unlimited"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioOptions" type="PanelContainer" parent="MarginContainer" unique_id=1791517120]
+[node name="AudioOptions" type="GridContainer" parent="MarginContainer/OptionMenu/MarginContainer" unique_id=674537546]
 visible = false
-custom_minimum_size = Vector2(2560, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/AudioOptions" unique_id=674537546]
-layout_mode = 2
-columns = 2
-
-[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/AudioOptions/GridContainer" unique_id=1831789241 groups=["Option labels"]]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 80
-text = "Master volume:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/AudioOptions/GridContainer" unique_id=1362953163]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/AudioOptions/GridContainer/HBoxContainer" unique_id=1297774594]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-value = 100.0
-
-[node name="VolumePercentage" type="Label" parent="MarginContainer/AudioOptions/GridContainer/HBoxContainer" unique_id=1872712084]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 80
-text = "100%"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InputOptions" type="PanelContainer" parent="MarginContainer" unique_id=1130324615]
-visible = false
-custom_minimum_size = Vector2(2560, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/InputOptions" unique_id=253212592]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="GridContainer" parent="MarginContainer/InputOptions/MarginContainer" unique_id=2072091927]
 layout_mode = 2
 theme_override_constants/h_separation = 144
 theme_override_constants/v_separation = 32
 columns = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=860652802]
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/AudioOptions" unique_id=1831789241 groups=["Option labels"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 80
+text = "Master volume:"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/AudioOptions" unique_id=1362953163]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/OptionMenu/MarginContainer/AudioOptions/HBoxContainer" unique_id=1297774594]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+
+[node name="VolumePercentage" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/AudioOptions/HBoxContainer" unique_id=1872712084]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputOptions" type="GridContainer" parent="MarginContainer/OptionMenu/MarginContainer" unique_id=2072091927]
+visible = false
+layout_mode = 2
+theme_override_constants/h_separation = 144
+theme_override_constants/v_separation = 32
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=860652802]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MoveForwardLabel" type="Label" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer" unique_id=629172576 groups=["Option labels"]]
+[node name="MoveForwardLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer" unique_id=629172576 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -342,7 +308,7 @@ text = "Move forward:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoveForward" type="Button" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=322503992 groups=["Input buttons"]]
+[node name="MoveForward" type="Button" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=322503992 groups=["Input buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
@@ -352,11 +318,11 @@ text = "W"
 metadata/index = 6
 metadata/action = "move_forward"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=911264625]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=911264625]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MoveLeftLabel" type="Label" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=524388213 groups=["Option labels"]]
+[node name="MoveLeftLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer2" unique_id=524388213 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -365,7 +331,7 @@ text = "Move left:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoveLeft" type="Button" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=1176749912 groups=["Input buttons"]]
+[node name="MoveLeft" type="Button" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=1176749912 groups=["Input buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
@@ -375,11 +341,11 @@ text = "A"
 metadata/index = 7
 metadata/action = "move_left"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=1302002925]
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=1302002925]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MoveBackwardLabel" type="Label" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1280799501 groups=["Option labels"]]
+[node name="MoveBackwardLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer3" unique_id=1280799501 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -388,7 +354,7 @@ text = "Move backward:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoveBackward" type="Button" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=860610968 groups=["Input buttons"]]
+[node name="MoveBackward" type="Button" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=860610968 groups=["Input buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80
@@ -398,11 +364,11 @@ text = "S"
 metadata/index = 8
 metadata/action = "move_backward"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=2257969]
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=2257969]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MoveRightLabel" type="Label" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=627718323 groups=["Option labels"]]
+[node name="MoveRightLabel" type="Label" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions/HBoxContainer4" unique_id=627718323 groups=["Option labels"]]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
@@ -411,7 +377,7 @@ text = "Move right:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MoveRight" type="Button" parent="MarginContainer/InputOptions/MarginContainer/VBoxContainer" unique_id=1310987529 groups=["Input buttons"]]
+[node name="MoveRight" type="Button" parent="MarginContainer/OptionMenu/MarginContainer/InputOptions" unique_id=1310987529 groups=["Input buttons"]]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 80

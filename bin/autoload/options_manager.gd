@@ -35,18 +35,23 @@ func _init() -> void:
 		save_options()
 
 func apply_display_options() -> void:
-	DisplayServer.window_set_mode(options_file.get_value("display", "window_mode"))
+	var test: int = options_file.get_value("display", "window_mode")
+	var test2: int = options_file.get_value("display", "vertical_syncronization")
+	var test3: int = options_file.get_value("display", "antialiasing")
+	var test4: int = options_file.get_value("display", "framerate_limit")
+	
+	DisplayServer.window_set_mode(test)
 	get_viewport().scaling_3d_scale = options_file.get_value("display", "resolution_scale")
 	get_window().content_scale_factor = options_file.get_value("display", "ui_scale")
-	DisplayServer.window_set_vsync_mode(options_file.get_value("display", "vertical_syncronization"))
-	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), options_file.get_value("display", "antialiasing"))
-	Engine.set_max_fps(options_file.get_value("display", "framerate_limit"))
+	DisplayServer.window_set_vsync_mode(test2)
+	RenderingServer.viewport_set_msaa_3d(get_viewport().get_viewport_rid(), test3)
+	Engine.set_max_fps(test4)
 
 func apply_input_options() -> void:
 	var input_actions: PackedStringArray = options_file.get_section_keys("input")
 
 	for action in input_actions:
-		var selected_action = InputMap.action_get_events(action)
+		var selected_action: Array[InputEvent] = InputMap.action_get_events(action)
 
 		for key in selected_action:
 			if key is InputEventKey:

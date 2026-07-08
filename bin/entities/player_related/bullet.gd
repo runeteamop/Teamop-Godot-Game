@@ -2,8 +2,8 @@ class_name Bullet extends Area3D
 
 var damage: float = 10
 var piercing: int = 0
-var speed = 10
-var knockback = 2
+var speed: int = 10
+var knockback: int = 2
 var homing: float = 0
 
 var is_homing: bool = false
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 					temp_enemy = body
 		
 		if temp_enemy:
-			var angle = angle_from_bullet_to_body(temp_enemy)
+			var angle: = angle_from_bullet_to_body(temp_enemy)
 			if angle > 0.2:
 				if angle < 0.999:
 					var rotation_to_enemy: Vector3 = -global_transform.basis.z.cross((temp_enemy.global_position - global_position).normalized()).normalized()
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy:
-		body._hit(damage, knockback)
+		#body._hit(damage, knockback)
 		if piercing < 1:
 			queue_free()
 		piercing -= 1
@@ -49,5 +49,5 @@ func _on_body_entered(body: Node3D) -> void:
 func _on_timer_timeout() -> void:
 	queue_free()
 
-func angle_from_bullet_to_body(area: CharacterBody3D):
+func angle_from_bullet_to_body(area: CharacterBody3D) -> float:
 	return -global_transform.basis.z.dot((area.global_position - global_position).normalized())

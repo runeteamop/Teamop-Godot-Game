@@ -16,7 +16,7 @@ func _xp_bar(xp_value: float) -> void:
 		Player_values._level_up()
 	xp_bar.value = Player_values.xp
 
-func _dash_cooldown(dash_cooldown) -> void:
+func _dash_cooldown(dash_cooldown: int) -> void:
 	if dash_cooldown == 0:
 		dash_progressbar.hide()
 	else:

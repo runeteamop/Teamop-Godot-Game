@@ -28,9 +28,9 @@ var input_buttons_overlap: bool
 @export var confirmation_menu_apply: Button
 
 # Option menus:
-@export var display_option_menu: PanelContainer
-@export var audio_option_menu: PanelContainer
-@export var input_option_menu: PanelContainer
+@export var display_option_menu: GridContainer
+@export var audio_option_menu: GridContainer
+@export var input_option_menu: GridContainer
 
 # Display options:
 @export var window_mode_label: Label
@@ -73,7 +73,7 @@ var input_buttons_overlap: bool
 @export var move_right_button: Button
 
 # Variables defined when the node is done loading
-@onready var current_menu: PanelContainer = display_option_menu
+@onready var current_menu: GridContainer = display_option_menu
 @onready var current_bottom_bar: HBoxContainer = bottom_panel_default_menu
 @onready var option_labels: Array[Node] = get_tree().get_nodes_in_group("Option labels")
 @onready var input_option_buttons: Array[Node] = get_tree().get_nodes_in_group("Input buttons")
@@ -122,7 +122,7 @@ func _on_default_menu_apply_pressed() -> void:
 	if current_input_button_toggled: _disable_toggled_input_button()
 	_apply_options()
 
-func _on_option_tab_pressed(option_menu: PanelContainer) -> void:
+func _on_option_tab_pressed(option_menu: GridContainer) -> void:
 	_swap_current_menu(option_menu)
 
 # confirmation menu:
@@ -162,7 +162,7 @@ func _on_framerate_limit_slider_value_changed(value: int) -> void:
 	framerate_limit_number.text = "%s" % value if value != 0 else "Unlimited"
 
 # AUdio options:
-func _on_master_volume_slider_value_changed():
+func _on_master_volume_slider_value_changed() -> void:
 	pass
 
 # Input options:
@@ -176,7 +176,7 @@ func _swap_bottom_panel_buttons(new_bar: HBoxContainer) -> void:
 	new_bar.visible = true
 	current_bottom_bar = new_bar
 
-func _swap_current_menu(option_menu: PanelContainer)-> void:
+func _swap_current_menu(option_menu: GridContainer)-> void:
 	if current_menu == input_option_menu: _disable_toggled_input_button()
 	current_menu.visible = false
 	option_menu.visible = true
@@ -203,10 +203,11 @@ func _disable_toggled_input_button() -> void:
 		current_input_button_toggled.button_pressed = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.pressed && event is InputEventKey:
-		var event_text = event.as_text()
+	if event is InputEventKey:
+		var event_key: InputEventKey = event
+		var event_text: String = event_key.as_text()
 
-		if event.keycode == KEY_ESCAPE:
+		if event_key.keycode == KEY_ESCAPE:
 				current_input_button_toggled.text = input_button_label_buffer
 				_disable_toggled_input_button()
 				_button_overlap_checker()
@@ -224,7 +225,7 @@ func _button_overlap_checker() -> void:
 		var identical_button_checker: Dictionary[String, Button] = {}
 		var identical_buttons: Array[Button]
 
-		for button in input_option_buttons:
+		for button: Button in input_option_buttons:
 			if identical_button_checker.has(button.text):
 				_update_input_button_color(identical_button_checker[button.text], COLOR.RED)
 				_update_input_button_color(button, COLOR.RED)
@@ -250,15 +251,15 @@ func _update_input_button_color(button: Button, color: COLOR) -> void:
 
 func _set_options_to_option_file_values() -> void:
 	var options: ConfigFile = OptionsManager.options_file
-	var framerate_limit_value = options.get_value("display", "framerate_limit")
+	var framerate_limit_value: int = options.get_value("display", "framerate_limit")
 
 	window_mode_selector.selected = WINDOW_MODE_VALUES.find(options.get_value("display", "window_mode"))
 
 	resolution_scale_slider.value = options.get_value("display", "resolution_scale")
-	resolution_scale_percentage.text = "%s%%" % int(options.get_value("display", "resolution_scale") * 100)
+	resolution_scale_percentage.text = "%s%%" % options.get_value("display", "resolution_scale")
 
 	ui_scale_slider.value = options.get_value("display", "ui_scale")
-	ui_scale_percentage.text = "%s%%" % int(options.get_value("display", "ui_scale") * 100)
+	ui_scale_percentage.text = "%s%%" % options.get_value("display", "ui_scale")
 
 	vsync_selector.selected = options.get_value("display", "vertical_syncronization")
 
@@ -267,10 +268,10 @@ func _set_options_to_option_file_values() -> void:
 	framerate_limit_slider.value = 501 if framerate_limit_value == 0 else framerate_limit_value
 	framerate_limit_number.text = "Unlimited" if framerate_limit_value == 0 else str(framerate_limit_value)
 
-	move_forward_button.text = options.get_value("input", "move_forward").to_upper()
-	move_left_button.text = options.get_value("input", "move_left").to_upper()
-	move_backward_button.text = options.get_value("input", "move_backward").to_upper()
-	move_right_button.text = options.get_value("input", "move_right").to_upper()
+	move_forward_button.text = options.get_value("input", "move_forward")#.to_upper()
+	move_left_button.text = options.get_value("input", "move_left")#.to_upper()
+	move_backward_button.text = options.get_value("input", "move_backward")#.to_upper()
+	move_right_button.text = options.get_value("input", "move_right")#.to_upper()
 
 func _update_option(label: Label, key: String, subkey: String, value: Variant) -> void:
 	if OptionsManager.options_file.get_value(key, subkey) == value:
@@ -284,7 +285,7 @@ func _apply_options() -> void:
 	if input_buttons_overlap:
 		print("Can not apply options")
 	else:
-		for label in option_labels:
+		for label: Label in option_labels:
 			label.text = label.text.remove_char(KEY_ASTERISK)
 
 		OptionsManager.save_options()
