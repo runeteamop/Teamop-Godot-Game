@@ -10,6 +10,8 @@ var current_control_type: String
 var speed: float = 5.0
 var can_dash: bool = true
 
+#TODO: Sætte ben på body
+
 @onready var dash_cooldown: Timer = $"Dash cooldown timer"
 @onready var turret: Marker3D = $Turret
 @onready var camera := $Camera
