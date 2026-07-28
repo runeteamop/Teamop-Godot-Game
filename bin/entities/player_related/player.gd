@@ -10,8 +10,6 @@ var current_control_type: String
 var speed: float = 5.0
 var can_dash: bool = true
 
-#TODO: Sætte ben på body
-
 @onready var dash_cooldown: Timer = $"Dash cooldown timer"
 @onready var turret: Marker3D = $Turret
 @onready var camera := $Camera
@@ -93,6 +91,14 @@ func _physics_process(delta: float) -> void:
 		look_here = r_stick_dir
 
 	turret.rotation.y = lerp_angle(turret.rotation.y, look_here, rotation_speed * delta)
+	
+	#TODO: Code for moving the spider legs here
+	"""
+	if !dashing:
+		move leg furthest from intended position
+		can move leg if adjacent legs are not moving
+		timer to wait to move leg again
+	"""
 
 	move_and_slide()
 
