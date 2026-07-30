@@ -9,6 +9,7 @@ var r_stick_dir: float
 var current_control_type: String
 var speed: float = 5.0
 var can_dash: bool = true
+var is_dashing: bool = false
 
 @onready var dash_cooldown: Timer = $"Dash cooldown timer"
 @onready var turret: Marker3D = $Turret
@@ -18,6 +19,8 @@ var can_dash: bool = true
 @onready var hurtbox: Hurtbox = $Hurtbox
 
 @onready var target_plane : Plane
+
+@onready var step_items_wrapper = $SpiderLegs/LegMarkerWrapper
 
 var bullet_scene: PackedScene = load("res://bin/entities/player_related/bullet.tscn")
 
@@ -57,6 +60,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			set_collision_layer_value(1, true)
 			set_collision_mask_value(1, true)
+			is_dashing = false
 
 		Player_values.dash_cooldown = dash_cooldown.wait_time - dash_cooldown.time_left
 
@@ -92,7 +96,25 @@ func _physics_process(delta: float) -> void:
 
 	turret.rotation.y = lerp_angle(turret.rotation.y, look_here, rotation_speed * delta)
 	
-	#TODO: Code for moving the spider legs here
+	# Normal behavior for the legs when the spider is not dashing
+	if !is_dashing:
+		if velocity.length() > 0:
+			step_items_wrapper.position = lerp(step_items_wrapper.position, velocity * .5, .2)
+		else:
+			step_items_wrapper.position = Vector3(0,0,0)
+		
+		#TODO:
+		"""
+		function to choose leg to move
+		function for moving the leg
+		should i make an object(/class?) to keep all the leg data inside it? - yes
+		data for each leg:
+			moving: bool
+			3 variables to markers for target, pole, and newtarget
+			(varible to connect to leg root node probably not needed)
+		object should be in a seperate script to keep this script clean
+		(or as clean as can be lol)
+		"""
 	"""
 	if !dashing:
 		move leg furthest from intended position
@@ -104,6 +126,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Dash") && can_dash == true:
+		is_dashing = true
 		set_collision_layer_value(1 , false)
 		set_collision_mask_value(1 , false)
 		can_dash = false
