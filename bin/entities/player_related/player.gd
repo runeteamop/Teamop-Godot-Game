@@ -9,6 +9,8 @@ var r_stick_dir: float
 var current_control_type: String
 var speed: float = 5.0
 var can_dash: bool = true
+
+# Variables for controlling leg movement
 var is_dashing: bool = false
 
 @onready var dash_cooldown: Timer = $"Dash cooldown timer"
@@ -20,7 +22,41 @@ var is_dashing: bool = false
 
 @onready var target_plane : Plane
 
+# On-ready variables for controlling leg movement
 @onready var step_items_wrapper = $SpiderLegs/LegMarkerWrapper
+
+@onready var legs: Dictionary = {
+	is_moving_index = 0,
+	# 0 -> No leg moving
+	# 1 -> SW leg moving
+	# 2 -> NW leg moving
+	# 3 -> SE leg moving
+	# 4 -> NE leg moving
+	
+	SW = {
+		marker_current_target = $SpiderLegs/LegMarkerWrapper/LegSWTarget,
+		marker_new_target = $SpiderLegs/LegMarkerWrapper/LegSWNewTarget,
+		#is_moving = false
+	},
+	
+	NW = {
+		marker_current_target = $SpiderLegs/LegMarkerWrapper/LegNWTarget,
+		marker_new_target = $SpiderLegs/LegMarkerWrapper/LegNWNewTarget,
+		#is_moving = false
+	},
+	
+	SE = {
+		marker_current_target = $SpiderLegs/LegMarkerWrapper/LegSETarget,
+		marker_new_target = $SpiderLegs/LegMarkerWrapper/LegSENewTarget,
+		#is_moving = false
+	},
+	
+	NE = {
+		marker_current_target = $SpiderLegs/LegMarkerWrapper/LegNETarget,
+		marker_new_target = $SpiderLegs/LegMarkerWrapper/LegNENewTarget,
+		#is_moving = false
+	}
+}
 
 var bullet_scene: PackedScene = load("res://bin/entities/player_related/bullet.tscn")
 
@@ -162,3 +198,14 @@ func _shoot() -> void:
 
 func _received_damage(damage : int) -> void:
 	Player_values.health -= damage
+
+# Functions for controlling leg movement
+func choose_leg(legs: Dictionary) -> int:
+	return 0
+
+func find_lowest_distances(legs: Dictionary) -> Array:
+	return []
+
+# Okay, there needs to be an array that contains all the legs to loop through
+# Maybe it's better to switch to gitea before I do this? IDK
+# There's a lot of unknowns in this project right now...
