@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://do2r14ve4hl7y" path="res://bin/entities/camera.tscn" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cnh2cpb2r350u" path="res://bin/entities/player_related/turret.tscn" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://y5riccjafnif" path="res://bin/entity_logic/hurt_box.gd" id="4_h5l3b"]
+[ext_resource type="Script" uid="uid://b2ygrog6oat3u" path="res://bin/entities/player_related/spider_legs.gd" id="5_0axqk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kbw50"]
 
@@ -112,6 +113,7 @@ metadata/_custom_type_script = "uid://y5riccjafnif"
 shape = SubResource("SphereShape3D_0axqk")
 
 [node name="SpiderLegs" type="Node3D" parent="." unique_id=1872322509]
+script = ExtResource("5_0axqk")
 
 [node name="LegSW" type="Node3D" parent="SpiderLegs" unique_id=155307060]
 transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -0.3, 0, 0.3)
